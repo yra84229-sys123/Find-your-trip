@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Luxury</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">Lux<span>ury</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html" class="active">Products</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div>
+            <h1>Our Collection</h1>
+            <p>Find your signature scent</p>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterSelection('all')">All</button>
+            <button class="filter-btn" onclick="filterSelection('women')">For Women</button>
+            <button class="filter-btn" onclick="filterSelection('men')">For Men</button>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+
+            <div class="product-card women">
+                <img src="https://img01.ztat.net/article/spp-media-p1/96ee4724ab1245ef8e6045bc5e90970c/2b6786a7cfef4b48abae79df3170de88.jpg?imwidth=762"
+                    alt="Midnight Rose" class="product-image">
+                <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="reviews">(805 Reviews)</span>
+                    </div>
+                    <h3>Midnight Rose : Floral & Woody</h3>
+                    <div class="product-action-row">
+                        <span class="price-orange">$112.00</span>
+                        <div class="action-controls">
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <span class="qty-val">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <button class="btn-add-orange">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card men">
+                <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=2053&auto=format&fit=crop"
+                    alt="Ocean Breeze" class="product-image">
+                <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="reviews">(432 Reviews)</span>
+                    </div>
+                    <h3>Ocean Breeze : Fresh & Aquatic</h3>
+                    <div class="product-action-row">
+                        <span class="price-orange">$85.00</span>
+                        <div class="action-controls">
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <span class="qty-val">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <button class="btn-add-orange">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card men">
+                <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=1887&auto=format&fit=crop"
+                    alt="Velvet Oud" class="product-image">
+                <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="reviews">(1,250 Reviews)</span>
+                    </div>
+                    <h3>Velvet Oud : Warm & Spicy</h3>
+                    <div class="product-action-row">
+                        <span class="price-orange">$133.00</span>
+                        <div class="action-controls">
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <span class="qty-val">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <button class="btn-add-orange">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card women">
+                <img src="https://lareefragrances.com/cdn/shop/files/golden_amber_notes.jpg?v=1769920832&width=1500"
+                    alt="Golden Amber" class="product-image">
+                <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="reviews">(2,140 Reviews)</span>
+                    </div>
+                    <h3>Golden Amber : Citrus & Amber</h3>
+                    <div class="product-action-row">
+                        <span class="price-orange">$124.00</span>
+                        <div class="action-controls">
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <span class="qty-val">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <button class="btn-add-orange">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card women">
+                <img src="https://cdn.faire.com/fastly/dae2ec44dd180a95bf53c790661b0c30f0a91ce304592ef9a15d7a2d597dd768.png?bg-color=F2EBE7&canvas=106.06p%2C100p%2Coffset-x0p%2Coffset-y50p&format=jpg&precrop=78.99p%2C83.78p%2Cx21p%2Cy6.65p&width=720"
+                    alt="Silken Vanilla" class="product-image">
+                <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="reviews">(540 Reviews)</span>
+                    </div>
+                    <h3>Silken Vanilla : Sweet & Musky</h3>
+                    <div class="product-action-row">
+                        <span class="price-orange">$126.00</span>
+                        <div class="action-controls">
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <span class="qty-val">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <button class="btn-add-orange">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card men">
+                <img src="https://unicologne.com/cdn/shop/files/EnchantedForest--GreenPlant-Photoroom.jpg?v=1739448053&width=1100"
+                    alt="Enchanted Forest" class="product-image">
+                <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="reviews">(95 Reviews)</span>
+                    </div>
+                    <h3>Enchanted Forest : Earthy & Green</h3>
+                    <div class="product-action-row">
+                        <span class="price-orange">$120.00</span>
+                        <div class="action-controls">
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <span class="qty-val">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <button class="btn-add-orange">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card women">
+                <img src="https://www.jillstuart-beauty.com/en-jp/new-item/2014/1114-crystal_bloom/images/main.jpg"
+                    alt="Crystal Bloom" class="product-image">
+                <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="reviews">(1,024 Reviews)</span>
+                    </div>
+                    <h3>Crystal Bloom : Floral & Fruity</h3>
+                    <div class="product-action-row">
+                        <span class="price-orange">$135.00</span>
+                        <div class="action-controls">
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <span class="qty-val">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <button class="btn-add-orange">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card men">
+                <img src="https://www.egynose.com/cdn/shop/files/egynose-jasmine-ingredients-egyptian-jasmine.jpg?v=1777545351&width=3840"
+                    alt="Noir Absolute" class="product-image">
+                <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="reviews">(680 Reviews)</span>
+                    </div>
+                    <h3>Noir Absolute : Woody & Leather</h3>
+                    <div class="product-action-row">
+                        <span class="price-orange">$176.00</span>
+                        <div class="action-controls">
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <span class="qty-val">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <button class="btn-add-orange">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card women">
+                <img src="https://www.egynose.com/cdn/shop/files/egynose-jasmine-ingredients-egyptian-jasmine.jpg?v=1777545351&width=3840"
+                    alt="Jasmine Mist" class="product-image">
+                <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="reviews">(310 Reviews)</span>
+                    </div>
+                    <h3>Jasmine Mist : White Floral & Citrus</h3>
+                    <div class="product-action-row">
+                        <span class="price-orange">$123.25</span>
+                        <div class="action-controls">
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <span class="qty-val">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <button class="btn-add-orange">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card men">
+                <img src="https://www.yesfir.com/cdn/shop/files/YS-43-box.jpg?v=1776772229" alt="Urban Chrome"
+                    class="product-image">
+                <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="reviews">(5,200 Reviews)</span>
+                    </div>
+                    <h3>Urban Chrome : Fresh Spicy & Aquatic</h3>
+                    <div class="product-action-row">
+                        <span class="price-orange">$100.00</span>
+                        <div class="action-controls">
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <span class="qty-val">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <button class="btn-add-orange">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card women">
+                <img src="https://bluemercury.com/cdn/shop/files/enhanced_images-p690251028412-2_c1adabb4-c9e1-4ce1-816f-d5784f352a49.jpg?v=1775750910&width=1500"
+                    alt="Peony Blush" class="product-image">
+                <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="reviews">(89 Reviews)</span>
+                    </div>
+                    <h3>Peony Blush : Soft Floral</h3>
+                    <div class="product-action-row">
+                        <span class="price-orange">$162.50</span>
+                        <div class="action-controls">
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <span class="qty-val">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <button class="btn-add-orange">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card men">
+                <img src="https://thescentnest.com/wp-content/uploads/2025/10/tobacco-vanilla-tom-ford-1.webp"
+                    alt="Tobacco Vanilla" class="product-image">
+                <div class="product-info">
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="reviews">(4,120 Reviews)</span>
+                    </div>
+                    <h3>Tobacco Vanilla : Sweet & Tobacco</h3>
+                    <div class="product-action-row">
+                        <span class="price-orange">$162.00</span>
+                        <div class="action-controls">
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <span class="qty-val">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <button class="btn-add-orange">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Lux<span>ury</span></div>
+
+        </div>
+
+    </footer>
+
+    <script>
+        function filterSelection(c) {
+            var grid = document.getElementById("productGrid");
+
+
+            grid.style.opacity = '0';
+
+
+            setTimeout(function () {
+                var x, i;
+                x = document.getElementsByClassName("product-card");
+                if (c == "all") c = "";
+                for (i = 0; i < x.length; i++) {
+                    removeClass(x[i], "hide");
+                    if (c !== "" && !x[i].classList.contains(c)) addClass(x[i], "hide");
+                }
+
+
+                var btns = document.getElementsByClassName("filter-btn");
+                for (i = 0; i < btns.length; i++) {
+                    btns[i].classList.remove("active");
+                    if (btns[i].getAttribute("onclick").includes(c || 'all')) {
+                        btns[i].classList.add("active");
+                    }
+                }
+
+
+                grid.style.opacity = '1';
+            }, 400);
+        }
+
+        function addClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
+            }
+        }
+
+        function removeClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+    </script>
+
+
+    <a href="#" class="scroll-top" id="scrollTopBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+    </a>
+
+    <script>
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add("show");
+            } else {
+                scrollTopBtn.classList.remove("show");
+            }
+        });
+
+
+        document.querySelectorAll('.quantity-selector').forEach(selector => {
+            const minusBtn = selector.children[0];
+            const qtyVal = selector.children[1];
+            const plusBtn = selector.children[2];
+            
+            const card = selector.closest('.product-card');
+            const priceEl = card.querySelector('.price-orange');
+            const basePrice = parseFloat(priceEl.textContent.replace('$', ''));
+
+            const updatePrice = (qty) => {
+                priceEl.textContent = '$' + (basePrice * qty).toFixed(2);
+            };
+
+            minusBtn.addEventListener('click', () => {
+                let currentVal = parseInt(qtyVal.textContent);
+                if (currentVal > 1) {
+                    qtyVal.textContent = currentVal - 1;
+                    updatePrice(currentVal - 1);
+                }
+            });
+
+            plusBtn.addEventListener('click', () => {
+                let currentVal = parseInt(qtyVal.textContent);
+                qtyVal.textContent = currentVal + 1;
+                updatePrice(currentVal + 1);
+            });
+        });
+
+        document.querySelectorAll('.btn-add-orange').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('OK! Item added to your cart.');
+            });
+        });
+    </script>
+</body>
+
+</html>
