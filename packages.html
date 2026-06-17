@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages - Find Your Trip</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- React 18 & ReactDOM 18 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    
+    <!-- Babel Standalone for In-Browser JSX Compilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="data.js"></script>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const packagesList = [
+            { id: 1, category: 'adventure', categoryLabel: 'Adventure', icon: 'fa-mountain', img: 'https://asiatravellinks.com/images/attractions/ta-prohm.webp', title: 'Jungle & Temples Adventure', location: 'Siem Reap, Cambodia', desc: 'Trek through dense jungles, discover hidden temples and experience the true wild side of Cambodia.', duration: '4 Days 3 Nights', people: '2-12 People', price: 299 },
+            { id: 2, category: 'relaxing', categoryLabel: 'Relaxing', icon: 'fa-umbrella-beach', img: 'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/669831377.jpg?k=05c5854a62fe60082176bfe779f50ab67fe1cfa854e61268380014d294503ec1&o=', title: 'Beach Escape in Koh Rong', location: 'Koh Rong, Cambodia', desc: "Relax on white sandy beaches and enjoy crystal-clear waters on Cambodia's beautiful island.", duration: '3 Days 2 Nights', people: '2-10 People', price: 249 },
+            { id: 3, category: 'culture', categoryLabel: 'Culture', icon: 'fa-landmark', img: 'https://whc.unesco.org/uploads/thumbs/site_0668_0067-1200-630-20151104115852.jpg', title: 'Angkor Heritage Experience', location: 'Siem Reap, Cambodia', desc: "Explore the magnificent Angkor temples and immerse yourself in Cambodia's rich history and culture.", duration: '4 Days 3 Nights', people: '2-10 People', price: 319 },
+            { id: 4, category: 'food', categoryLabel: 'Food', icon: 'fa-utensils', img: 'https://www.agoda.com/wp-content/uploads/2024/02/Featured-photo-Cambodia-restaurants-1244x700.jpg', title: 'Taste of Cambodia', location: 'Phnom Penh, Cambodia', desc: 'Savor authentic Cambodian cuisine and explore local markets with our food expert guides.', duration: '3 Days 2 Nights', people: '2-10 People', price: 199 },
+            { id: 5, category: 'culture', categoryLabel: 'Culture', icon: 'fa-landmark', img: 'https://cms.siemreaper.click/uploads/angkor_wat_sunrise_discovery2712_997b977984.jpg', title: 'Angkor Wat Sunrise', location: 'Siem Reap, Cambodia', desc: 'Witness the magnificent sunrise over the ancient temples of Angkor Wat.', duration: '1 Day', people: '1-5 People', price: 45 },
+            { id: 6, category: 'adventure', categoryLabel: 'Adventure', icon: 'fa-mountain', img: 'https://media.tacdn.com/media/attractions-splice-spp-674x446/12/4c/ca/2c.jpg', title: 'Bokor Mountain Trek', location: 'Kampot, Cambodia', desc: 'Hike through lush jungles and explore the abandoned French hill station.', duration: '2 Days 1 Night', people: '4-12 People', price: 85 },
+            { id: 7, category: 'relaxing', categoryLabel: 'Relaxing', icon: 'fa-umbrella-beach', img: 'https://img.liveaboard.com/River%20Cruise/Countries/Cambodia%20River%20Cruise%20001.jpeg?tr=w-1920,h-800,pr-true,c-maintain_ratio,q-50', title: 'Mekong River Cruise', location: 'Kratie, Cambodia', desc: 'Sail along the serene Mekong River and spot the rare Irrawaddy dolphins.', duration: '2 Days', people: '2-15 People', price: 120 },
+            { id: 8, category: 'food', categoryLabel: 'Food', icon: 'fa-utensils', img: 'https://www.shutterstock.com/image-photo/phnom-penh-cambodia-june-20-600nw-2514146095.jpg', title: 'Phnom Penh Street Food', location: 'Phnom Penh, Cambodia', desc: 'Take a tuk-tuk tour through bustling night markets and taste local delicacies.', duration: 'Half Day', people: '1-6 People', price: 35 },
+            { id: 9, category: 'culture', categoryLabel: 'Culture', icon: 'fa-landmark', img: 'https://xa6zemg4r8.cloudimg.io/_images_/Battambang%20Temples-yhUQyMTti0E05d2Jy2zO.jpg', title: 'Battambang Heritage', location: 'Battambang, Cambodia', desc: 'Ride the famous bamboo train and explore French colonial architecture.', duration: '2 Days 1 Night', people: '2-10 People', price: 95 }
+        ];
+
+        function PackagesApp() {
+            const [scrolled, setScrolled] = useState(false);
+            const [activeFilter, setActiveFilter] = useState('All');
+            const [theme, setThemeState] = useState(localStorage.getItem('fyt-theme') || 'light');
+
+            useEffect(() => {
+                document.body.className = `${theme}-theme`;
+                localStorage.setItem('fyt-theme', theme);
+            }, [theme]);
+
+            const filteredPackages = activeFilter === 'All' 
+                ? packagesList 
+                : packagesList.filter(pkg => pkg.category === activeFilter);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    if (window.scrollY > 50) {
+                        setScrolled(true);
+                    } else {
+                        setScrolled(false);
+                    }
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <div>
+                    {/* Navbar */}
+                    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+                        <div className="nav-top">
+                            <div className="nav-contact">
+                                <div className="nav-contact-icon"><i className="fa-solid fa-phone"></i></div>
+                                <div className="nav-contact-text">
+                                    <span>For Further Inquires :</span>
+                                    <strong>+855 017 573 688</strong>
+                                </div>
+                            </div>
+                            <div className="nav-logo" style={{ cursor: 'pointer' }} onClick={() => window.location.href = 'index.html'}>
+                                <i className="fa-solid fa-plane-departure"></i>
+                                <span>TOURLY</span>
+                            </div>
+                            <div className="nav-search">
+                                <i className="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                        </div>
+                        <div className="nav-bottom">
+                            <div className="nav-social">
+                                <a href="https://www.facebook.com/share/14hLmmP1Gvx/?mibextid=wwXIfr" target="_blank"><i className="fa-brands fa-facebook-f"></i></a>
+                                <a href="https://www.instagram.com/iur.aaaa" target="_blank"><i className="fa-brands fa-instagram"></i></a>
+                            </div>
+                            <div className="nav-links">
+                                <a href="index.html" className="nav-link">HOME</a>
+                                <a href="destinations.html" className="nav-link">POPULAR DESTINATIONS</a>
+                                <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="nav-link active">PACKAGES <i className="fa-solid fa-chevron-down" style={{ fontSize: '0.7rem' }}></i></a>
+                                <a href="trip_planner.html" className="nav-link">TRIP PLANNER</a>
+                                <a href="calculator.html" className="nav-link">CALCULATOR</a>
+                                <a href="hidden_gems.html" className="nav-link">HIDDEN GEMS</a>
+                                <a href="settings.html" className="nav-link">SETTINGS <i className="fa-solid fa-chevron-down" style={{ fontSize: '0.7rem' }}></i></a>
+                                <a href="about.html" className="nav-link">ABOUT US</a>
+                            </div>
+                            <a href="index.html#booking" className="nav-book-btn">BOOK NOW</a>
+                        </div>
+                    </nav>
+
+                    {/* Hero Section */}
+                    <header className="hero-section hero-page">
+                        <div className="hero-bg"></div>
+                        <div className="hero-overlay"></div>
+                        <div className="container hero-content">
+                            <h1 className="hero-title">OUR PACKAGES</h1>
+                            <p style={{ maxWidth: '800px', margin: '0 auto 40px auto', color: 'white', fontSize: '1.1rem', lineHeight: '1.6', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+                                Discover our exclusive tour packages in Cambodia. Whether you are seeking adventure, relaxation, culture, or food - we have the perfect journey for you.
+                            </p>
+                            <div className="hero-buttons" style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
+                                <button className="btn-primary" style={{ borderRadius: '30px', background: '#0d6efd', padding: '12px 35px', fontWeight: 'bold' }} onClick={() => document.getElementById('packages').scrollIntoView({ behavior: 'smooth' })}>PACKAGES</button>
+                            </div>
+                        </div>
+
+                        {/* Features Info Bar */}
+                        <div className="hero-info-bar">
+                            <div className="info-item">
+                                <div className="info-icon"><i className="fa-solid fa-shield-halved"></i></div>
+                                <div className="info-text">
+                                    <h4>Best Price Guarantee</h4>
+                                    <p>We guarantee the best price for your trips.</p>
+                                </div>
+                            </div>
+                            <div className="info-item">
+                                <div className="info-icon"><i className="fa-solid fa-headset"></i></div>
+                                <div className="info-text">
+                                    <h4>24/7 Customer Support</h4>
+                                    <p>We're here to help you anytime, anywhere.</p>
+                                </div>
+                            </div>
+                            <div className="info-item">
+                                <div className="info-icon"><i className="fa-solid fa-shield"></i></div>
+                                <div className="info-text">
+                                    <h4>Safe & Secure Booking</h4>
+                                    <p>Your safety is our top priority.</p>
+                                </div>
+                            </div>
+                            <div className="info-item">
+                                <div className="info-icon"><i className="fa-solid fa-plane"></i></div>
+                                <div className="info-text">
+                                    <h4>Easy & Fast Booking</h4>
+                                    <p>Book your trip in just a few clicks.</p>
+                                </div>
+                            </div>
+                            <div className="info-item">
+                                <div className="info-icon"><i className="fa-solid fa-thumbs-up"></i></div>
+                                <div className="info-text">
+                                    <h4>Trusted by Travelers</h4>
+                                    <p>Join thousands of happy travelers worldwide.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Packages Content */}
+                    <section id="packages" className="section-padding" style={{ backgroundColor: 'var(--bg-main)' }}>
+                        <div className="container">
+                            <div className="section-header text-center" style={{ marginBottom: '40px' }}>
+                                <h2 className="section-title" style={{ color: 'var(--text-main)' }}>EXCLUSIVE TOUR PACKAGES</h2>
+                                <div className="title-underline"></div>
+                            </div>
+
+                            {/* Filters */}
+                            <div className="packages-filters-wrapper">
+                                <div className="packages-filters">
+                                    <button className={`filter-btn ${activeFilter === 'All' ? 'active' : ''}`} onClick={() => setActiveFilter('All')}><i className="fa-solid fa-border-all"></i> All Packages</button>
+                                    <button className={`filter-btn ${activeFilter === 'adventure' ? 'active' : ''}`} onClick={() => setActiveFilter('adventure')}><i className="fa-solid fa-mountain"></i> Adventure</button>
+                                    <button className={`filter-btn ${activeFilter === 'relaxing' ? 'active' : ''}`} onClick={() => setActiveFilter('relaxing')}><i className="fa-solid fa-umbrella-beach"></i> Relaxing</button>
+                                    <button className={`filter-btn ${activeFilter === 'culture' ? 'active' : ''}`} onClick={() => setActiveFilter('culture')}><i className="fa-solid fa-landmark"></i> Culture</button>
+                                    <button className={`filter-btn ${activeFilter === 'food' ? 'active' : ''}`} onClick={() => setActiveFilter('food')}><i className="fa-solid fa-utensils"></i> Food</button>
+                                </div>
+                            </div>
+
+                            <div className="packages-grid">
+                                {filteredPackages.map(pkg => (
+                                    <div key={pkg.id} className="package-card pkg-card-new">
+                                        <div className="pkg-img" style={{ backgroundImage: `url('${pkg.img}')` }}>
+                                            <span className={`pkg-tag ${pkg.category}`}><i className={`fa-solid ${pkg.icon}`}></i> {pkg.categoryLabel}</span>
+                                            <div className="pkg-heart"><i className="fa-regular fa-heart"></i></div>
+                                        </div>
+                                        <div className="pkg-content">
+                                            <h3>{pkg.title}</h3>
+                                            <p className="pkg-location"><i className="fa-solid fa-location-dot"></i> {pkg.location}</p>
+                                            <p className="pkg-desc">{pkg.desc}</p>
+                                            <div className="pkg-meta">
+                                                <span><i className="fa-regular fa-clock"></i> {pkg.duration}</span>
+                                                <span><i className="fa-solid fa-user-group"></i> {pkg.people}</span>
+                                            </div>
+                                            <div className="pkg-footer">
+                                                <div className="pkg-price"><span className="from-text">From</span> <strong>${pkg.price}</strong></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Footer */}
+                    <footer className="footer-modern bg-gradient-dark text-light" style={{ background: '#050a15', paddingTop: '60px', paddingBottom: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                        <div className="container">
+                            <div className="row" style={{ display: 'flex', flexWrap: 'wrap', gap: '30px', marginBottom: '40px' }}>
+                                {/* Brand Column */}
+                                <div className="col-lg-4 col-md-6" style={{ flex: '1 1 300px' }}>
+                                    <div className="footer-brand" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px' }}>
+                                        <i className="fa-solid fa-location-dot" style={{ fontSize: '2rem', color: 'var(--primary)' }}></i>
+                                        <div>
+                                            <h3 style={{ margin: 0, fontSize: '1.5rem', fontWeight: '800', letterSpacing: '1px' }}>FIND YOU TRIP</h3>
+                                            <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Discover. Explore. Enjoy.</span>
+                                        </div>
+                                    </div>
+                                    <p style={{ color: '#94a3b8', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '20px' }}>
+                                        Your trusted travel companion. We help you find the best places, plan your perfect trip and make memories that last a lifetime.
+                                    </p>
+                                    <div className="footer-socials" style={{ display: 'flex', gap: '10px' }}>
+                                        <a href="https://www.facebook.com/share/14hLmmP1Gvx/?mibextid=wwXIfr" target="_blank" style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', textDecoration: 'none', transition: '0.3s' }}><i className="fa-brands fa-facebook-f"></i></a>
+                                        <a href="https://www.instagram.com/iur.aaaa" target="_blank" style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', textDecoration: 'none', transition: '0.3s' }}><i className="fa-brands fa-instagram"></i></a>
+                                    </div>
+                                </div>
+
+                                {/* Quick Links */}
+                                <div className="col-lg-2 col-md-6" style={{ flex: '1 1 150px' }}>
+                                    <h4 style={{ color: 'white', fontSize: '1.1rem', marginBottom: '20px', fontWeight: '600', position: 'relative' }}>Quick Links<span style={{ position: 'absolute', bottom: '-5px', left: 0, width: '30px', height: '2px', background: 'var(--primary)' }}></span></h4>
+                                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                        <li><a href="index.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Home</a></li>
+                                        <li><a href="destinations.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Destinations</a></li>
+                                        <li><a href="packages.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Tour Packages</a></li>
+                                        <li><a href="trip_planner.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Trip Planner</a></li>
+                                        <li><a href="hidden_gems.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Hidden Gems</a></li>
+                                        <li><a href="about.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> About Us</a></li>
+                                    </ul>
+                                </div>
+
+                                {/* Popular Destinations */}
+                                <div className="col-lg-2 col-md-6" style={{ flex: '1 1 150px' }}>
+                                    <h4 style={{ color: 'white', fontSize: '1.1rem', marginBottom: '20px', fontWeight: '600', position: 'relative' }}>Popular Destinations<span style={{ position: 'absolute', bottom: '-5px', left: 0, width: '30px', height: '2px', background: 'var(--primary)' }}></span></h4>
+                                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                        <li><a href="destinations.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Siem Reap</a></li>
+                                        <li><a href="destinations.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Phnom Penh</a></li>
+                                        <li><a href="destinations.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Kampot</a></li>
+                                        <li><a href="destinations.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Battambang</a></li>
+                                        <li><a href="destinations.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Koh Rong</a></li>
+                                        <li><a href="destinations.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Kep</a></li>
+                                    </ul>
+                                </div>
+
+                                {/* Support */}
+                                <div className="col-lg-2 col-md-6" style={{ flex: '1 1 150px' }}>
+                                    <h4 style={{ color: 'white', fontSize: '1.1rem', marginBottom: '20px', fontWeight: '600', position: 'relative' }}>Support<span style={{ position: 'absolute', bottom: '-5px', left: 0, width: '30px', height: '2px', background: 'var(--primary)' }}></span></h4>
+                                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                        <li><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> FAQ</a></li>
+                                        <li><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Terms & Conditions</a></li>
+                                        <li><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Privacy Policy</a></li>
+                                        <li><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Refund Policy</a></li>
+                                        <li><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Booking Guide</a></li>
+                                        <li><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Customer Support</a></li>
+                                    </ul>
+                                </div>
+
+                                {/* Newsletter */}
+                                <div className="col-lg-3 col-md-6" style={{ flex: '1 1 250px' }}>
+                                    <h4 style={{ color: 'white', fontSize: '1.1rem', marginBottom: '20px', fontWeight: '600', position: 'relative' }}>Newsletter<span style={{ position: 'absolute', bottom: '-5px', left: 0, width: '30px', height: '2px', background: 'var(--primary)' }}></span></h4>
+                                    <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginBottom: '15px' }}>Subscribe to get special offers and travel inspiration.</p>
+                                    <div style={{ position: 'relative', display: 'flex' }}>
+                                        <input type="email" placeholder="Your email address" style={{ width: '100%', padding: '12px 45px 12px 15px', borderRadius: '30px', border: 'none', background: 'rgba(255,255,255,0.05)', color: 'white', outline: 'none' }} />
+                                        <button style={{ position: 'absolute', right: '4px', top: '4px', bottom: '4px', width: '38px', borderRadius: '50%', background: 'var(--primary)', border: 'none', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                            <i className="fa-solid fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Bottom Bar */}
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px', marginTop: '20px' }}>
+                                <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: 0 }}>&copy; 2024 <span style={{ color: 'var(--primary)' }}>Find You Trip</span>. All rights reserved.</p>
+                                <div style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '10px', fontStyle: 'italic' }}>
+                                    <i className="fa-solid fa-plane"></i> - Let's find your next adventure.
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<PackagesApp />);
+    </script>
+</body>
+</html>

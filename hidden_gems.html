@@ -24,6 +24,7 @@
 
     <!-- Core Data File -->
     <script src="data.js"></script>
+    <script src="hidden_gem_data.js"></script>
 
     <!-- React App Script (JSX) -->
     <script type="text/babel">
@@ -491,7 +492,15 @@
             // Retrieve current gem details based on selected province
             const currentGemProvince = provincesData.find(p => p.id === gemProvinceId) || provincesData[0];
             // Highlight a specific place in the selected province as the "Hidden Gem"
-            const currentHiddenGem = currentGemProvince.places[currentGemProvince.places.length - 1] || currentGemProvince.places[0];
+            const currentHiddenGem = (typeof hiddenGemsData !== 'undefined' && hiddenGemsData[gemProvinceId]) || {
+                name: "Add Your Hidden Gem",
+                khmerName: "កន្លែងលាក់កំបាំង",
+                desc: "This is a placeholder. You can add your unique hidden gem information for this province in the hidden_gem_data.js file.",
+                history: "Add unique history for this province's hidden gem in hidden_gem_data.js.",
+                img: "https://via.placeholder.com/600x400/0d6efd/ffffff?text=Your+Hidden+Gem",
+                roadCondition: "Add road conditions here...",
+                contactLocalGuide: "Add contact info here..."
+            };
 
             // Render Tech Stack Card click
             const handleTechTagClick = (tagName) => {
@@ -533,9 +542,9 @@
                                 <a href="packages.html" className="nav-link">PACKAGES <i className="fa-solid fa-chevron-down" style={{ fontSize: '0.7rem' }}></i></a>
                                 <a href="trip_planner.html" className="nav-link">TRIP PLANNER</a>
                                 <a href="calculator.html" className="nav-link">CALCULATOR</a>
-                                <a href="hidden_gems.html" className="nav-link">HIDDEN GEMS</a>
+                                <a href="#gems" className="nav-link active">HIDDEN GEMS</a>
                                 <a href="settings.html" className="nav-link">SETTINGS <i className="fa-solid fa-chevron-down" style={{ fontSize: '0.7rem' }}></i></a>
-                                <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="nav-link active">ABOUT US</a>
+                                <a href="about.html" className="nav-link">ABOUT US</a>
                             </div>
                             <a href="#booking" className="nav-book-btn">BOOK NOW</a>
                         </div>
@@ -547,13 +556,12 @@
                         <div className="hero-overlay"></div>
                         <div className="container hero-content">
                             <h1 className="hero-title">
-                                <span> ABOUT US</span>
+                               <span>  HIDDEN GEMS</span>
                             </h1>
-                            <p className="hero-subtitle">Meet the passionate team behind TOURLY and get in touch with us.</p>
+                            <p className="hero-subtitle">Explore the secret places, historical stories, and off-the-beaten-path destinations across Cambodia.</p>
 
                             <div className="hero-buttons" style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
-                                <button className="btn-primary" style={{ borderRadius: '30px', background: '#0d6efd', padding: '15px 35px', fontWeight: 'bold' }} onClick={() => { playBeep(soundEnabled); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); }}>CONTACT US</button>
-                                <button className="btn-outline" style={{ borderRadius: '30px', color: 'white', borderColor: 'white', padding: '15px 35px', fontWeight: 'bold' }} onClick={() => { playBeep(soundEnabled); document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); }}><i className="fa-solid fa-play"></i> OUR STORY</button>
+                                <button className="btn-primary" style={{ borderRadius: '30px', background: '#0d6efd', padding: '15px 35px', fontWeight: 'bold' }} onClick={() => { playBeep(soundEnabled); document.getElementById('gems').scrollIntoView({ behavior: 'smooth' }); }}>DISCOVER</button>
                             </div>
                         </div>
 
@@ -599,120 +607,105 @@
 
 
 
-
-                    {/* About Us (Team Grid) */}
-                    <section id="about" className="section-padding bg-gradient-dark" style={{ background: '#030712', backgroundImage: 'radial-gradient(rgba(13, 110, 253, 0.05) 1px, transparent 1px)', backgroundSize: '20px 20px', position: 'relative', overflow: 'hidden' }}>
-                        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-                            <div className="section-header text-center text-light" style={{ maxWidth: '700px', margin: '0 auto 60px' }}>
-                                <span className="badge" style={{ background: 'transparent', border: '1px solid var(--primary)', color: 'var(--primary)', letterSpacing: '1px', padding: '6px 20px', borderRadius: '30px', fontSize: '0.8rem', fontWeight: 'bold' }}>OUR TEAM</span>
-                                <h2 className="text-white" style={{ fontSize: '3rem', fontWeight: '800', margin: '20px 0 15px' }}>Meet The <span style={{ color: 'var(--primary)' }}>Team</span></h2>
-                                
-                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', marginBottom: '30px' }}>
-                                    <div style={{ width: '40px', height: '1px', background: 'var(--primary)', opacity: '0.5' }}></div>
-                                    <i className="fa-solid fa-plane" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i>
-                                    <div style={{ width: '15px', height: '1px', background: 'var(--primary)', opacity: '0.5' }}></div>
-                                </div>
-
-                                <p className="text-light-muted" style={{ fontSize: '1.1rem', color: '#94a3b8', maxWidth: '600px', margin: '0 auto', lineHeight: '1.6' }}>We are a passionate team of developers and designers<br/>dedicated to building the best travel experiences.</p>
-                            </div>
-                            <div className="team-grid">
-                                {/* Team Member 1 */}
-                                <div className="about-card text-center">
-                                    <div className="about-profile-img">
-                                        <img src="Yura.jpg" alt="Thon Youra" />
-                                    </div>
-                                    <h3 className="about-name">{t('aboutName')}</h3>
-                                </div>
-                                {/* Team Member 2 */}
-                                <div className="about-card text-center">
-                                    <div className="about-profile-img">
-                                        <img src="Horng.jpg" alt="Heng Menghorng" />
-                                    </div>
-                                    <h3 className="about-name">Heng Menghorng</h3>
-                                </div>
-                                {/* Team Member 3 */}
-                                <div className="about-card text-center">
-                                    <div className="about-profile-img">
-                                        <img src="Bunleap.JPG" alt="Phan Sokbunleap" />
-                                    </div>
-                                    <h3 className="about-name">Phan Sokbunleap</h3>
-                                </div>
-                                {/* Team Member 4 */}
-                                <div className="about-card text-center">
-                                    <div className="about-profile-img">
-                                        <img src="Sompo.jpg" alt="Seang Sompo" />
-                                    </div>
-                                    <h3 className="about-name">Seang Sompo</h3>
-                                </div>
-                                {/* Team Member 5 */}
-                                <div className="about-card text-center">
-                                    <div className="about-profile-img">
-                                        <img src="Lorng.jpg" alt="Koemlun Chenglorng" />
-                                    </div>
-                                    <h3 className="about-name">Koemlun Chenglorng</h3>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        {/* Background subtle dashed path */}
-                        <svg style={{ position: 'absolute', top: '20%', left: '0', width: '100%', height: '60%', zIndex: 1, pointerEvents: 'none', opacity: 0.15 }} viewBox="0 0 1000 300" preserveAspectRatio="none">
-                            <path d="M-100,150 C200,300 800,0 1100,150" fill="none" stroke="var(--primary)" strokeWidth="2" strokeDasharray="10 10"></path>
-                            <text x="95%" y="150" fill="var(--primary)" fontSize="24" fontFamily="FontAwesome" dy="8">&#xf0fb;</text>
-                        </svg>
-                    </section>
-
-                    {/* Contact Us Section */}
-                    <section id="contact" className="section-padding">
+                    
+                    {/* Hidden Gems Section */}
+                    <section id="gems" className="section-padding bg-light">
                         <div className="container">
                             <div className="section-header text-center">
-                                <span className="badge">Get in touch</span>
-                                <h2>{t('contactUs')}</h2>
-                                <p>Have questions about bookings or custom itineraries? We'd love to hear from you.</p>
+                                <span className="badge">Off The Beaten Path</span>
+                                <h2>{t('gemTitle')}</h2>
+                                <p>{t('gemSubtitle')}</p>
                             </div>
 
-                            <div className="contact-grid">
-                                <div className="contact-info">
-                                    <div className="contact-card">
-                                        <div className="icon-circle"><i className="fa-solid fa-location-dot"></i></div>
-                                        <div>
-                                            <h4>{t('Location')}</h4>
-                                            <p>{t('officeVal')}</p>
-                                        </div>
-                                    </div>
-                                    <div className="contact-card">
-                                        <div className="icon-circle"><i className="fa-solid fa-phone"></i></div>
-                                        <div>
-                                            <h4>{t('phone')}</h4>
-                                            <p>+855 17 573 682</p>
-                                        </div>
-                                    </div>
-                                    <div className="contact-card">
-                                        <div className="icon-circle"><i className="fa-solid fa-envelope"></i></div>
-                                        <div>
-                                            <h4>{t('email')}</h4>
-                                            <p>yra84229@gmail.com</p>
-                                        </div>
-                                    </div>
+                            <div className="gems-filter-bar form-group">
+                                <label style={{ justifyContent: 'center' }}><i className="fa-solid fa-compass"></i> {t('gemPrompt')}</label>
+                                <select
+                                    value={gemProvinceId}
+                                    onChange={(e) => {
+                                        playBeep(soundEnabled);
+                                        setGemProvinceId(e.target.value);
+                                        setGemActiveTab('about');
+                                    }}
+                                    className="glass-panel"
+                                    style={{ borderWidth: '2px' }}
+                                >
+                                    {provincesData.map(p => (
+                                        <option key={p.id} value={p.id}>{p.name} Province</option>
+                                    ))}
+                                </select>
+                            </div>
 
-                                    <div style={{ marginTop: '30px' }}>
-                                        <h4>{t('followUs')}</h4>
-                                        <div className="social-icons">
-                                            <a href="https://www.facebook.com/share/14hLmmP1Gvx/?mibextid=wwXIfr" target="_blank">
-                                                <i className="fa-brands fa-facebook-f"></i>
-                                            </a>
-                                            <a href="https://www.instagram.com/iur.aaaa" target="_blank">
-                                                <i className="fa-brands fa-instagram"></i>
-                                            </a>
-                                        </div>
+                            <div className="gem-layout glass-panel" style={{ padding: '30px', background: 'var(--bg-panel)' }}>
+                                <div className="gem-image-card">
+                                    <img src={currentHiddenGem.img} alt={currentHiddenGem.name} className="gem-img" />
+                                    <div className="gem-image-overlay">
+                                        <div className="badge badge-light" style={{ alignSelf: 'flex-start', marginBottom: '10px' }}>Hidden Gem</div>
+                                        <h3>{currentHiddenGem.name}</h3>
+                                        <p>{currentGemProvince.name} Province</p>
                                     </div>
                                 </div>
 
-                                <div className="contact-map glass-panel">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250151.15120619943!2d104.7337651032822!3d11.57966690462215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513dc76a6be3%3A0x9c668bf829fd8fb6!2sPhnom%20Penh!5e0!3m2!1sen!2skh!4v1700000000000!5m2!1sen!2skh"
-                                        width="100%" height="100%" style={{ border: 0, minHeight: '350px' }}
-                                        allowFullScreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                                    </iframe>
+                                <div className="gem-info-card">
+                                    <h3 className="gem-info-title">{currentHiddenGem.name}</h3>
+
+                                    {/* Tabs */}
+                                    <div className="gem-info-tabs">
+                                        <button
+                                            className={`gem-tab ${gemActiveTab === 'about' ? 'active' : ''}`}
+                                            onClick={() => { playBeep(soundEnabled); setGemActiveTab('about'); }}
+                                        >
+                                            {t('gemTabAbout')}
+                                        </button>
+                                        <button
+                                            className={`gem-tab ${gemActiveTab === 'history' ? 'active' : ''}`}
+                                            onClick={() => { playBeep(soundEnabled); setGemActiveTab('history'); }}
+                                        >
+                                            {t('gemTabHistory')}
+                                        </button>
+                                        <button
+                                            className={`gem-tab ${gemActiveTab === 'how-to' ? 'active' : ''}`}
+                                            onClick={() => { playBeep(soundEnabled); setGemActiveTab('how-to'); }}
+                                        >
+                                            {t('gemTabHowTo')}
+                                        </button>
+                                    </div>
+
+                                    {/* Tab Contents */}
+                                    <div className="gem-tab-content">
+                                        {gemActiveTab === 'about' && (
+                                            <div>
+                                                <p style={{ marginBottom: '15px' }}>{currentHiddenGem.desc}</p>
+                                                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '10px' }}>
+                                                    <span className="tech-tag"><i className="fa-solid fa-star text-accent"></i> Authentic Khmer Heritage</span>
+                                                    <span className="tech-tag"><i className="fa-solid fa-leaf text-accent"></i> Eco-friendly Spot</span>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {gemActiveTab === 'history' && (
+                                            <div>
+                                                <p style={{ whiteSpace: 'pre-wrap', fontSize: '0.92rem', lineHeight: '1.5' }}>{currentHiddenGem.history}</p>
+                                            </div>
+                                        )}
+
+                                        {gemActiveTab === 'how-to' && (
+                                            <div>
+                                                <p style={{ marginBottom: '10px' }}><b>Road condition:</b> {currentHiddenGem.roadCondition}</p>
+                                                <p style={{ marginBottom: '10px' }}><b>Contact Local Guide:</b> {currentHiddenGem.contactLocalGuide}</p>
+                                                <button
+                                                    className="btn-secondary mt-2"
+                                                    style={{ padding: '10px 20px', fontSize: '0.9rem' }}
+                                                    onClick={() => {
+                                                        setCalcOrigin('takeo');
+                                                        setCalcDest(currentGemProvince.id);
+                                                        document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+                                                    }}
+                                                >
+                                                    Calculate Travel Route <i className="fa-solid fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -802,11 +795,96 @@
                         </div>
                     </footer>
 
+                    {/* Province Detail Slide-out Drawer */}
+                    {activeProvince && (
+                        <div className="drawer-overlay" onClick={() => { playBeep(soundEnabled); setActiveProvince(null); setActivePlace(null); }}>
+                            <div className="drawer-content" onClick={(e) => e.stopPropagation()}>
+                                <button className="drawer-close" onClick={() => { playBeep(soundEnabled); setActiveProvince(null); setActivePlace(null); }}>
+                                    <i className="fa-solid fa-xmark"></i>
+                                </button>
 
+                                {activePlace ? (
+                                    /* Place details view */
+                                    <div className="place-detail-view">
+                                        <div className="place-detail-back" onClick={() => { playBeep(soundEnabled); setActivePlace(null); }}>
+                                            <i className="fa-solid fa-arrow-left-long"></i> Back to {activeProvince.name}
+                                        </div>
+                                        <div className="drawer-header-img" style={{ backgroundImage: `url('${activePlace.img}')` }}>
+                                            <div className="drawer-header-overlay">
+                                                <span className="badge badge-light" style={{ alignSelf: 'flex-start', marginBottom: '10px' }}>{activeProvince.name}</span>
+                                                <h2 className="drawer-province-title">{activePlace.name}</h2>
+                                            </div>
+                                        </div>
+
+                                        <h4 className="drawer-section-title">History & Information</h4>
+                                        <div className="place-history-text">{activePlace.history}</div>
+
+                                        <button
+                                            className="btn-primary w-100 mt-4"
+                                            onClick={() => {
+                                                playBeep(soundEnabled);
+                                                setActiveProvince(null);
+                                                setActivePlace(null);
+                                                prefillBooking(`Trip to ${activePlace.name}`);
+                                            }}
+                                        >
+                                            Book Trip to This Place
+                                        </button>
+                                    </div>
+                                ) : (
+                                    /* Province details view */
+                                    <div>
+                                        <div className="drawer-header-img" style={{ backgroundImage: `url('${activeProvince.detailImg}')` }}>
+                                            <div className="drawer-header-overlay">
+                                                <h2 className="drawer-province-title">{activeProvince.name}</h2>
+                                            </div>
+                                        </div>
+
+                                        <p style={{ fontSize: '1.05rem', fontStyle: 'italic', color: 'var(--text-muted)', marginBottom: '20px' }}>
+                                            "{activeProvince.tagline}"
+                                        </p>
+
+                                        <h4 className="drawer-section-title">Interactive Map</h4>
+                                        <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--border-color)', height: '220px', marginBottom: '30px' }}>
+                                            <iframe
+                                                width="100%"
+                                                height="100%"
+                                                style={{ border: 0 }}
+                                                loading="lazy"
+                                                allowFullScreen
+                                                src={`https://maps.google.com/maps?q=${encodeURIComponent(activeProvince.name + ' Province Cambodia')}&t=&z=9&ie=UTF8&iwloc=&output=embed`}
+                                            ></iframe>
+                                        </div>
+
+                                        <h4 className="drawer-section-title">Places of Interest</h4>
+                                        <div className="drawer-places-list">
+                                            {activeProvince.places.map((place, idx) => (
+                                                <div
+                                                    key={place.id}
+                                                    className="drawer-place-card"
+                                                    onClick={() => {
+                                                        playBeep(soundEnabled);
+                                                        setActivePlace(place);
+                                                    }}
+                                                >
+                                                    <img src={place.img} alt={place.name} className="drawer-place-img" />
+                                                    <div className="drawer-place-info">
+                                                        <h5 className="drawer-place-name">{idx + 1}. {place.name}</h5>
+                                                        <p className="drawer-place-desc">{place.desc}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
                 </div>
             );
         }
 
+        // Render React Application
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>

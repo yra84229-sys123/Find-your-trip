@@ -534,8 +534,8 @@
                                 <a href="trip_planner.html" className="nav-link">TRIP PLANNER</a>
                                 <a href="calculator.html" className="nav-link">CALCULATOR</a>
                                 <a href="hidden_gems.html" className="nav-link">HIDDEN GEMS</a>
-                                <a href="settings.html" className="nav-link">SETTINGS <i className="fa-solid fa-chevron-down" style={{ fontSize: '0.7rem' }}></i></a>
-                                <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="nav-link active">ABOUT US</a>
+                                <a href="#settings" className="nav-link active">SETTINGS <i className="fa-solid fa-chevron-down" style={{ fontSize: '0.7rem' }}></i></a>
+                                <a href="about.html" className="nav-link">ABOUT US</a>
                             </div>
                             <a href="#booking" className="nav-book-btn">BOOK NOW</a>
                         </div>
@@ -547,13 +547,12 @@
                         <div className="hero-overlay"></div>
                         <div className="container hero-content">
                             <h1 className="hero-title">
-                                <span> ABOUT US</span>
+                                <span> APP SETTINGS</span>
                             </h1>
-                            <p className="hero-subtitle">Meet the passionate team behind TOURLY and get in touch with us.</p>
+                            <p className="hero-subtitle">Configure your display theme, language, and system preferences to tailor your travel experience.</p>
 
                             <div className="hero-buttons" style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
-                                <button className="btn-primary" style={{ borderRadius: '30px', background: '#0d6efd', padding: '15px 35px', fontWeight: 'bold' }} onClick={() => { playBeep(soundEnabled); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); }}>CONTACT US</button>
-                                <button className="btn-outline" style={{ borderRadius: '30px', color: 'white', borderColor: 'white', padding: '15px 35px', fontWeight: 'bold' }} onClick={() => { playBeep(soundEnabled); document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); }}><i className="fa-solid fa-play"></i> OUR STORY</button>
+                                <button className="btn-primary" style={{ borderRadius: '30px', background: '#0d6efd', padding: '15px 35px', fontWeight: 'bold' }} onClick={() => { playBeep(soundEnabled); document.getElementById('settings').scrollIntoView({ behavior: 'smooth' }); }}>CONFIGURE</button>
                             </div>
                         </div>
 
@@ -599,126 +598,104 @@
 
 
 
-
-                    {/* About Us (Team Grid) */}
-                    <section id="about" className="section-padding bg-gradient-dark" style={{ background: '#030712', backgroundImage: 'radial-gradient(rgba(13, 110, 253, 0.05) 1px, transparent 1px)', backgroundSize: '20px 20px', position: 'relative', overflow: 'hidden' }}>
-                        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-                            <div className="section-header text-center text-light" style={{ maxWidth: '700px', margin: '0 auto 60px' }}>
-                                <span className="badge" style={{ background: 'transparent', border: '1px solid var(--primary)', color: 'var(--primary)', letterSpacing: '1px', padding: '6px 20px', borderRadius: '30px', fontSize: '0.8rem', fontWeight: 'bold' }}>OUR TEAM</span>
-                                <h2 className="text-white" style={{ fontSize: '3rem', fontWeight: '800', margin: '20px 0 15px' }}>Meet The <span style={{ color: 'var(--primary)' }}>Team</span></h2>
-                                
-                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', marginBottom: '30px' }}>
-                                    <div style={{ width: '40px', height: '1px', background: 'var(--primary)', opacity: '0.5' }}></div>
-                                    <i className="fa-solid fa-plane" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i>
-                                    <div style={{ width: '15px', height: '1px', background: 'var(--primary)', opacity: '0.5' }}></div>
-                                </div>
-
-                                <p className="text-light-muted" style={{ fontSize: '1.1rem', color: '#94a3b8', maxWidth: '600px', margin: '0 auto', lineHeight: '1.6' }}>We are a passionate team of developers and designers<br/>dedicated to building the best travel experiences.</p>
-                            </div>
-                            <div className="team-grid">
-                                {/* Team Member 1 */}
-                                <div className="about-card text-center">
-                                    <div className="about-profile-img">
-                                        <img src="Yura.jpg" alt="Thon Youra" />
-                                    </div>
-                                    <h3 className="about-name">{t('aboutName')}</h3>
-                                </div>
-                                {/* Team Member 2 */}
-                                <div className="about-card text-center">
-                                    <div className="about-profile-img">
-                                        <img src="Horng.jpg" alt="Heng Menghorng" />
-                                    </div>
-                                    <h3 className="about-name">Heng Menghorng</h3>
-                                </div>
-                                {/* Team Member 3 */}
-                                <div className="about-card text-center">
-                                    <div className="about-profile-img">
-                                        <img src="Bunleap.JPG" alt="Phan Sokbunleap" />
-                                    </div>
-                                    <h3 className="about-name">Phan Sokbunleap</h3>
-                                </div>
-                                {/* Team Member 4 */}
-                                <div className="about-card text-center">
-                                    <div className="about-profile-img">
-                                        <img src="Sompo.jpg" alt="Seang Sompo" />
-                                    </div>
-                                    <h3 className="about-name">Seang Sompo</h3>
-                                </div>
-                                {/* Team Member 5 */}
-                                <div className="about-card text-center">
-                                    <div className="about-profile-img">
-                                        <img src="Lorng.jpg" alt="Koemlun Chenglorng" />
-                                    </div>
-                                    <h3 className="about-name">Koemlun Chenglorng</h3>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        {/* Background subtle dashed path */}
-                        <svg style={{ position: 'absolute', top: '20%', left: '0', width: '100%', height: '60%', zIndex: 1, pointerEvents: 'none', opacity: 0.15 }} viewBox="0 0 1000 300" preserveAspectRatio="none">
-                            <path d="M-100,150 C200,300 800,0 1100,150" fill="none" stroke="var(--primary)" strokeWidth="2" strokeDasharray="10 10"></path>
-                            <text x="95%" y="150" fill="var(--primary)" fontSize="24" fontFamily="FontAwesome" dy="8">&#xf0fb;</text>
-                        </svg>
-                    </section>
-
-                    {/* Contact Us Section */}
-                    <section id="contact" className="section-padding">
+                    
+                    {/* Setting Panel */}
+                    <section id="settings" className="section-padding">
                         <div className="container">
                             <div className="section-header text-center">
-                                <span className="badge">Get in touch</span>
-                                <h2>{t('contactUs')}</h2>
-                                <p>Have questions about bookings or custom itineraries? We'd love to hear from you.</p>
+                                <span className="badge">Customization</span>
+                                <h2>{t('setTheme')} & Settings</h2>
+                                <p>Personalize your experience with theme toggles, translations, and notification preferences.</p>
                             </div>
 
-                            <div className="contact-grid">
-                                <div className="contact-info">
-                                    <div className="contact-card">
-                                        <div className="icon-circle"><i className="fa-solid fa-location-dot"></i></div>
-                                        <div>
-                                            <h4>{t('Location')}</h4>
-                                            <p>{t('officeVal')}</p>
-                                        </div>
-                                    </div>
-                                    <div className="contact-card">
-                                        <div className="icon-circle"><i className="fa-solid fa-phone"></i></div>
-                                        <div>
-                                            <h4>{t('phone')}</h4>
-                                            <p>+855 17 573 682</p>
-                                        </div>
-                                    </div>
-                                    <div className="contact-card">
-                                        <div className="icon-circle"><i className="fa-solid fa-envelope"></i></div>
-                                        <div>
-                                            <h4>{t('email')}</h4>
-                                            <p>yra84229@gmail.com</p>
+                            <div className="settings-grid">
+                                {/* Theme & Language Card */}
+                                <div className="setting-card glass-panel">
+                                    <h3><i className="fa-solid fa-sliders"></i> System Customization</h3>
+
+                                    <div className="form-group">
+                                        <label>{t('setTheme')}</label>
+                                        <div className="theme-options">
+                                            <button
+                                                className={`theme-btn ${theme === 'light' ? 'active' : ''}`}
+                                                onClick={() => handleThemeChange('light')}
+                                            >
+                                                <i className="fa-solid fa-sun text-accent"></i> Light
+                                            </button>
+                                            <button
+                                                className={`theme-btn ${theme === 'dark' ? 'active' : ''}`}
+                                                onClick={() => handleThemeChange('dark')}
+                                            >
+                                                <i className="fa-solid fa-moon text-accent"></i> Dark
+                                            </button>
+                                            <button
+                                                className={`theme-btn ${theme === 'glass' ? 'active' : ''}`}
+                                                onClick={() => handleThemeChange('glass')}
+                                            >
+                                                <i className="fa-solid fa-wand-magic-sparkles text-accent"></i> Glass
+                                            </button>
                                         </div>
                                     </div>
 
-                                    <div style={{ marginTop: '30px' }}>
-                                        <h4>{t('followUs')}</h4>
-                                        <div className="social-icons">
-                                            <a href="https://www.facebook.com/share/14hLmmP1Gvx/?mibextid=wwXIfr" target="_blank">
-                                                <i className="fa-brands fa-facebook-f"></i>
-                                            </a>
-                                            <a href="https://www.instagram.com/iur.aaaa" target="_blank">
-                                                <i className="fa-brands fa-instagram"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+
                                 </div>
 
-                                <div className="contact-map glass-panel">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250151.15120619943!2d104.7337651032822!3d11.57966690462215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513dc76a6be3%3A0x9c668bf829fd8fb6!2sPhnom%20Penh!5e0!3m2!1sen!2skh!4v1700000000000!5m2!1sen!2skh"
-                                        width="100%" height="100%" style={{ border: 0, minHeight: '350px' }}
-                                        allowFullScreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                                    </iframe>
+                                {/* Notification Card */}
+                                <div className="setting-card glass-panel">
+                                    <h3><i className="fa-solid fa-bell"></i> {t('setNotify')}</h3>
+
+                                    <div className="setting-toggle-group">
+                                        <div className="setting-toggle-item">
+                                            <div className="toggle-info">
+                                                <h4>{t('setNotifySound')}</h4>
+                                                <p>{t('setNotifySoundDesc')}</p>
+                                            </div>
+                                            <label className="switch">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={soundEnabled}
+                                                    onChange={() => handleToggle(setSoundEnabled, soundEnabled)}
+                                                />
+                                                <span className="slider"></span>
+                                            </label>
+                                        </div>
+
+                                        <div className="setting-toggle-item">
+                                            <div className="toggle-info">
+                                                <h4>{t('setNotifyEmail')}</h4>
+                                                <p>{t('setNotifyEmailDesc')}</p>
+                                            </div>
+                                            <label className="switch">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={notifyEmail}
+                                                    onChange={() => handleToggle(setNotifyEmail, notifyEmail)}
+                                                />
+                                                <span className="slider"></span>
+                                            </label>
+                                        </div>
+
+                                        <div className="setting-toggle-item">
+                                            <div className="toggle-info">
+                                                <h4>{t('setNotifyPromo')}</h4>
+                                                <p>{t('setNotifyPromoDesc')}</p>
+                                            </div>
+                                            <label className="switch">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={notifyPromo}
+                                                    onChange={() => handleToggle(setNotifyPromo, notifyPromo)}
+                                                />
+                                                <span className="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                                        {/* Footer */}
+                    {/* Footer */}
                     <footer className="footer-modern bg-gradient-dark text-light" style={{ background: '#050a15', paddingTop: '60px', paddingBottom: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                         <div className="container">
                             <div className="row" style={{ display: 'flex', flexWrap: 'wrap', gap: '30px', marginBottom: '40px' }}>
@@ -801,8 +778,6 @@
                             </div>
                         </div>
                     </footer>
-
-
                 </div>
             );
         }
@@ -811,5 +786,4 @@
         root.render(<App />);
     </script>
 </body>
-
 </html>

@@ -4,7 +4,7 @@ const provincesData = [
         name: 'Takeo',
         khmerName: 'តាកែវ',
         tagline: 'The Cradle of Khmer Civilization',
-        coverImg: "https://tourismcambodia.org/storage/uploads/contents/entryform/ministry-of-tourism-cambodia-2020-05-17-04-47-35am1589690857-3922.jpg",
+        coverImg: "https://www.asiakingtravel.com/cuploads/images/Cambodia/takeo-1.jpg",
         detailImg: "https://cache2.travelfish.org/b/assets/2015/gallery/small/gallery_location_small_390_1486183887.jpg",
         places: [
             {
@@ -64,7 +64,7 @@ Tourist activity:
 • Boat rides
 • Picnic in huts
 • Swimming and relaxing`,
-                img: 'https://vodenglish.news/wp-content/uploads/2022/06/2022-06-24-bati-wiki-1024x640.jpg'
+                img: 'https://d122axpxm39woi.cloudfront.net/images/destinations/origin/5d246cc6bf93e.jpg'
             },
             {
                 id: 'takeo-museum',
@@ -111,7 +111,7 @@ Visitors explore the building and learn about Cambodia’s recent historical eve
         name: 'Pursat',
         khmerName: 'ពោធិ៍សាត់',
         tagline: 'Nature and Landscapes',
-        coverImg: "https://tourismcambodia.org/storage/uploads/category_banner/ministry-of-tourism-cambodia-2020-05-02-09-11-13am.jpg",
+        coverImg: "https://cambodiaangkortour.com/wp-content/uploads/2025/02/pursat.jpg",
         detailImg: "https://haivenu-vietnam.com/wp-content/uploads/2024/07/Pursat.png",
         places: [
             {
@@ -216,7 +216,7 @@ Visitors can take boat tours, see floating houses, and learn about the daily lif
         name: 'Siem Reap',
         khmerName: 'សៀមរាប',
         tagline: 'Gateway to the Angkor temples',
-        coverImg: "https://tourismcambodia.org/storage/uploads/category_banner/ministry-of-tourism-cambodia-2021-06-14-03-53-17am.jpg",
+        coverImg: "https://www.sarahdegheselle.com/wp-content/uploads/2024/07/Sarah-De-Gheselle-2-8-1-1024x681.jpg",
         detailImg: "https://afar.brightspotcdn.com/dims4/default/8af48b4/2147483647/strip/false/crop/3000x1997+0+0/resize/1486x989!/quality/90/?url=https%3A%2F%2Fk3-prod-afar-media.s3.us-west-2.amazonaws.com%2Fbrightspot%2F34%2F8c%2F0a3f548947909b5b8d79b935b03f%2Ftravelguides-siemreap-guitarphotographer-shutterstock.jpg",
         places: [
             {
@@ -326,8 +326,8 @@ Tourist Activities:
         name: 'Battambang',
         khmerName: 'បាត់ដំបង',
         tagline: 'Cambodia\'s rice bowl with colonial charm',
-        coverImg: "https://tourismcambodia.org/storage/uploads/category_banner/ministry-of-tourism-cambodia-2020-05-02-09-08-00am.jpg",
-        detailImg: "https://www.cambodiatourpackage.com/uploads/tours/images/siem-reap-battambang-phnom-penh.jpg",
+        coverImg: "https://www.asiakingtravel.com/images/thumbs/2025/05/20099/484485091-954347766728937-8962258597941090426-n_1296x730xcrop.webp",
+        detailImg: "https://vietnamdecouverte.com/pic/blog/images/3%20(1)(4).jpg",
         places: [
             {
                 id: 'bamboo-train',
@@ -435,7 +435,7 @@ Tourist Activities:
         name: 'Kampot',
         khmerName: 'កំពត',
         tagline: 'Riverside town famous for world-class pepper',
-        coverImg: "https://tourismcambodia.org/storage/uploads/category_banner/ministry-of-tourism-cambodia-2021-06-13-04-16-21pm.jpg",
+        coverImg: "https://d34vm3j4h7f97z.cloudfront.net/original/4X/8/1/e/81e31f6817402c4a711d09891d53515e0ada2571.jpeg",
         detailImg: "https://i0.wp.com/www.cambodialifestyle.com/wp-content/uploads/2024/04/Kampot6.jpg?fit=1024%2C683&ssl=1",
         places: [
             {
@@ -2741,3 +2741,56 @@ Tourist Activities:
         ]
     }
 ];
+
+// --- Distance Calculation ---
+const provinceCoords = {
+    'banteay-meanchey': { lat: 13.6672, lon: 102.8975 },
+    'battambang': { lat: 13.0957, lon: 103.2022 },
+    'kampong-cham': { lat: 11.9933, lon: 105.4635 },
+    'kampong-chhnang': { lat: 12.2500, lon: 104.6666 },
+    'kampong-speu': { lat: 11.4533, lon: 104.3205 },
+    'kampong-thom': { lat: 12.7111, lon: 104.8887 },
+    'kampot': { lat: 10.5942, lon: 104.1640 },
+    'kandal': { lat: 11.4552, lon: 104.9389 },
+    'kep': { lat: 10.4828, lon: 104.3167 },
+    'koh-kong': { lat: 11.6153, lon: 103.0000 },
+    'kratie': { lat: 12.4881, lon: 106.0187 },
+    'mondulkiri': { lat: 12.4558, lon: 107.1881 },
+    'oddar-meanchey': { lat: 14.1817, lon: 103.6264 },
+    'pailin': { lat: 12.8489, lon: 102.6092 },
+    'phnom-penh': { lat: 11.5564, lon: 104.9282 },
+    'preah-sihanouk': { lat: 10.6253, lon: 103.5234 },
+    'preah-vihear': { lat: 13.8073, lon: 104.9806 },
+    'prey-veng': { lat: 11.4883, lon: 105.3253 },
+    'pursat': { lat: 12.5387, lon: 103.9192 },
+    'ratanakiri': { lat: 13.7393, lon: 106.9877 },
+    'siem-reap': { lat: 13.3611, lon: 103.8605 },
+    'stung-treng': { lat: 13.5258, lon: 105.9683 },
+    'svay-rieng': { lat: 11.0878, lon: 105.7993 },
+    'takeo': { lat: 10.9908, lon: 104.7849 },
+    'tbong-khmum': { lat: 11.8891, lon: 105.8760 }
+};
+
+const getDistance = (origin, dest) => {
+    if (origin === dest) return 25; // Base case for internal sightseeing
+
+    const c1 = provinceCoords[origin];
+    const c2 = provinceCoords[dest];
+    if (!c1 || !c2) return 180; // Default fallback if not found
+
+    // Haversine formula
+    const R = 6371; // Earth radius in km
+    const dLat = (c2.lat - c1.lat) * Math.PI / 180;
+    const dLon = (c2.lon - c1.lon) * Math.PI / 180;
+    const lat1 = c1.lat * Math.PI / 180;
+    const lat2 = c2.lat * Math.PI / 180;
+
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    let d = R * c;
+    
+    // Apply a tortuosity factor to simulate road travel
+    // Cambodia road tortuosity is roughly 1.35 
+    return Math.round(d * 1.35);
+};

@@ -4,203 +4,1184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury | Premium Perfume</title>
+    <title>Find Your Trip - Premium Cambodia Travel</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
+    <!-- React 18 & ReactDOM 18 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Babel Standalone for In-Browser JSX Compilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
 <body>
-    <header>
-        <div class="logo">Lux<span>ury</span></div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="product.html">Products</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="root"></div>
 
-    <section class="hero dark-hero">
-        <div class="hero-content text-center">
-            <h1>PERFECT SCENT</h1>
-        
-            <p>Experience luxury and elegance with our<br> exclusive collection of <span class="text-gold">premium
-                    perfumes.</span></p>
-            <div class="hero-buttons center-buttons">
-                <a href="product.html" class="btn btn-blue btn-pill">
-                    Shop Now
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" style="margin-left:8px">
-                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <path d="M16 10a4 4 0 0 1-8 0"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </section>
+    <!-- Core Data File -->
+    <script src="data.js"></script>
+    <script src="hidden_gem_data.js"></script>
 
-    <section class="section">
-        <h2 class="section-title">Our Best Sellers</h2>
-        <div class="product-grid">
+    <!-- React App Script (JSX) -->
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
 
-            <div class="product-card">
-                <img src="https://img01.ztat.net/article/spp-media-p1/96ee4724ab1245ef8e6045bc5e90970c/2b6786a7cfef4b48abae79df3170de88.jpg?imwidth=762"
-                    alt="Midnight Rose" class="product-image">
-                <div class="product-info">
-                    <div class="product-rating">
-                        <span class="stars">★★★★★</span>
-                        <span class="reviews">(805 Reviews)</span>
-                    </div>
-                    <h3>Midnight Rose : Floral & Woody </h3>
-                    <div class="product-action-row">
-                        <span class="price-orange">$112.00</span>
-                        <div class="action-controls">
-                            <div class="quantity-selector">
-                                <button class="qty-btn">-</button>
-                                <span class="qty-val">1</span>
-                                <button class="qty-btn">+</button>
-                            </div>
-                            <button class="btn-add-orange">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                </svg> Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        // Translation Dictionary
+        const translations = {
+            en: {
+                navHome: "Home",
+                navDestinations: "Popular Destinations",
+                navPackages: "Packages",
+                navPlanner: "Trip Planner",
+                navCalculator: "Distance & Fuel",
+                navGems: "Hidden Gems",
+                navSettings: "Settings",
+                navAbout: "About Us",
+                bookNow: "Book Now",
 
+                heroPreTitle: "EXPLORE THE EXTRAORDINARY",
+                heroTitle1: "JOURNEY TO",
+                heroTitle2: "EXPLORE CAMBODIA",
+                heroSubtitle: "Discover the magic of Cambodia – ancient temples, vibrant culture, breathtaking nature, and unforgettable experiences.",
+                btnExplore: "Explore Now",
+                btnWatch: "Watch Video",
 
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=2053&auto=format&fit=crop"
-                    alt="Ocean Breeze" class="product-image">
-                <div class="product-info">
-                    <div class="product-rating">
-                        <span class="stars">★★★★★</span>
-                        <span class="reviews">(432 Reviews)</span>
-                    </div>
-                    <h3>Ocean Breeze : Fresh & Aquatic</h3>
-                    <div class="product-action-row">
-                        <span class="price-orange">$85.00</span>
-                        <div class="action-controls">
-                            <div class="quantity-selector">
-                                <button class="qty-btn">-</button>
-                                <span class="qty-val">1</span>
-                                <button class="qty-btn">+</button>
-                            </div>
-                            <button class="btn-add-orange">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                </svg> Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                searchDest: "Destination",
+                searchDate: "Date",
+                searchBudget: "Budget",
+                searchBtn: "Search",
+                anyBudget: "Any Budget",
+                under100: "Under $100",
+                med100_500: "$100 - $500",
+                high500: "$500+",
 
+                destTitle: "Popular Destinations",
+                destSubtitle: "Discover the most stunning places in Cambodia, from ancient temples to pristine beaches.",
+                exploreProvince: "Explore",
 
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=1887&auto=format&fit=crop"
-                    alt="Velvet Oud" class="product-image">
-                <div class="product-info">
-                    <div class="product-rating">
-                        <span class="stars">★★★★★</span>
-                        <span class="reviews">(1,250 Reviews)</span>
-                    </div>
-                    <h3>Velvet Oud : Warm & Spicy</h3>
-                    <div class="product-action-row">
-                        <span class="price-orange">$133.00</span>
-                        <div class="action-controls">
-                            <div class="quantity-selector">
-                                <button class="qty-btn">-</button>
-                                <span class="qty-val">1</span>
-                                <button class="qty-btn">+</button>
-                            </div>
-                            <button class="btn-add-orange">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                </svg> Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                pkgTitle: "Exclusive Tour Packages",
+                pkgSubtitle: "Choose from our specially designed packages tailored to different travel styles.",
+                adventure: "Adventure",
+                relaxing: "Relaxing",
+                culture: "Culture",
+                food: "Food",
+                person: "/person",
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">Lux<span>ury</span></div>
+                planTitle: "Smart Trip Planner",
+                planSubtitle: "Don't know where to start? Let our smart system suggest the perfect itinerary based on your preferences, budget, and time.",
+                planBudgetLabel: "Your Budget (USD)",
+                planDurationLabel: "Duration (Days)",
+                planInterestLabel: "Main Interests",
+                planInterestPrompt: "Select an interest",
+                planInterestTemples: "Temples & History",
+                planInterestNature: "Nature & Beaches",
+                planInterestCulture: "Local Culture",
+                planInterestFood: "Culinary & Food",
+                planBtnSubmit: "Suggest Itinerary",
+                planResultTitle: "Your Custom Itinerary",
 
-        </div>
+                calcTitle: "Distance & Fuel Calculator",
+                calcSubtitle: "Plan your travel log and estimate travel costs, times, and fuel consumption across Cambodian provinces.",
+                calcOrigin: "Origin Province",
+                calcDest: "Destination Province",
+                calcVehicle: "Vehicle Type",
+                calcBtnSubmit: "Calculate Trip Log",
+                calcStatDist: "Distance",
+                calcStatTime: "Est. Time",
+                calcStatFuel: "Fuel Economy",
+                calcStatCost: "Fuel Cost",
+                calcSpeedLimit: "Speed Progress Limit",
 
-    </footer>
+                gemTitle: "Cambodian Hidden Gems",
+                gemSubtitle: "Explore the secret places, historical stories, and off-the-beaten-path paths of each province.",
+                gemPrompt: "Select a province to reveal its hidden gem:",
+                gemTabAbout: "About",
+                gemTabHistory: "History",
+                gemTabActivities: "Activities",
+                gemTabHowTo: "How to Travel",
 
+                setTheme: "Theme Mode",
+                setLanguage: "App Language",
+                setNotify: "System Notifications",
+                setNotifySound: "System Sound Effects",
+                setNotifySoundDesc: "Play audio feedback during clicks and toggles",
+                setNotifyEmail: "Email Newsletter",
+                setNotifyEmailDesc: "Receive weekly Cambodia travel deals and tips",
+                setNotifyPromo: "Promo Alerts",
+                setNotifyPromoDesc: "Push alerts about seasonal package discounts",
 
-    <a href="#" class="scroll-top" id="scrollTopBtn">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="19" x2="12" y2="5"></line>
-            <polyline points="5 12 12 5 19 12"></polyline>
-        </svg>
-    </a>
+                aboutName: "Thon Youra",
+                aboutTitle: "Information Technology Engineering Student",
+                aboutMotto: '"Turning ideas into clean, modern, and meaningful digital experiences."',
+                aboutEducation: "Education",
+                aboutEducationVal: "Royal University of Phnom Penh (RUPP)",
+                aboutLanguages: "Languages",
+                aboutInterests: "Interests",
+                aboutInterestsVal: "Hash Tables, Web Development, Software Engineering, UX/UI",
 
-    <script>
-        const scrollTopBtn = document.getElementById("scrollTopBtn");
-        window.addEventListener("scroll", function () {
-            if (window.scrollY > 300) {
-                scrollTopBtn.classList.add("show");
-            } else {
-                scrollTopBtn.classList.remove("show");
+                bookingTitle: "Book Your Trip",
+                bookingSubtitle: "Secure your spot for an unforgettable experience.",
+                bookingName: "Full Name",
+                bookingEmail: "Email Address",
+                bookingSelect: "Select Package/Trip",
+                bookingPayment: "Payment Method",
+                bookingAgree: "I confirm that all information is correct and agree to the terms.",
+                bookingConfirmBtn: "Confirm Booking",
+
+                office: "Our Office",
+                officeVal: "Phnom Penh, Cambodia",
+                phone: "Phone",
+                email: "Email",
+                rights: "All rights reserved."
+            },
+            kh: {
+                navHome: "ទំព័រដើម",
+                navDestinations: "តំបន់ទេសចរណ៍",
+                navPackages: "កញ្ចប់ទេសចរណ៍",
+                navPlanner: "កម្មវិធីរៀបចំគម្រោង",
+                navCalculator: "ចម្ងាយ និងប្រេង",
+                navGems: "កន្លែងលាក់ខ្លួន",
+                navSettings: "ការកំណត់",
+                navAbout: "អំពីយើង",
+                bookNow: "កក់ឥឡូវនេះ",
+
+                heroPreTitle: "ស្វែងយល់ពីភាពអស្ចារ្យ",
+                heroTitle1: "ដំណើររុករកទូទាំង ",
+                heroTitle2: "ប្រទេសកម្ពុជា",
+                heroSubtitle: "ស្វែងយល់ពីភាពទាក់ទាញនៃប្រទេសកម្ពុជា - ប្រាសាទបុរាណ វប្បធម៌ដ៏រស់រវើក ធម្មជាតិស្រស់បំព្រង និងបទពិសោធន៍ដែលមិនអាចបំភ្លេចបាន។",
+                btnExplore: "រុករកឥឡូវនេះ",
+                btnWatch: "ទស្សនាវីដេអូ",
+
+                searchDest: "គោលដៅទេសចរណ៍",
+                searchDate: "កាលបរិច្ឆេទ",
+                searchBudget: "ថវិកា",
+                searchBtn: "ស្វែងរក",
+                anyBudget: "ថវិកាណាក៏បាន",
+                under100: "ក្រោម $100",
+                med100_500: "$100 - $500",
+                high500: "$500+",
+
+                destTitle: "តំបន់ទេសចរណ៍ពេញនិយម",
+                destSubtitle: "ស្វែងយល់ពីតំបន់ទេសចរណ៍ដ៏ស្រស់ស្អាតបំផុតក្នុងប្រទេសកម្ពុជា ចាប់ពីប្រាសាទបុរាណរហូតដល់ឆ្នេរសមុទ្រដ៏ស្អាត។",
+                exploreProvince: "រុករកខេត្ត",
+
+                pkgTitle: "កញ្ចប់ដំណើរកម្សាន្តពិសេសៗ",
+                pkgSubtitle: "ជ្រើសរើសកញ្ចប់ដំណើរកម្សាន្តដែលបានរចនាឡើងយ៉ាងពិសេស សាកសមនឹងស្ទីលធ្វើដំណើររបស់អ្នក។",
+                adventure: "ផ្សងព្រេង (Adventure)",
+                relaxing: "សម្រាកកាយ (Relaxing)",
+                culture: "វប្បធម៌ (Culture)",
+                food: "ម្ហូបអាហារ (Food)",
+                person: "/ម្នាក់",
+
+                planTitle: "កម្មវិធីរៀបចំគម្រោងឆ្លាតវៃ",
+                planSubtitle: "មិនដឹងថាត្រូវចាប់ផ្តើមពីណា? ឱ្យប្រព័ន្ធឆ្លាតវៃរបស់យើងណែនាំការធ្វើដំណើរដ៏ល្អឥតខ្ចោះដោយផ្អែកលើថវិកា និងពេលវេលារបស់អ្នក។",
+                planBudgetLabel: "ថវិការបស់អ្នក (USD)",
+                planDurationLabel: "រយៈពេលធ្វើដំណើរ (ថ្ងៃ)",
+                planInterestLabel: "ចំណាប់អារម្មណ៍ចម្បង",
+                planInterestPrompt: "ជ្រើសរើសចំណាប់អារម្មណ៍",
+                planInterestTemples: "ប្រាសាទ និងប្រវត្តិសាស្ត្រ",
+                planInterestNature: "ធម្មជាតិ និងឆ្នេរសមុទ្រ",
+                planInterestCulture: "វប្បធម៌ក្នុងស្រុក",
+                planInterestFood: "សិល្បៈម្ហូបអាហារ",
+                planBtnSubmit: "ណែនាំគម្រោងធ្វើដំណើរ",
+                planResultTitle: "គម្រោងធ្វើដំណើរផ្ទាល់ខ្លួនរបស់អ្នក",
+
+                calcTitle: "ម៉ាស៊ីនគណនាចម្ងាយ និងប្រេងឥន្ធនៈ",
+                calcSubtitle: "រៀបចំផែនការធ្វើដំណើរ និងប៉ាន់ប្រមាណតម្លៃធ្វើដំណើរ ពេលវេលា និងការប្រើប្រាស់ប្រេងឥន្ធនៈទូទាំងខេត្តក្នុងប្រទេសកម្ពុជា។",
+                calcOrigin: "ខេត្តដើមទី",
+                calcDest: "ខេត្តគោលដៅ",
+                calcVehicle: "ប្រភេទយានយន្ត",
+                calcBtnSubmit: "គណនាដំណើរ log",
+                calcStatDist: "ចម្ងាយផ្លូវ",
+                calcStatTime: "ម៉ោងប៉ាន់ស្មាន",
+                calcStatFuel: "កម្រិតស៊ីប្រេង",
+                calcStatCost: "ចំណាយប្រេង",
+                calcSpeedLimit: "ល្បឿនយានយន្តលើផ្លូវ",
+
+                gemTitle: "តំបន់ទេសចរណ៍លាក់ខ្លួននៅកម្ពុជា",
+                gemSubtitle: "ស្វែងយល់ពីកន្លែងសម្ងាត់ដ៏អស្ចារ្យ រឿងរ៉ាវប្រវត្តិសាស្ត្រ និងផ្លូវធ្វើដំណើរដែលមិនសូវមានគេស្គាល់ក្នុងខេត្តនីមួយៗ។",
+                gemPrompt: "ជ្រើសរើសខេត្តដើម្បីបង្ហាញកន្លែងលាក់ខ្លួន៖",
+                gemTabAbout: "ព័ត៌មាន",
+                gemTabHistory: "ប្រវត្តិសាស្ត្រ",
+                gemTabActivities: "សកម្មភាព",
+                gemTabHowTo: "របៀបធ្វើដំណើរ",
+
+                setTheme: "របៀបរចនា (Theme)",
+                setLanguage: "ភាសាកម្មវិធី",
+                setNotify: "ការជូនដំណឹងប្រព័ន្ធ",
+                setNotifySound: "សំឡេងបញ្ជាប្រព័ន្ធ",
+                setNotifySoundDesc: "លេងសំឡេងរាល់ពេលចុចប៊ូតុង ឬផ្លាស់ប្តូរការកំណត់",
+                setNotifyEmail: "ព្រឹត្តិបត្រព័ត៌មានអ៊ីមែល",
+                setNotifyEmailDesc: "ទទួលបានការផ្តល់ជូនពិសេស និងគន្លឹះធ្វើដំណើរប្រចាំសប្តាហ៍",
+                setNotifyPromo: "ការជូនដំណឹងប្រូម៉ូសិន",
+                setNotifyPromoDesc: "ផ្ញើសារជូនដំណឹងអំពីការបញ្ចុះតម្លៃកញ្ចប់ទេសចរណ៍តាមរដូវកាល",
+
+                aboutName: "ធន់ យូរ៉ា",
+                aboutTitle: "និស្សិតផ្នែកវិស្វកម្មបច្ចេកវិទ្យាព័ត៌មាន",
+                aboutMotto: '"ការកែប្រែគំនិតច្នៃប្រឌិតឱ្យទៅជាបទពិសោធន៍ឌីជីថលដ៏ស្អាត ទំនើប និងមានន័យ។"',
+                aboutEducation: "ការសិក្សា",
+                aboutEducationVal: "សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)",
+                aboutLanguages: "ភាសាកូដ",
+                aboutInterests: "ចំណាប់អារម្មណ៍",
+                aboutInterestsVal: "Hash Tables, ការអភិវឌ្ឍន៍គេហទំព័រ, វិស្វកម្មកម្មវិធី, UX/UI",
+
+                bookingTitle: "កក់ការធ្វើដំណើររបស់អ្នក",
+                bookingSubtitle: "រក្សាកន្លែងរបស់អ្នកសម្រាប់បទពិសោធន៍ដែលមិនអាចបំភ្លេចបាន។",
+                bookingName: "ឈ្មោះពេញ",
+                bookingEmail: "អាសយដ្ឋានអ៊ីមែល",
+                bookingSelect: "ជ្រើសរើសកញ្ចប់ទេសចរណ៍/ដំណើរ",
+                bookingPayment: "វិធីសាស្ត្រទូទាត់ប្រាក់",
+                bookingAgree: "ខ្ញុំបញ្ជាក់ថាព័ត៌មានទាំងអស់ត្រឹមត្រូវ ហើយយល់ព្រមតាមលក្ខខណ្ឌ។",
+                bookingConfirmBtn: "បញ្ជាក់ការកក់ទុក",
+
+                office: "ការិយាល័យយើង",
+                officeVal: "ភ្នំពេញ, ប្រទេសកម្ពុជា",
+                phone: "ទូរស័ព្ទ",
+                email: "អ៊ីមែល",
+                rights: "រក្សាសិទ្ធិគ្រប់យ៉ាង។"
             }
-        });
+        };
 
-        document.querySelectorAll('.quantity-selector').forEach(selector => {
-            const minusBtn = selector.children[0];
-            const qtyVal = selector.children[1];
-            const plusBtn = selector.children[2];
-            
-            const card = selector.closest('.product-card');
-            const priceEl = card.querySelector('.price-orange');
-            const basePrice = parseFloat(priceEl.textContent.replace('$', ''));
+        // Distance Matrix (in km)
+        const distanceMatrix = {
+            takeo: { pursat: 270, 'siem-reap': 400, battambang: 370, kampot: 90, 'banteay-meanchey': 480, 'kampong-cham': 200, 'kampong-chhnang': 170 },
+            pursat: { takeo: 270, 'siem-reap': 300, battambang: 100, kampot: 330, 'banteay-meanchey': 220, 'kampong-cham': 310, 'kampong-chhnang': 100 },
+            'siem-reap': { takeo: 400, pursat: 300, battambang: 170, kampot: 460, 'banteay-meanchey': 100, 'kampong-cham': 250, 'kampong-chhnang': 230 },
+            battambang: { takeo: 370, pursat: 100, 'siem-reap': 170, kampot: 430, 'banteay-meanchey': 120, 'kampong-cham': 360, 'kampong-chhnang': 200 },
+            kampot: { takeo: 90, pursat: 330, 'siem-reap': 460, battambang: 430, 'banteay-meanchey': 510, 'kampong-cham': 260, 'kampong-chhnang': 230 },
+            'banteay-meanchey': { takeo: 480, pursat: 220, 'siem-reap': 100, battambang: 120, kampot: 510, 'kampong-cham': 380, 'kampong-chhnang': 350 },
+            'kampong-cham': { takeo: 200, pursat: 310, 'siem-reap': 250, battambang: 360, kampot: 260, 'banteay-meanchey': 380, 'kampong-chhnang': 150 },
+            'kampong-chhnang': { takeo: 170, pursat: 100, 'siem-reap': 230, battambang: 200, kampot: 230, 'banteay-meanchey': 350, 'kampong-cham': 150 }
+        };
 
-            const updatePrice = (qty) => {
-                priceEl.textContent = '$' + (basePrice * qty).toFixed(2);
+        // Vehicles configuration
+        const vehicles = {
+            motorcycle: { name: { en: "Motorcycle", kh: "ម៉ូតូ" }, icon: "fa-motorcycle", speed: 55, consumption: 2.2, fuelType: "gasoline" },
+            sedan: { name: { en: "Sedan/SUV", kh: "ឡានផ្ទាល់ខ្លួន/SUV" }, icon: "fa-car", speed: 80, consumption: 7.2, fuelType: "gasoline" },
+            ev: { name: { en: "Electric Vehicle (EV)", kh: "ឡានអគ្គិសនី (EV)" }, icon: "fa-charging-station", speed: 80, consumption: 16.5, fuelType: "electricity" },
+            bus: { name: { en: "Tour Bus", kh: "ឡានក្រុងដឹកភ្ញៀវ" }, icon: "fa-bus", speed: 65, consumption: 14.0, fuelType: "diesel" }
+        };
+
+        const fuelPrices = {
+            gasoline: 1.15, // USD per Liter
+            diesel: 1.05,    // USD per Liter
+            electricity: 0.18 // USD per kWh
+        };
+
+        // Custom Sound System using HTML5 Web Audio API to avoid external asset loading errors
+        const playBeep = (soundEnabled) => {
+            if (!soundEnabled) return;
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(800, audioCtx.currentTime); // High pitch
+                gainNode.gain.setValueAtTime(0.04, audioCtx.currentTime); // Very quiet
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+
+                oscillator.start(audioCtx.currentTime);
+                oscillator.stop(audioCtx.currentTime + 0.1);
+            } catch (e) {
+                console.log("Audio failed to load", e);
+            }
+        };
+
+
+
+        // Main App Component
+        function App() {
+            // Theme state initialized from localStorage if present
+            const [theme, setThemeState] = useState(localStorage.getItem('fyt-theme') || 'light');
+            const [lang, setLang] = useState(localStorage.getItem('fyt-lang') || 'en');
+            const [soundEnabled, setSoundEnabled] = useState(true);
+            const [notifyEmail, setNotifyEmail] = useState(true);
+            const [notifyPromo, setNotifyPromo] = useState(true);
+
+            // Drawer & View overlays
+            const [activeProvince, setActiveProvince] = useState(null);
+            const [activePlace, setActivePlace] = useState(null);
+
+            // Calculator State
+            const [calcOrigin, setCalcOrigin] = useState('takeo');
+            const [calcDest, setCalcDest] = useState('siem-reap');
+            const [calcVehicle, setCalcVehicle] = useState('sedan');
+            const [calcResults, setCalcResults] = useState(null);
+            const [isCalculating, setIsCalculating] = useState(false);
+
+            // Hidden Gems state
+            const [gemProvinceId, setGemProvinceId] = useState('takeo');
+            const [gemActiveTab, setGemActiveTab] = useState('about');
+
+            // Packages state
+            const [activeFilter, setActiveFilter] = useState('All');
+            const homePackagesList = [
+                { id: 1, category: 'adventure', categoryLabel: 'Adventure', icon: 'fa-mountain', img: 'https://asiatravellinks.com/images/attractions/ta-prohm.webp', title: 'Jungle & Temples Adventure', location: 'Siem Reap, Cambodia', desc: 'Trek through dense jungles, discover hidden temples and experience the true wild side of Cambodia.', duration: '4 Days 3 Nights', people: '2-12 People', price: 299 },
+                { id: 2, category: 'relaxing', categoryLabel: 'Relaxing', icon: 'fa-umbrella-beach', img: 'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/669831377.jpg?k=05c5854a62fe60082176bfe779f50ab67fe1cfa854e61268380014d294503ec1&o=', title: 'Beach Escape in Koh Rong', location: 'Koh Rong, Cambodia', desc: "Relax on white sandy beaches and enjoy crystal-clear waters on Cambodia's beautiful island.", duration: '3 Days 2 Nights', people: '2-10 People', price: 249 },
+                { id: 3, category: 'culture', categoryLabel: 'Culture', icon: 'fa-landmark', img: 'https://whc.unesco.org/uploads/thumbs/site_0668_0067-1200-630-20151104115852.jpg', title: 'Angkor Heritage Experience', location: 'Siem Reap, Cambodia', desc: "Explore the magnificent Angkor temples and immerse yourself in Cambodia's rich history and culture.", duration: '4 Days 3 Nights', people: '2-10 People', price: 319 },
+                { id: 4, category: 'food', categoryLabel: 'Food', icon: 'fa-utensils', img: 'https://www.agoda.com/wp-content/uploads/2024/02/Featured-photo-Cambodia-restaurants-1244x700.jpg', title: 'Taste of Cambodia', location: 'Phnom Penh, Cambodia', desc: 'Savor authentic Cambodian cuisine and explore local markets with our food expert guides.', duration: '3 Days 2 Nights', people: '2-10 People', price: 199 },
+                { id: 5, category: 'culture', categoryLabel: 'Culture', icon: 'fa-landmark', img: 'https://cms.siemreaper.click/uploads/angkor_wat_sunrise_discovery2712_997b977984.jpg', title: 'Angkor Wat Sunrise', location: 'Siem Reap, Cambodia', desc: 'Witness the magnificent sunrise over the ancient temples of Angkor Wat.', duration: '1 Day', people: '1-5 People', price: 45 },
+                { id: 6, category: 'adventure', categoryLabel: 'Adventure', icon: 'fa-mountain', img: 'https://media.tacdn.com/media/attractions-splice-spp-674x446/12/4c/ca/2c.jpg', title: 'Bokor Mountain Trek', location: 'Kampot, Cambodia', desc: 'Hike through lush jungles and explore the abandoned French hill station.', duration: '2 Days 1 Night', people: '4-12 People', price: 85 },
+                { id: 7, category: 'relaxing', categoryLabel: 'Relaxing', icon: 'fa-umbrella-beach', img: 'https://img.liveaboard.com/River%20Cruise/Countries/Cambodia%20River%20Cruise%20001.jpeg?tr=w-1920,h-800,pr-true,c-maintain_ratio,q-50', title: 'Mekong River Cruise', location: 'Kratie, Cambodia', desc: 'Sail along the serene Mekong River and spot the rare Irrawaddy dolphins.', duration: '2 Days', people: '2-15 People', price: 120 },
+                { id: 8, category: 'food', categoryLabel: 'Food', icon: 'fa-utensils', img: 'https://www.shutterstock.com/image-photo/phnom-penh-cambodia-june-20-600nw-2514146095.jpg', title: 'Phnom Penh Street Food', location: 'Phnom Penh, Cambodia', desc: 'Take a tuk-tuk tour through bustling night markets and taste local delicacies.', duration: 'Half Day', people: '1-6 People', price: 35 },
+                { id: 9, category: 'culture', categoryLabel: 'Culture', icon: 'fa-landmark', img: 'https://xa6zemg4r8.cloudimg.io/_images_/Battambang%20Temples-yhUQyMTti0E05d2Jy2zO.jpg', title: 'Battambang Heritage', location: 'Battambang, Cambodia', desc: 'Ride the famous bamboo train and explore French colonial architecture.', duration: '2 Days 1 Night', people: '2-10 People', price: 95 }
+            ];
+
+            const filteredPackages = activeFilter === 'All' 
+                ? homePackagesList 
+                : homePackagesList.filter(pkg => pkg.category === activeFilter);
+
+
+            // Trip Planner State
+            const [planBudget, setPlanBudget] = useState('');
+            const [planDuration, setPlanDuration] = useState('');
+            const [planInterest, setPlanInterest] = useState('');
+            const [plannerResult, setPlannerResult] = useState(null);
+
+            // Booking Form
+            const [bookName, setBookName] = useState('');
+            const [bookEmail, setBookEmail] = useState('');
+            const [bookPackage, setBookPackage] = useState('');
+            const [bookPayment, setBookPayment] = useState('credit');
+            const [bookConfirm, setBookConfirm] = useState(false);
+
+            // Scroll position tracking for transparent navbar
+            const [scrolled, setScrolled] = useState(false);
+
+            // Search field
+            const [searchDest, setSearchDest] = useState('');
+            const [searchBudget, setSearchBudget] = useState('');
+
+            // Localized Translation Shortcut
+            const t = (key) => translations[lang][key] || key;
+
+            useEffect(() => {
+                // Apply theme class to body
+                document.body.className = `${theme}-theme`;
+                localStorage.setItem('fyt-theme', theme);
+            }, [theme]);
+
+            useEffect(() => {
+                localStorage.setItem('fyt-lang', lang);
+            }, [lang]);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    if (window.scrollY > 50) {
+                        setScrolled(true);
+                    } else {
+                        setScrolled(false);
+                    }
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            // Theme click handler
+            const handleThemeChange = (newTheme) => {
+                setThemeState(newTheme);
+                playBeep(soundEnabled);
             };
 
-            minusBtn.addEventListener('click', () => {
-                let currentVal = parseInt(qtyVal.textContent);
-                if (currentVal > 1) {
-                    qtyVal.textContent = currentVal - 1;
-                    updatePrice(currentVal - 1);
+            // Switch toggle handler
+            const handleToggle = (setter, value) => {
+                setter(!value);
+                playBeep(soundEnabled);
+            };
+
+            // Prefill booking from card
+            const prefillBooking = (pkgName) => {
+                setBookPackage(pkgName);
+                playBeep(soundEnabled);
+                document.getElementById('booking').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            };
+
+            // Calculate Distance, Travel Time, Fuel
+            const handleCalculation = (e) => {
+                e.preventDefault();
+                setIsCalculating(true);
+                playBeep(soundEnabled);
+
+                setTimeout(() => {
+                    const origin = calcOrigin;
+                    const dest = calcDest;
+                    let distance = typeof getDistance === 'function' ? getDistance(origin, dest) : 180;
+
+                    const v = vehicles[calcVehicle];
+                    const speed = v.speed;
+                    const economy = v.consumption;
+                    const fuelType = v.fuelType;
+                    const unitPrice = fuelPrices[fuelType];
+
+                    // Time Calculation
+                    const timeInHours = distance / speed;
+                    const hours = Math.floor(timeInHours);
+                    const minutes = Math.round((timeInHours - hours) * 60);
+
+                    // Fuel Calculation
+                    const totalFuel = (distance * economy) / 100;
+                    const totalCost = totalFuel * unitPrice;
+
+                    setCalcResults({
+                        distance: distance.toFixed(0),
+                        time: { hours, minutes },
+                        fuel: totalFuel.toFixed(1),
+                        cost: totalCost.toFixed(2),
+                        economy: economy.toFixed(1),
+                        fuelUnit: fuelType === 'electricity' ? 'kWh' : 'L'
+                    });
+                    setIsCalculating(false);
+                }, 600);
+            };
+
+            // Trip Planner suggestion
+            const handleTripPlanning = (e) => {
+                e.preventDefault();
+                playBeep(soundEnabled);
+
+                const budget = parseInt(planBudget);
+                const duration = parseInt(planDuration);
+                const interest = planInterest;
+
+                let suggestion = "";
+                let suggestedProvinces = [];
+
+                if (interest === "temples") {
+                    suggestedProvinces = ['siem-reap', 'takeo'];
+                    suggestion = lang === 'en'
+                        ? `We highly suggest a ${duration}-day historical tour focusing on Siem Reap (Angkor Wat) and Takeo (Phnom Da). With your budget of $${budget}, you can comfortably enjoy private guided walks, local boutique hotels, and explore ancient Funan and Angkorian monuments.`
+                        : `យើងខ្ញុំសូមណែនាំដំណើរកម្សាន្តប្រវត្តិសាស្ត្ររយៈពេល ${duration} ថ្ងៃ ដោយផ្តោតលើខេត្តសៀមរាប (អង្គរវត្ត) និងខេត្តតាកែវ (ភ្នំដា)។ ជាមួយនឹងកញ្ចប់ថវិកា $${budget} របស់អ្នក អ្នកអាចរីករាយជាមួយមគ្គុទ្ទេសក៍ផ្ទាល់ខ្លួន សណ្ឋាគារលំដាប់ថវិកា និងរុករកប្រាសាទបុរាណសម័យនគរភ្នំ និងសម័យអង្គរយ៉ាងពេញចិត្ត។`;
+                } else if (interest === "nature") {
+                    suggestedProvinces = ['kampot', 'pursat'];
+                    suggestion = lang === 'en'
+                        ? `A ${duration}-day nature escape to Kampot (Bokor Mountain) and Pursat (Cardamom Mountains) is ideal. Your budget of $${budget} covers amazing eco-lodges, riverside kayaking, jungle hiking, and relaxing close to fresh waterfalls.`
+                        : `ដំណើរសម្រាកកាយបែបធម្មជាតិរយៈពេល ${duration} ថ្ងៃទៅកាន់ខេត្តកំពត (ភ្នំបូកគោ) និងខេត្តពោធិ៍សាត់ (ជួរភ្នំក្រវាញ) គឺសាកសមបំផុត។ ថវិកា $${budget} របស់អ្នកនឹងគ្របដណ្តប់លើផ្ទះស្នាក់បែបអេកូឡូស៊ី ការជិះទូកកាយ៉ាក់តាមដងព្រែក ការដើរព្រៃ និងការសម្រាកក្បែរទឹកធ្លាក់ដ៏ត្រជាក់។`;
+                } else if (interest === "food") {
+                    suggestedProvinces = ['battambang', 'kampong-cham'];
+                    suggestion = lang === 'en'
+                        ? `A ${duration}-day culinary and agricultural journey through Battambang and Kampong Cham is perfect. Taste Cambodia's best organic rice, Battambang street foods, fruit farms, and traditional cooking classes well within your $${budget} budget.`
+                        : `ដំណើរកម្សាន្តសិល្បៈម្ហូបអាហាររយៈពេល ${duration} ថ្ងៃកាត់ខេត្តបាត់ដំបង និងខេត្តកំពង់ចាមគឺពិតជាអស្ចារ្យ។ ភ្លក់រសជាតិបាយសរីរាង្គដ៏ឆ្ងាញ់ ម្ហូបអាហារតាមចិញ្ចើមផ្លូវ ចម្ការផ្លែឈើ និងចូលរួមវគ្គបង្រៀនធ្វើម្ហូបបែបប្រពៃណី ទាំងអស់នេះស្ថិតក្នុងកញ្ចប់ថវិកា $${budget} របស់អ្នក។`;
+                } else {
+                    suggestedProvinces = ['siem-reap', 'battambang', 'kampong-chhnang'];
+                    suggestion = lang === 'en'
+                        ? `Based on your ${duration}-day travel plan and $${budget} budget, a cultural tour visiting Siem Reap temples, Battambang colonial buildings, and Kampong Chhnang's pottery villages is highly recommended.`
+                        : `ផ្អែកលើគម្រោងធ្វើដំណើរ ${duration} ថ្ងៃ និងថវិកា $${budget} របស់អ្នក យើងខ្ញុំសូមណែនាំដំណើរកម្សាន្តបែបវប្បធម៌ទស្សនាប្រាសាទនៅសៀមរាប អគារបេតិកភណ្ឌបារាំងនៅបាត់ដំបង និងភូមិស្មូនឆ្នាំងដីឥដ្ឋនៅកំពង់ឆ្នាំង។`;
                 }
-            });
 
-            plusBtn.addEventListener('click', () => {
-                let currentVal = parseInt(qtyVal.textContent);
-                qtyVal.textContent = currentVal + 1;
-                updatePrice(currentVal + 1);
-            });
-        });
+                setPlannerResult({
+                    suggestion,
+                    provinces: suggestedProvinces.map(id => provincesData.find(p => p.id === id)).filter(Boolean)
+                });
+            };
+
+            // Booking Form Submission
+            const handleBookingSubmit = (e) => {
+                e.preventDefault();
+                playBeep(soundEnabled);
+
+                const successMsg = lang === 'en'
+                    ? `Thank you, ${bookName}! Your booking request for the "${bookPackage}" has been received. We will contact you shortly at ${bookEmail} to complete the payment via ${bookPayment.toUpperCase()}.`
+                    : `សូមអរគុណ ${bookName}! ការស្នើសុំកក់របស់អ្នកសម្រាប់កញ្ចប់ "${bookPackage}" ត្រូវបានទទួលជោគជ័យហើយ។ យើងខ្ញុំនឹងទាក់ទងទៅអ្នកវិញក្នុងពេលឆាប់ៗតាមរយៈ ${bookEmail} ដើម្បីបញ្ចប់ការទូទាត់ប្រាក់តាម ${bookPayment.toUpperCase()}។`;
+
+                alert(successMsg);
+                setBookName('');
+                setBookEmail('');
+                setBookPackage('');
+                setBookConfirm(false);
+            };
+
+            // Search Filter
+            const handleSearchSubmit = (e) => {
+                e.preventDefault();
+                playBeep(soundEnabled);
+                if (!searchDest) {
+                    alert(lang === 'en' ? "Please enter a destination name." : "សូមវាយបញ្ចូលឈ្មោះគោលដៅទេសចរណ៍។");
+                    return;
+                }
+                // Go to destinations page
+                window.location.href = 'destinations.html';
+            };
+
+            // Retrieve current gem details based on selected province
+            const currentGemProvince = provincesData.find(p => p.id === gemProvinceId) || provincesData[0];
+            // Highlight a specific place in the selected province as the "Hidden Gem"
+            const currentHiddenGem = (typeof hiddenGemsData !== 'undefined' && hiddenGemsData[gemProvinceId]) || {
+                name: "Add Your Hidden Gem",
+                khmerName: "កន្លែងលាក់កំបាំង",
+                desc: "This is a placeholder. You can add your unique hidden gem information for this province in the hidden_gem_data.js file.",
+                history: "Add unique history for this province's hidden gem in hidden_gem_data.js.",
+                img: "https://via.placeholder.com/600x400/0d6efd/ffffff?text=Your+Hidden+Gem",
+                roadCondition: "Add road conditions here...",
+                contactLocalGuide: "Add contact info here..."
+            };
+
+            // Render Tech Stack Card click
+            const handleTechTagClick = (tagName) => {
+                playBeep(soundEnabled);
+                const toastMsg = lang === 'en'
+                    ? `I love building apps using ${tagName}! It's an essential tool in my development toolbox.`
+                    : `ខ្ញុំចូលចិត្តអភិវឌ្ឍកម្មវិធីដោយប្រើ ${tagName} ណាស់! វាជាឧបករណ៍ដ៏សំខាន់នៅក្នុងការងាររបស់ខ្ញុំ។`;
+                alert(toastMsg);
+            };
+
+            return (
+                <div>
+                    {/* Navbar */}
+                    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+                        <div className="nav-top">
+                            <div className="nav-contact">
+                                <div className="nav-contact-icon"><i className="fa-solid fa-phone"></i></div>
+                                <div className="nav-contact-text">
+                                    <span>For Further Inquires :</span>
+                                    <strong>+855 017 573 688</strong>
+                                </div>
+                            </div>
+                            <div className="nav-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                                <i className="fa-solid fa-plane-departure"></i>
+                                <span>TOURLY</span>
+                            </div>
+                            <div className="nav-search">
+                                <i className="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                        </div>
+                        <div className="nav-bottom">
+                            <div className="nav-social">
+                                <a href="https://www.facebook.com/share/14hLmmP1Gvx/?mibextid=wwXIfr" target="_blank"><i className="fa-brands fa-facebook-f"></i></a>
+                                <a href="https://www.instagram.com/iur.aaaa" target="_blank"><i className="fa-brands fa-instagram"></i></a>
+                            </div>
+                            <div className="nav-links">
+                                <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="nav-link active">HOME</a>
+                                <a href="destinations.html" className="nav-link">POPULAR DESTINATIONS</a>
+                                <a href="packages.html" className="nav-link">PACKAGES</a>
+                                <a href="trip_planner.html" className="nav-link">TRIP PLANNER</a>
+                                <a href="calculator.html" className="nav-link">CALCULATOR</a>
+                                <a href="hidden_gems.html" className="nav-link">HIDDEN GEMS</a>
+                                <a href="settings.html" className="nav-link">SETTINGS</a>
+                                <a href="about.html" className="nav-link">ABOUT US</a>
+                            </div>
+                            <a href="#booking" className="nav-book-btn">BOOK NOW</a>
+                        </div>
+                    </nav>
+
+                    {/* Hero Section */}
+                    <header id="home" className="hero-section">
+                        <div className="hero-bg"></div>
+                        <div className="hero-overlay"></div>
+                        <div className="container hero-content">
+                            <h1 className="hero-title">
+                                {t('heroTitle1')} <span>{t('heroTitle2')}</span>
+                            </h1>
+                            <p className="hero-subtitle">{t('heroSubtitle')}</p>
+
+                            <div className="hero-buttons" style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
+                                <button className="btn-primary" style={{ borderRadius: '30px', background: '#0d6efd', padding: '15px 35px', fontWeight: 'bold' }} onClick={() => { playBeep(soundEnabled); document.getElementById('destinations').scrollIntoView({ behavior: 'smooth' }); }}>{t('btnExplore').toUpperCase()}</button>
+                            </div>
+                        </div>
+
+                        {/* Features Info Bar */}
+                        <div className="hero-info-bar">
+                            <div className="info-item">
+                                <div className="info-icon"><i className="fa-solid fa-shield-halved"></i></div>
+                                <div className="info-text">
+                                    <h4>Best Price Guarantee</h4>
+                                    <p>We guarantee the best price for your trips.</p>
+                                </div>
+                            </div>
+                            <div className="info-item">
+                                <div className="info-icon"><i className="fa-solid fa-headset"></i></div>
+                                <div className="info-text">
+                                    <h4>24/7 Customer Support</h4>
+                                    <p>We're here to help you anytime, anywhere.</p>
+                                </div>
+                            </div>
+                            <div className="info-item">
+                                <div className="info-icon"><i className="fa-solid fa-shield"></i></div>
+                                <div className="info-text">
+                                    <h4>Safe & Secure Booking</h4>
+                                    <p>Your safety is our top priority.</p>
+                                </div>
+                            </div>
+                            <div className="info-item">
+                                <div className="info-icon"><i className="fa-solid fa-plane"></i></div>
+                                <div className="info-text">
+                                    <h4>Easy & Fast Booking</h4>
+                                    <p>Book your trip in just a few clicks.</p>
+                                </div>
+                            </div>
+                            <div className="info-item">
+                                <div className="info-icon"><i className="fa-solid fa-thumbs-up"></i></div>
+                                <div className="info-text">
+                                    <h4>Trusted by Travelers</h4>
+                                    <p>Join thousands of happy travelers worldwide.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
 
 
-        document.querySelectorAll('.btn-add-orange').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('OK! Item added to your cart.');
-            });
-        });
+
+                    
+                    {/* Popular Destinations Section */}
+                    <section id="destinations" className="section-padding" style={{ backgroundColor: 'var(--bg-light)' }}>
+                        <div className="container">
+                            <div className="section-header text-center">
+                                <span className="badge">Top Rated</span>
+                                <h2>{t('destTitle')}</h2>
+                                <p>{t('destSubtitle')}</p>
+                            </div>
+
+                            <div className="destinations-grid">
+                                {provincesData.map(province => {
+                                    const rating = (4.5 + (province.name.length % 5) / 10).toFixed(1);
+                                    return (
+                                        <div 
+                                            key={province.id} 
+                                            className="destination-card"
+                                            onClick={() => { playBeep(soundEnabled); window.location.href = 'destinations.html'; }}
+                                        >
+                                            <img src={province.coverImg} alt={province.name} className="dest-img" loading="lazy" />
+                                            <div className="dest-overlay"></div>
+                                            <div className="dest-content">
+                                                <div>
+                                                    <h3 className="dest-title">{province.name}</h3>
+                                                    <p className="dest-location">Cambodia</p>
+                                                </div>
+                                                <div className="dest-rating">
+                                                    <i className="fa-solid fa-star"></i> {rating}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                            <div className="text-center mt-4" style={{ marginTop: '40px' }}>
+                                <button className="btn-outline" onClick={() => { playBeep(soundEnabled); window.location.href = 'destinations.html'; }}>
+                                    {lang === 'en' ? 'Show All Destinations' : 'បង្ហាញតំបន់ទេសចរណ៍ទាំងអស់'} <i className="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    {/* Packages Content */}
+                    <section id="packages" className="section-padding" style={{ backgroundColor: 'var(--bg-main)' }}>
+                        <div className="container">
+                            <div className="section-header text-center" style={{ marginBottom: '40px' }}>
+                                <h2 className="section-title" style={{ color: 'var(--text-main)' }}>EXCLUSIVE TOUR PACKAGES</h2>
+                                <div className="title-underline"></div>
+                            </div>
+
+                            {/* Filters */}
+                            <div className="packages-filters-wrapper">
+                                <div className="packages-filters">
+                                    <button className={`filter-btn ${activeFilter === 'All' ? 'active' : ''}`} onClick={() => setActiveFilter('All')}><i className="fa-solid fa-border-all"></i> All Packages</button>
+                                    <button className={`filter-btn ${activeFilter === 'adventure' ? 'active' : ''}`} onClick={() => setActiveFilter('adventure')}><i className="fa-solid fa-mountain"></i> Adventure</button>
+                                    <button className={`filter-btn ${activeFilter === 'relaxing' ? 'active' : ''}`} onClick={() => setActiveFilter('relaxing')}><i className="fa-solid fa-umbrella-beach"></i> Relaxing</button>
+                                    <button className={`filter-btn ${activeFilter === 'culture' ? 'active' : ''}`} onClick={() => setActiveFilter('culture')}><i className="fa-solid fa-landmark"></i> Culture</button>
+                                    <button className={`filter-btn ${activeFilter === 'food' ? 'active' : ''}`} onClick={() => setActiveFilter('food')}><i className="fa-solid fa-utensils"></i> Food</button>
+                                </div>
+                            </div>
+
+                            <div className="packages-grid">
+                                {filteredPackages.map(pkg => (
+                                    <div key={pkg.id} className="package-card pkg-card-new">
+                                        <div className="pkg-img" style={{ backgroundImage: `url('${pkg.img}')` }}>
+                                            <span className={`pkg-tag ${pkg.category}`}><i className={`fa-solid ${pkg.icon}`}></i> {pkg.categoryLabel}</span>
+                                            <div className="pkg-heart"><i className="fa-regular fa-heart"></i></div>
+                                        </div>
+                                        <div className="pkg-content">
+                                            <h3>{pkg.title}</h3>
+                                            <p className="pkg-location"><i className="fa-solid fa-location-dot"></i> {pkg.location}</p>
+                                            <p className="pkg-desc">{pkg.desc}</p>
+                                            <div className="pkg-meta">
+                                                <span><i className="fa-regular fa-clock"></i> {pkg.duration}</span>
+                                                <span><i className="fa-solid fa-user-group"></i> {pkg.people}</span>
+                                            </div>
+                                            <div className="pkg-footer">
+                                                <div className="pkg-price"><span className="from-text">From</span> <strong>${pkg.price}</strong></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+
+
+                            {/* Distance & Fuel Calculator */}
+                            <section id="calculator" className="section-padding">
+                                <div className="container">
+                                    <div className="section-header text-center">
+                                        <span className="badge">Smart Tools</span>
+                                        <h2>{t('calcTitle')}</h2>
+                                        <p>{t('calcSubtitle')}</p>
+                                    </div>
+
+                                    <div className="calc-grid">
+                                        <div className="calc-inputs-panel glass-panel" style={{ padding: '40px' }}>
+                                            <form onSubmit={handleCalculation}>
+                                                <div className="form-group">
+                                                    <label><i className="fa-solid fa-circle-play" style={{ color: 'var(--secondary)' }}></i> {t('calcOrigin')}</label>
+                                                    <select
+                                                        value={calcOrigin}
+                                                        onChange={(e) => setCalcOrigin(e.target.value)}
+                                                    >
+                                                        {provincesData.map(p => (
+                                                            <option key={p.id} value={p.id}>{p.name}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+
+                                                <div className="form-group">
+                                                    <label><i className="fa-solid fa-circle-stop" style={{ color: 'var(--primary)' }}></i> {t('calcDest')}</label>
+                                                    <select
+                                                        value={calcDest}
+                                                        onChange={(e) => setCalcDest(e.target.value)}
+                                                    >
+                                                        {provincesData.map(p => (
+                                                            <option key={p.id} value={p.id}>{p.name}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+
+                                                <div className="form-group">
+                                                    <label><i className="fa-solid fa-car-side"></i> {t('calcVehicle')}</label>
+                                                    <select
+                                                        value={calcVehicle}
+                                                        onChange={(e) => setCalcVehicle(e.target.value)}
+                                                    >
+                                                        {Object.keys(vehicles).map(key => (
+                                                            <option key={key} value={key}>
+                                                                {lang === 'en' ? vehicles[key].name.en : vehicles[key].name.kh}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+
+                                                <button type="submit" className="btn-primary w-100" disabled={isCalculating}>
+                                                    {isCalculating ? (
+                                                        <span><i className="fa-solid fa-circle-notch fa-spin"></i> Calculating...</span>
+                                                    ) : (
+                                                        <span><i className="fa-solid fa-calculator"></i> {t('calcBtnSubmit')}</span>
+                                                    )}
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                        <div className="calc-results-panel glass-panel">
+                                            {calcResults ? (
+                                                <div style={{ animation: 'fadeIn 0.5s ease' }}>
+                                                    <h3 className="text-center" style={{ fontSize: '1.45rem', marginBottom: '20px' }}>
+                                                        <i className="fa-solid fa-route" style={{ color: 'var(--primary)' }}></i> Trip Log Details
+                                                    </h3>
+
+                                                    <div className="calc-stat-group">
+                                                        <div className="calc-stat-card">
+                                                            <div className="calc-stat-label">{t('calcStatDist')}</div>
+                                                            <div className="calc-stat-value">{calcResults.distance} <span style={{ fontSize: '1rem' }}>km</span></div>
+                                                        </div>
+                                                        <div className="calc-stat-card">
+                                                            <div className="calc-stat-label">{t('calcStatTime')}</div>
+                                                            <div className="calc-stat-value">
+                                                                {calcResults.time.hours > 0 ? `${calcResults.time.hours}h ` : ''}
+                                                                {calcResults.time.minutes}m
+                                                            </div>
+                                                        </div>
+                                                        <div className="calc-stat-card">
+                                                            <div className="calc-stat-label">{t('calcStatFuel')}</div>
+                                                            <div className="calc-stat-value">{calcResults.fuel} <span style={{ fontSize: '1rem' }}>{calcResults.fuelUnit}</span></div>
+                                                        </div>
+                                                        <div className="calc-stat-card">
+                                                            <div className="calc-stat-label">{t('calcStatCost')}</div>
+                                                            <div className="calc-stat-value">${calcResults.cost}</div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Visual Progress Bar */}
+                                                    <div className="calc-meter-container">
+                                                        <div className="calc-meter-label">
+                                                            <span>Route Progress</span>
+                                                            <span>{calcResults.distance} km</span>
+                                                        </div>
+                                                        <div className="calc-meter-bg">
+                                                            <div className="calc-meter-fill" style={{ width: '100%' }}></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div style={{ marginTop: '20px', padding: '12px', background: 'var(--bg-light)', borderRadius: '12px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                                                        <i className="fa-solid fa-circle-info"></i> Calculated at vehicle rate of {calcResults.economy} {calcResults.fuelUnit}/100km. Average speed capped by {t('calcSpeedLimit')} rules.
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="text-center" style={{ padding: '40px', color: 'var(--text-muted)' }}>
+                                                    <i className="fa-solid fa-gas-pump" style={{ fontSize: '3rem', marginBottom: '20px', color: 'var(--border-color)' }}></i>
+                                                    <p>Select your starting province, destination, and vehicle type to generate a detailed fuel log, trip time, and cost estimation.</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            {/* Hidden Gems Section */}
+                            <section id="gems" className="section-padding bg-light">
+                                <div className="container">
+                                    <div className="section-header text-center">
+                                        <span className="badge">Off The Beaten Path</span>
+                                        <h2>{t('gemTitle')}</h2>
+                                        <p>{t('gemSubtitle')}</p>
+                                    </div>
+
+                                    <div className="gems-filter-bar form-group">
+                                        <label style={{ justifyContent: 'center' }}><i className="fa-solid fa-compass"></i> {t('gemPrompt')}</label>
+                                        <select 
+                                            value={gemProvinceId} 
+                                            onChange={(e) => { 
+                                                playBeep(soundEnabled);
+                                                setGemProvinceId(e.target.value);
+                                                setGemActiveTab('about');
+                                            }}
+                                            className="glass-panel"
+                                            style={{ borderWidth: '2px' }}
+                                        >
+                                            {provincesData.map(p => (
+                                                <option key={p.id} value={p.id}>{p.name} Province</option>
+                                            ))}
+                                        </select>
+                                    </div>
+
+                                    <div className="gem-layout glass-panel" style={{ padding: '30px', background: 'var(--bg-panel)' }}>
+                                        <div className="gem-image-card">
+                                            <img src={currentHiddenGem.img} alt={currentHiddenGem.name} className="gem-img" />
+                                            <div className="gem-image-overlay">
+                                                <div className="badge badge-light" style={{ alignSelf: 'flex-start', marginBottom: '10px' }}>Hidden Gem</div>
+                                                <h3>{currentHiddenGem.name}</h3>
+                                                <p>{currentGemProvince.name} Province</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="gem-info-card">
+                                            <h3 className="gem-info-title">{currentHiddenGem.name}</h3>
+
+                                            {/* Tabs */}
+                                            <div className="gem-info-tabs">
+                                                <button 
+                                                    className={`gem-tab ${gemActiveTab === 'about' ? 'active' : ''}`}
+                                                    onClick={() => { playBeep(soundEnabled); setGemActiveTab('about'); }}
+                                                >
+                                                    {t('gemTabAbout')}
+                                                </button>
+                                                <button 
+                                                    className={`gem-tab ${gemActiveTab === 'history' ? 'active' : ''}`}
+                                                    onClick={() => { playBeep(soundEnabled); setGemActiveTab('history'); }}
+                                                >
+                                                    {t('gemTabHistory')}
+                                                </button>
+                                                <button 
+                                                    className={`gem-tab ${gemActiveTab === 'how-to' ? 'active' : ''}`}
+                                                    onClick={() => { playBeep(soundEnabled); setGemActiveTab('how-to'); }}
+                                                >
+                                                    {t('gemTabHowTo')}
+                                                </button>
+                                            </div>
+
+                                            {/* Tab Contents */}
+                                            <div className="gem-tab-content">
+                                                {gemActiveTab === 'about' && (
+                                                    <div>
+                                                        <p style={{ marginBottom: '15px' }}>{currentHiddenGem.desc}</p>
+                                                        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '10px' }}>
+                                                            <span className="tech-tag"><i className="fa-solid fa-star text-accent"></i> Authentic Khmer Heritage</span>
+                                                            <span className="tech-tag"><i className="fa-solid fa-leaf text-accent"></i> Eco-friendly Spot</span>
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                {gemActiveTab === 'history' && (
+                                                    <div>
+                                                        <p style={{ whiteSpace: 'pre-wrap', fontSize: '0.92rem', lineHeight: '1.5' }}>{currentHiddenGem.history}</p>
+                                                    </div>
+                                                )}
+
+                                                {gemActiveTab === 'how-to' && (
+                                                    <div>
+                                                        <p style={{ marginBottom: '10px' }}><b>Road condition:</b> {currentHiddenGem.roadCondition}</p>
+                                                        <p style={{ marginBottom: '10px' }}><b>Contact Local Guide:</b> {currentHiddenGem.contactLocalGuide}</p>
+                                                        <button 
+                                                            className="btn-secondary mt-2" 
+                                                            style={{ padding: '10px 20px', fontSize: '0.9rem' }}
+                                                            onClick={() => {
+                                                                setCalcOrigin('takeo');
+                                                                setCalcDest(currentGemProvince.id);
+                                                                document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+                                                            }}
+                                                        >
+                                                            Calculate Travel Route <i className="fa-solid fa-arrow-right"></i>
+                                                        </button>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            {/* Setting Panel */}
+                            <section id="settings" className="section-padding">
+                                <div className="container">
+                                    <div className="section-header text-center">
+                                        <span className="badge">Customization</span>
+                                        <h2>{t('setTheme')} & Settings</h2>
+                                        <p>Personalize your experience with theme toggles, translations, and notification preferences.</p>
+                                    </div>
+
+                                    <div className="settings-grid">
+                                        <div className="setting-card glass-panel">
+                                            <h3><i className="fa-solid fa-sliders"></i> System Customization</h3>
+                                            <div className="form-group">
+                                                <label>{t('setTheme')}</label>
+                                                <div className="theme-options">
+                                                    <button className={`theme-btn ${theme === 'light' ? 'active' : ''}`} onClick={() => handleThemeChange('light')}>
+                                                        <i className="fa-solid fa-sun text-accent"></i> Light
+                                                    </button>
+                                                    <button className={`theme-btn ${theme === 'dark' ? 'active' : ''}`} onClick={() => handleThemeChange('dark')}>
+                                                        <i className="fa-solid fa-moon text-accent"></i> Dark
+                                                    </button>
+                                                    <button className={`theme-btn ${theme === 'glass' ? 'active' : ''}`} onClick={() => handleThemeChange('glass')}>
+                                                        <i className="fa-solid fa-wand-magic-sparkles text-accent"></i> Glass
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div className="setting-card glass-panel">
+                                            <h3><i className="fa-solid fa-bell"></i> {t('setNotify')}</h3>
+                                            <div className="setting-toggle-group">
+                                                <div className="setting-toggle-item">
+                                                    <div className="toggle-info">
+                                                        <h4>{t('setNotifySound')}</h4>
+                                                        <p>{t('setNotifySoundDesc')}</p>
+                                                    </div>
+                                                    <label className="switch">
+                                                        <input type="checkbox" checked={soundEnabled} onChange={() => handleToggle(setSoundEnabled, soundEnabled)} />
+                                                        <span className="slider"></span>
+                                                    </label>
+                                                </div>
+                                                <div className="setting-toggle-item">
+                                                    <div className="toggle-info">
+                                                        <h4>{t('setNotifyEmail')}</h4>
+                                                        <p>{t('setNotifyEmailDesc')}</p>
+                                                    </div>
+                                                    <label className="switch">
+                                                        <input type="checkbox" checked={notifyEmail} onChange={() => handleToggle(setNotifyEmail, notifyEmail)} />
+                                                        <span className="slider"></span>
+                                                    </label>
+                                                </div>
+                                                <div className="setting-toggle-item">
+                                                    <div className="toggle-info">
+                                                        <h4>{t('setNotifyPromo')}</h4>
+                                                        <p>{t('setNotifyPromoDesc')}</p>
+                                                    </div>
+                                                    <label className="switch">
+                                                        <input type="checkbox" checked={notifyPromo} onChange={() => handleToggle(setNotifyPromo, notifyPromo)} />
+                                                        <span className="slider"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+
+
+
+                                        {/* Footer */}
+                    <footer className="footer-modern bg-gradient-dark text-light" style={{ background: '#050a15', paddingTop: '60px', paddingBottom: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                        <div className="container">
+                            <div className="row" style={{ display: 'flex', flexWrap: 'wrap', gap: '30px', marginBottom: '40px' }}>
+                                {/* Brand Column */}
+                                <div className="col-lg-4 col-md-6" style={{ flex: '1 1 300px' }}>
+                                    <div className="footer-brand" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px' }}>
+                                        <i className="fa-solid fa-location-dot" style={{ fontSize: '2rem', color: 'var(--primary)' }}></i>
+                                        <div>
+                                            <h3 style={{ margin: 0, fontSize: '1.5rem', fontWeight: '800', letterSpacing: '1px' }}>FIND YOU TRIP</h3>
+                                            <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Discover. Explore. Enjoy.</span>
+                                        </div>
+                                    </div>
+                                    <p style={{ color: '#94a3b8', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '20px' }}>
+                                        Your trusted travel companion. We help you find the best places, plan your perfect trip and make memories that last a lifetime.
+                                    </p>
+                                    <div className="footer-socials" style={{ display: 'flex', gap: '10px' }}>
+                                        <a href="https://www.facebook.com/share/14hLmmP1Gvx/?mibextid=wwXIfr" target="_blank" style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', textDecoration: 'none', transition: '0.3s' }}><i className="fa-brands fa-facebook-f"></i></a>
+                                        <a href="https://www.instagram.com/iur.aaaa" target="_blank" style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', textDecoration: 'none', transition: '0.3s' }}><i className="fa-brands fa-instagram"></i></a>
+                                    </div>
+                                </div>
+
+                                {/* Quick Links */}
+                                <div className="col-lg-2 col-md-6" style={{ flex: '1 1 150px' }}>
+                                    <h4 style={{ color: 'white', fontSize: '1.1rem', marginBottom: '20px', fontWeight: '600', position: 'relative' }}>Quick Links<span style={{ position: 'absolute', bottom: '-5px', left: 0, width: '30px', height: '2px', background: 'var(--primary)' }}></span></h4>
+                                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                        <li><a href="index.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Home</a></li>
+                                        <li><a href="destinations.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Destinations</a></li>
+                                        <li><a href="packages.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Tour Packages</a></li>
+                                        <li><a href="trip_planner.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Trip Planner</a></li>
+                                        <li><a href="hidden_gems.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Hidden Gems</a></li>
+                                        <li><a href="about.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> About Us</a></li>
+                                    </ul>
+                                </div>
+
+                                {/* Popular Destinations */}
+                                <div className="col-lg-2 col-md-6" style={{ flex: '1 1 150px' }}>
+                                    <h4 style={{ color: 'white', fontSize: '1.1rem', marginBottom: '20px', fontWeight: '600', position: 'relative' }}>Popular Destinations<span style={{ position: 'absolute', bottom: '-5px', left: 0, width: '30px', height: '2px', background: 'var(--primary)' }}></span></h4>
+                                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                        <li><a href="destinations.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Siem Reap</a></li>
+                                        <li><a href="destinations.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Phnom Penh</a></li>
+                                        <li><a href="destinations.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Kampot</a></li>
+                                        <li><a href="destinations.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Battambang</a></li>
+                                        <li><a href="destinations.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Koh Rong</a></li>
+                                        <li><a href="destinations.html" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Kep</a></li>
+                                    </ul>
+                                </div>
+
+                                {/* Support */}
+                                <div className="col-lg-2 col-md-6" style={{ flex: '1 1 150px' }}>
+                                    <h4 style={{ color: 'white', fontSize: '1.1rem', marginBottom: '20px', fontWeight: '600', position: 'relative' }}>Support<span style={{ position: 'absolute', bottom: '-5px', left: 0, width: '30px', height: '2px', background: 'var(--primary)' }}></span></h4>
+                                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                        <li><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> FAQ</a></li>
+                                        <li><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Terms & Conditions</a></li>
+                                        <li><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Privacy Policy</a></li>
+                                        <li><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Refund Policy</a></li>
+                                        <li><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Booking Guide</a></li>
+                                        <li><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', transition: '0.3s', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fa-solid fa-angle-right" style={{ color: 'var(--primary)', fontSize: '0.8rem' }}></i> Customer Support</a></li>
+                                    </ul>
+                                </div>
+
+                                {/* Newsletter */}
+                                <div className="col-lg-3 col-md-6" style={{ flex: '1 1 250px' }}>
+                                    <h4 style={{ color: 'white', fontSize: '1.1rem', marginBottom: '20px', fontWeight: '600', position: 'relative' }}>Newsletter<span style={{ position: 'absolute', bottom: '-5px', left: 0, width: '30px', height: '2px', background: 'var(--primary)' }}></span></h4>
+                                    <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginBottom: '15px' }}>Subscribe to get special offers and travel inspiration.</p>
+                                    <div style={{ position: 'relative', display: 'flex' }}>
+                                        <input type="email" placeholder="Your email address" style={{ width: '100%', padding: '12px 45px 12px 15px', borderRadius: '30px', border: 'none', background: 'rgba(255,255,255,0.05)', color: 'white', outline: 'none' }} />
+                                        <button style={{ position: 'absolute', right: '4px', top: '4px', bottom: '4px', width: '38px', borderRadius: '50%', background: 'var(--primary)', border: 'none', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                            <i className="fa-solid fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Bottom Bar */}
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px', marginTop: '20px' }}>
+                                <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: 0 }}>&copy; 2024 <span style={{ color: 'var(--primary)' }}>Find You Trip</span>. All rights reserved.</p>
+                                <div style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '10px', fontStyle: 'italic' }}>
+                                    <i className="fa-solid fa-plane"></i> - Let's find your next adventure.
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+
+                    {/* Province Detail Slide-out Drawer */}
+                    {activeProvince && (
+                        <div className="drawer-overlay" onClick={() => { playBeep(soundEnabled); setActiveProvince(null); setActivePlace(null); }}>
+                            <div className="drawer-content" onClick={(e) => e.stopPropagation()}>
+                                <button className="drawer-close" onClick={() => { playBeep(soundEnabled); setActiveProvince(null); setActivePlace(null); }}>
+                                    <i className="fa-solid fa-xmark"></i>
+                                </button>
+
+                                {activePlace ? (
+                                    /* Place details view */
+                                    <div className="place-detail-view">
+                                        <div className="place-detail-back" onClick={() => { playBeep(soundEnabled); setActivePlace(null); }}>
+                                            <i className="fa-solid fa-arrow-left-long"></i> Back to {activeProvince.name}
+                                        </div>
+                                        <div className="drawer-header-img" style={{ backgroundImage: `url('${activePlace.img}')` }}>
+                                            <div className="drawer-header-overlay">
+                                                <span className="badge badge-light" style={{ alignSelf: 'flex-start', marginBottom: '10px' }}>{activeProvince.name}</span>
+                                                <h2 className="drawer-province-title">{activePlace.name}</h2>
+                                            </div>
+                                        </div>
+
+                                        <h4 className="drawer-section-title">History & Information</h4>
+                                        <div className="place-history-text">{activePlace.history}</div>
+
+                                        <button
+                                            className="btn-primary w-100 mt-4"
+                                            onClick={() => {
+                                                playBeep(soundEnabled);
+                                                setActiveProvince(null);
+                                                setActivePlace(null);
+                                                prefillBooking(`Trip to ${activePlace.name}`);
+                                            }}
+                                        >
+                                            Book Trip to This Place
+                                        </button>
+                                    </div>
+                                ) : (
+                                    /* Province details view */
+                                    <div>
+                                        <div className="drawer-header-img" style={{ backgroundImage: `url('${activeProvince.detailImg}')` }}>
+                                            <div className="drawer-header-overlay">
+                                                <h2 className="drawer-province-title">{activeProvince.name}</h2>
+                                            </div>
+                                        </div>
+
+                                        <p style={{ fontSize: '1.05rem', fontStyle: 'italic', color: 'var(--text-muted)', marginBottom: '20px' }}>
+                                            "{activeProvince.tagline}"
+                                        </p>
+
+                                        <h4 className="drawer-section-title">Interactive Map</h4>
+                                        <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--border-color)', height: '220px', marginBottom: '30px' }}>
+                                            <iframe
+                                                width="100%"
+                                                height="100%"
+                                                style={{ border: 0 }}
+                                                loading="lazy"
+                                                allowFullScreen
+                                                src={`https://maps.google.com/maps?q=${encodeURIComponent(activeProvince.name + ' Province Cambodia')}&t=&z=9&ie=UTF8&iwloc=&output=embed`}
+                                            ></iframe>
+                                        </div>
+
+                                        <h4 className="drawer-section-title">Places of Interest</h4>
+                                        <div className="drawer-places-list">
+                                            {activeProvince.places.map((place, idx) => (
+                                                <div
+                                                    key={place.id}
+                                                    className="drawer-place-card"
+                                                    onClick={() => {
+                                                        playBeep(soundEnabled);
+                                                        setActivePlace(place);
+                                                    }}
+                                                >
+                                                    <img src={place.img} alt={place.name} className="drawer-place-img" />
+                                                    <div className="drawer-place-info">
+                                                        <h5 className="drawer-place-name">{idx + 1}. {place.name}</h5>
+                                                        <p className="drawer-place-desc">{place.desc}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        // Render React Application
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
 </body>
-
 </html>
