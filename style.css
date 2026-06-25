@@ -2011,3 +2011,149 @@ input:checked + .slider:before {
 }
 
 
+
+
+/* --- ADDED RESPONSIVE FIXES --- */
+
+/* Mobile Menu Button & Container */
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 2000;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--bg-panel);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    z-index: 1500;
+    transition: var(--transition);
+    padding: 80px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-left: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+}
+
+.mobile-menu.open {
+    right: 0;
+}
+
+.mobile-menu a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.mobile-menu a:hover {
+    color: var(--primary);
+    padding-left: 10px;
+}
+
+/* Info Bars Responsive (Hero & Features) */
+@media (max-width: 992px) {
+    .hero-info-bar, .features-bar {
+        position: relative;
+        bottom: auto;
+        transform: none;
+        left: auto;
+        width: 100%;
+        max-width: 100%;
+        flex-wrap: wrap;
+        border-radius: var(--radius-md);
+        margin-top: 30px;
+        gap: 20px;
+        justify-content: center;
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 20px;
+    }
+    
+    .info-item, .feature-item {
+        border-right: none;
+        flex: 1 1 40%;
+        min-width: 200px;
+        padding: 10px;
+    }
+    
+    .hero-section {
+        padding-bottom: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-top {
+        display: none !important;
+    }
+    
+    .nav-bottom {
+        padding: 15px 20px;
+    }
+    
+    .nav-social {
+        display: none !important;
+    }
+    
+    .nav-book-btn {
+        display: none !important;
+    }
+    
+    .mobile-menu-btn {
+        display: block !important;
+        margin-left: auto;
+        color: white;
+    }
+    
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .info-item, .feature-item {
+        flex: 1 1 100%;
+    }
+    
+    .packages-filters {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 15px;
+        padding: 10px;
+    }
+    
+    .filter-btn {
+        flex: 1 1 40%;
+        justify-content: center;
+    }
+    
+    .nav-logo {
+        font-size: 1.5rem;
+    }
+    
+    .calc-stat-group {
+        grid-template-columns: 1fr;
+    }
+    
+    .drawer-header-overlay {
+        padding: 20px;
+    }
+    .drawer-province-title {
+        font-size: 1.8rem;
+    }
+    .gem-layout {
+        display: flex;
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Trip - Find Your Trip</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="dark-theme">
+
+    <!-- Navbar -->
+    <nav class="navbar scrolled">
+        <div class="nav-top">
+            <div class="nav-contact">
+                <div class="nav-contact-icon"><i class="fa-solid fa-phone"></i></div>
+                <div class="nav-contact-text">
+                    <span>For Further Inquires :</span>
+                    <strong>+855 017 573 688</strong>
+                </div>
+            </div>
+            <div class="nav-logo" onclick="window.location.href='index.html'">
+                <i class="fa-solid fa-plane-departure"></i>
+                <span>TOURLY</span>
+            </div>
+            <div class="nav-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+        <div class="nav-bottom">
+            <div class="nav-social">
+                <a href="https://www.facebook.com/share/14hLmmP1Gvx/?mibextid=wwXIfr" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/iur.aaaa" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">HOME</a>
+                <a href="destinations.html" class="nav-link">POPULAR DESTINATIONS</a>
+                <a href="packages.html" class="nav-link">PACKAGES</a>
+                <a href="trip_planner.html" class="nav-link">TRIP PLANNER</a>
+                <a href="calculator.html" class="nav-link">CALCULATOR</a>
+                <a href="hidden_gems.html" class="nav-link">HIDDEN GEMS</a>
+                <a href="settings.html" class="nav-link">SETTINGS</a>
+                <a href="about.html" class="nav-link">ABOUT US</a>
+            </div>
+            <a href="book.html" class="nav-book-btn">BOOK NOW</a>
+            <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('open')" style="color: white; margin-left: auto;"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <div class="nav-logo" style="color: var(--text-main);">
+                <i class="fa-solid fa-plane-departure"></i>
+                <span>TOURLY</span>
+            </div>
+            <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.remove('open')" style="color: var(--text-main); display: block;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <a href="index.html">HOME</a>
+        <a href="destinations.html">POPULAR DESTINATIONS</a>
+        <a href="packages.html">PACKAGES</a>
+        <a href="trip_planner.html">TRIP PLANNER</a>
+        <a href="calculator.html">CALCULATOR</a>
+        <a href="hidden_gems.html">HIDDEN GEMS</a>
+        <a href="settings.html">SETTINGS</a>
+        <a href="about.html">ABOUT US</a>
+        <a href="book.html" class="btn-primary" style="margin-top: 20px; text-align: center;">BOOK NOW</a>
+    </div>
+
+    <!-- Booking Section -->
+    <section id="book" class="hero-section" style="padding-top: 150px; padding-bottom: 80px; min-height: 100vh; position: relative;">
+        <!-- Standard Background -->
+        <div class="hero-bg"></div>
+        <div class="hero-overlay" style="background: rgba(0, 0, 0, 0.7);"></div>
+        
+        <!-- Colorful Blurry Blobs -->
+        <div style="position: absolute; top: 10%; right: 10%; width: 400px; height: 400px; background: #0088ff; border-radius: 50%; filter: blur(100px); z-index: 1; opacity: 0.6;"></div>
+        <div style="position: absolute; bottom: 10%; left: 10%; width: 350px; height: 350px; background: #e83e8c; border-radius: 50%; filter: blur(100px); z-index: 1; opacity: 0.6;"></div>
+
+        <div class="container" style="max-width: 800px; z-index: 10; position: relative;">
+            <div class="glass-panel" style="padding: 50px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(25px); border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
+                
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <i class="fa-solid fa-calendar-check" style="font-size: 3rem; color: #0088ff; margin-bottom: 15px; text-shadow: 0 0 20px rgba(0, 136, 255, 0.5);"></i>
+                    <h2 style="font-family: var(--font-heading); color: white; font-weight: 800; font-size: 2.5rem; letter-spacing: 0.5px; margin-bottom: 10px;">Book Your Dream Trip</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem;">Fill out the form below and we'll arrange the perfect experience for you.</p>
+                </div>
+                
+                <form id="booking-form">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px;">
+                        
+                        <!-- Full Name -->
+                        <div class="form-group" style="text-align: left;">
+                            <label style="color: white; font-weight: 600; display: block; margin-bottom: 8px; font-size: 0.95rem;">Full Name</label>
+                            <input type="text" required placeholder="John Doe" style="width: 100%; padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background-color: rgba(255, 255, 255, 0.05); color: white; font-family: var(--font-body); font-size: 1rem; outline: none; transition: background-color 0.3s;" onfocus="this.style.backgroundColor='rgba(255, 255, 255, 0.1)';" onblur="this.style.backgroundColor='rgba(255, 255, 255, 0.05)';" />
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group" style="text-align: left;">
+                            <label style="color: white; font-weight: 600; display: block; margin-bottom: 8px; font-size: 0.95rem;">Email Address</label>
+                            <input type="email" required placeholder="john@example.com" style="width: 100%; padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background-color: rgba(255, 255, 255, 0.05); color: white; font-family: var(--font-body); font-size: 1rem; outline: none; transition: background-color 0.3s;" onfocus="this.style.backgroundColor='rgba(255, 255, 255, 0.1)';" onblur="this.style.backgroundColor='rgba(255, 255, 255, 0.05)';" />
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="form-group" style="text-align: left;">
+                            <label style="color: white; font-weight: 600; display: block; margin-bottom: 8px; font-size: 0.95rem;">Phone Number</label>
+                            <input type="tel" required placeholder="+855 12 345 678" style="width: 100%; padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background-color: rgba(255, 255, 255, 0.05); color: white; font-family: var(--font-body); font-size: 1rem; outline: none; transition: background-color 0.3s;" onfocus="this.style.backgroundColor='rgba(255, 255, 255, 0.1)';" onblur="this.style.backgroundColor='rgba(255, 255, 255, 0.05)';" />
+                        </div>
+
+                        <!-- Destination -->
+                        <div class="form-group" style="text-align: left;">
+                            <label style="color: white; font-weight: 600; display: block; margin-bottom: 8px; font-size: 0.95rem;">Destination</label>
+                            <select required style="width: 100%; padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background-color: rgba(255, 255, 255, 0.05); color: white; font-family: var(--font-body); font-size: 1rem; outline: none; cursor: pointer; appearance: none;">
+                                <option value="" disabled selected style="color: #333;">Select your destination</option>
+                                <option value="Angkor Wat" style="color: #333;">Angkor Wat, Siem Reap</option>
+                                <option value="Phnom Penh" style="color: #333;">Phnom Penh City Tour</option>
+                                <option value="Koh Rong" style="color: #333;">Koh Rong Island</option>
+                                <option value="Kampot" style="color: #333;">Kampot & Kep</option>
+                                <option value="Preah Vihear" style="color: #333;">Preah Vihear Temple</option>
+                            </select>
+                        </div>
+
+                        <!-- Date -->
+                        <div class="form-group" style="text-align: left;">
+                            <label style="color: white; font-weight: 600; display: block; margin-bottom: 8px; font-size: 0.95rem;">Travel Date</label>
+                            <input type="date" required style="width: 100%; padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background-color: rgba(255, 255, 255, 0.05); color: white; font-family: var(--font-body); font-size: 1rem; outline: none; transition: background-color 0.3s; color-scheme: dark;" />
+                        </div>
+
+                        <!-- Guests -->
+                        <div class="form-group" style="text-align: left;">
+                            <label style="color: white; font-weight: 600; display: block; margin-bottom: 8px; font-size: 0.95rem;">Number of Guests</label>
+                            <input type="number" min="1" required placeholder="2" style="width: 100%; padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background-color: rgba(255, 255, 255, 0.05); color: white; font-family: var(--font-body); font-size: 1rem; outline: none; transition: background-color 0.3s;" />
+                        </div>
+                    </div>
+
+                    <!-- Message/Requests -->
+                    <div class="form-group" style="text-align: left; margin-bottom: 35px;">
+                        <label style="color: white; font-weight: 600; display: block; margin-bottom: 8px; font-size: 0.95rem;">Special Requests / Notes</label>
+                        <textarea rows="4" placeholder="Any special dietary requirements or places you specifically want to visit?" style="width: 100%; padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background-color: rgba(255, 255, 255, 0.05); color: white; font-family: var(--font-body); font-size: 1rem; outline: none; transition: background-color 0.3s; resize: vertical;" onfocus="this.style.backgroundColor='rgba(255, 255, 255, 0.1)';" onblur="this.style.backgroundColor='rgba(255, 255, 255, 0.05)';"></textarea>
+                    </div>
+
+                    <button type="submit" id="book-submit-btn" style="width: 100%; padding: 18px; border-radius: 8px; font-size: 1.15rem; font-weight: 700; border: none; cursor: pointer; background: #0088ff; color: white; margin-bottom: 10px; transition: transform 0.2s, background 0.2s; box-shadow: 0 10px 20px rgba(0, 136, 255, 0.3);" onmouseover="this.style.backgroundColor='#0070d6'; this.style.transform='translateY(-2px)';" onmouseout="this.style.backgroundColor='#0088ff'; this.style.transform='translateY(0)';">
+                        Confirm Booking
+                    </button>
+                    <p style="text-align: center; color: #aaa; font-size: 0.85rem; margin-top: 15px;">* No payment required at this step. We will contact you to finalize the details.</p>
+                </form>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Scripts -->
+    <script type="module" src="auth_state.js"></script>
+
+    <script>
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('book-submit-btn');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...';
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.8';
+            
+            // Simulate API Call
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Booking Requested!';
+                btn.style.backgroundColor = '#10b981';
+                btn.style.boxShadow = '0 10px 20px rgba(16, 185, 129, 0.3)';
+                
+                alert("Thank you! Your booking request has been received. Our team will contact you shortly.");
+                
+                // Reset form
+                setTimeout(() => {
+                    document.getElementById('booking-form').reset();
+                    btn.innerHTML = 'Confirm Booking';
+                    btn.style.backgroundColor = '#0088ff';
+                    btn.style.pointerEvents = 'auto';
+                    btn.style.opacity = '1';
+                    btn.style.boxShadow = '0 10px 20px rgba(0, 136, 255, 0.3)';
+                }, 3000);
+                
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

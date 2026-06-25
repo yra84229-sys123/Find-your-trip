@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,13 +15,20 @@
     
     <!-- Babel Standalone for In-Browser JSX Compilation -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script>
+        if (window.Babel && Babel.availablePlugins && Babel.availablePlugins['transform-react-jsx']) {
+            Babel.registerPlugin('transform-react-jsx-classic', function(api, opts) {
+                return Babel.availablePlugins['transform-react-jsx'](api, { runtime: 'classic' });
+            });
+        }
+    </script>
 </head>
 <body>
     <div id="root"></div>
 
     <script src="data.js"></script>
 
-    <script type="text/babel">
+    <script type="text/babel" data-plugins="transform-react-jsx-classic">
         const { useState, useEffect } = React;
 
         const packagesList = [
@@ -37,6 +44,7 @@
         ];
 
         function PackagesApp() {
+                        const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
             const [scrolled, setScrolled] = useState(false);
             const [activeFilter, setActiveFilter] = useState('All');
             const [theme, setThemeState] = useState(localStorage.getItem('fyt-theme') || 'light');
@@ -100,6 +108,27 @@
                             <a href="index.html#booking" className="nav-book-btn">BOOK NOW</a>
                         </div>
                     </nav>
+
+                    {/* Mobile Menu */}
+                    <div className={"mobile-menu " + (mobileMenuOpen ? "open" : "")}>
+                        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px'}}>
+                            <div className="nav-logo" style={{color: 'var(--text-main)'}}>
+                                <i className="fa-solid fa-plane-departure"></i>
+                                <span>TOURLY</span>
+                            </div>
+                            <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(false)} style={{color: 'var(--text-main)', display: 'block'}}><i className="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <a href="index.html" onClick={() => setMobileMenuOpen(false)}>HOME</a>
+                        <a href="destinations.html" onClick={() => setMobileMenuOpen(false)}>POPULAR DESTINATIONS</a>
+                        <a href="packages.html" onClick={() => setMobileMenuOpen(false)}>PACKAGES</a>
+                        <a href="trip_planner.html" onClick={() => setMobileMenuOpen(false)}>TRIP PLANNER</a>
+                        <a href="calculator.html" onClick={() => setMobileMenuOpen(false)}>CALCULATOR</a>
+                        <a href="hidden_gems.html" onClick={() => setMobileMenuOpen(false)}>HIDDEN GEMS</a>
+                        <a href="settings.html" onClick={() => setMobileMenuOpen(false)}>SETTINGS</a>
+                        <a href="about.html" onClick={() => setMobileMenuOpen(false)}>ABOUT US</a>
+                        <a href="#booking" className="btn-primary" style={{marginTop: '20px', textAlign: 'center'}} onClick={() => {setMobileMenuOpen(false); setTimeout(() => {if(document.getElementById('booking')) document.getElementById('booking').scrollIntoView({behavior: 'smooth'})}, 100);}}>BOOK NOW</a>
+                    </div>
+
 
                     {/* Hero Section */}
                     <header className="hero-section hero-page">
@@ -289,5 +318,6 @@
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<PackagesApp />);
     </script>
+<script type="module" src="auth_state.js"></script>
 </body>
 </html>

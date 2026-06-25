@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Find Your Trip</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="dark-theme">
+
+    <!-- Navbar -->
+    <nav class="navbar scrolled">
+        <div class="nav-top">
+            <div class="nav-contact">
+                <div class="nav-contact-icon"><i class="fa-solid fa-phone"></i></div>
+                <div class="nav-contact-text">
+                    <span>For Further Inquires :</span>
+                    <strong>+855 017 573 688</strong>
+                </div>
+            </div>
+            <div class="nav-logo" onclick="window.location.href='index.html'">
+                <i class="fa-solid fa-plane-departure"></i>
+                <span>TOURLY</span>
+            </div>
+            <div class="nav-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+        <div class="nav-bottom">
+            <div class="nav-social">
+                <a href="https://www.facebook.com/share/14hLmmP1Gvx/?mibextid=wwXIfr" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/iur.aaaa" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">HOME</a>
+                <a href="destinations.html" class="nav-link">POPULAR DESTINATIONS</a>
+                <a href="packages.html" class="nav-link">PACKAGES</a>
+                <a href="trip_planner.html" class="nav-link">TRIP PLANNER</a>
+                <a href="calculator.html" class="nav-link">CALCULATOR</a>
+                <a href="hidden_gems.html" class="nav-link">HIDDEN GEMS</a>
+                <a href="settings.html" class="nav-link">SETTINGS</a>
+                <a href="about.html" class="nav-link">ABOUT US</a>
+            </div>
+            <a href="index.html#booking" class="nav-book-btn">BOOK NOW</a>
+            <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('open')" style="color: white; margin-left: auto;"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <div class="nav-logo" style="color: var(--text-main);">
+                <i class="fa-solid fa-plane-departure"></i>
+                <span>TOURLY</span>
+            </div>
+            <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.remove('open')" style="color: var(--text-main); display: block;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <a href="index.html">HOME</a>
+        <a href="destinations.html">POPULAR DESTINATIONS</a>
+        <a href="packages.html">PACKAGES</a>
+        <a href="trip_planner.html">TRIP PLANNER</a>
+        <a href="calculator.html">CALCULATOR</a>
+        <a href="hidden_gems.html">HIDDEN GEMS</a>
+        <a href="settings.html">SETTINGS</a>
+        <a href="about.html">ABOUT US</a>
+        <a href="index.html#booking" class="btn-primary" style="margin-top: 20px; text-align: center;">BOOK NOW</a>
+    </div>
+
+    <!-- Registration Section -->
+    <section id="register" class="hero-section" style="padding-top: 150px; min-height: 100vh; position: relative;">
+        <!-- Standard Background -->
+        <div class="hero-bg"></div>
+        <div class="hero-overlay" style="background: rgba(0, 0, 0, 0.6);"></div>
+        
+        <!-- Colorful Blurry Blobs -->
+        <div style="position: absolute; top: 15%; left: 30%; width: 300px; height: 300px; background: #0088ff; border-radius: 50%; filter: blur(80px); z-index: 1; opacity: 0.85;"></div>
+        <div style="position: absolute; bottom: 10%; right: 28%; width: 350px; height: 350px; background: #ff5500; border-radius: 50%; filter: blur(90px); z-index: 1; opacity: 0.85;"></div>
+
+        <div class="container" style="max-width: 480px; z-index: 10; position: relative;">
+            <div class="glass-panel" style="padding: 50px 40px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(25px); border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
+                
+                <h2 style="font-family: var(--font-heading); color: white; font-weight: 700; font-size: 2.2rem; margin-bottom: 40px; letter-spacing: 0.5px;">Create Account</h2>
+                
+                <form id="register-form">
+                    <div class="form-group" style="text-align: left; margin-bottom: 25px;">
+                        <label style="color: white; font-weight: 600; display: block; margin-bottom: 8px; font-size: 1.05rem;">Username</label>
+                        <input type="email" id="email" required placeholder="Email Address" style="width: 100%; padding: 16px 20px; border-radius: 8px; border: none; background-color: rgba(255, 255, 255, 0.15); color: white; font-family: var(--font-body); font-size: 1rem; outline: none; transition: background-color 0.3s;" onfocus="this.style.backgroundColor='rgba(255, 255, 255, 0.25)';" onblur="this.style.backgroundColor='rgba(255, 255, 255, 0.15)';" />
+                    </div>
+                    
+                    <div class="form-group" style="text-align: left; margin-bottom: 35px;">
+                        <label style="color: white; font-weight: 600; display: block; margin-bottom: 8px; font-size: 1.05rem;">Password</label>
+                        <input type="password" id="password" required placeholder="Password" style="width: 100%; padding: 16px 20px; border-radius: 8px; border: none; background-color: rgba(255, 255, 255, 0.15); color: white; font-family: var(--font-body); font-size: 1rem; outline: none; transition: background-color 0.3s;" onfocus="this.style.backgroundColor='rgba(255, 255, 255, 0.25)';" onblur="this.style.backgroundColor='rgba(255, 255, 255, 0.15)';" />
+                    </div>
+
+                    <button type="submit" id="submit-btn" style="width: 100%; padding: 16px; border-radius: 8px; font-size: 1.1rem; font-weight: 700; border: none; cursor: pointer; background: white; color: #1e293b; margin-bottom: 25px; transition: transform 0.2s, background 0.2s;" onmouseover="this.style.backgroundColor='#f8fafc'" onmouseout="this.style.backgroundColor='white'">
+                        Create Account
+                    </button>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <button type="button" id="google-auth-btn" style="width: 100%; padding: 14px; border-radius: 8px; border: none; background: rgba(255, 255, 255, 0.15); color: white; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.3s; font-size: 0.95rem;" onmouseover="this.style.backgroundColor='rgba(255,255,255,0.25)'" onmouseout="this.style.backgroundColor='rgba(255,255,255,0.15)'">
+                            <i class="fa-brands fa-google"></i> Continue with Google
+                        </button>
+                    </div>
+                </form>
+                
+                <div style="font-size: 1rem; color: white; font-weight: 500;">
+                    Have an account? <a href="login.html" style="color: white; text-decoration: underline; font-weight: 600;">Login Here</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Import Firebase logic as a module -->
+    <script type="module" src="register.js"></script>
+
+    <!-- Optional: Footer injection script might run here based on other pages -->
+    <!-- <script src="replace_footer.js"></script> -->
+<script type="module" src="auth_state.js"></script>
+</body>
+</html>

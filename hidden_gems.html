@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,6 +17,13 @@
 
     <!-- Babel Standalone for In-Browser JSX Compilation -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script>
+        if (window.Babel && Babel.availablePlugins && Babel.availablePlugins['transform-react-jsx']) {
+            Babel.registerPlugin('transform-react-jsx-classic', function(api, opts) {
+                return Babel.availablePlugins['transform-react-jsx'](api, { runtime: 'classic' });
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -27,7 +34,7 @@
     <script src="hidden_gem_data.js"></script>
 
     <!-- React App Script (JSX) -->
-    <script type="text/babel">
+    <script type="text/babel" data-plugins="transform-react-jsx-classic">
         const { useState, useEffect, useRef } = React;
 
         // Translation Dictionary
@@ -46,7 +53,7 @@
                 heroPreTitle: "EXPLORE THE EXTRAORDINARY",
                 heroTitle1: "JOURNEY TO",
                 heroTitle2: "EXPLORE CAMBODIA",
-                heroSubtitle: "Discover the magic of Cambodia – ancient temples, vibrant culture, breathtaking nature, and unforgettable experiences.",
+                heroSubtitle: "Discover the magic of Cambodia â€“ ancient temples, vibrant culture, breathtaking nature, and unforgettable experiences.",
                 btnExplore: "Explore Now",
                 btnWatch: "Watch Video",
 
@@ -139,110 +146,110 @@
                 rights: "All rights reserved."
             },
             kh: {
-                navHome: "ទំព័រដើម",
-                navDestinations: "តំបន់ទេសចរណ៍",
-                navPackages: "កញ្ចប់ទេសចរណ៍",
-                navPlanner: "កម្មវិធីរៀបចំគម្រោង",
-                navCalculator: "ចម្ងាយ និងប្រេង",
-                navGems: "កន្លែងលាក់ខ្លួន",
-                navSettings: "ការកំណត់",
-                navAbout: "អំពីយើង",
-                bookNow: "កក់ឥឡូវនេះ",
+                navHome: "áž‘áŸ†áž–áŸážšážŠáž¾áž˜",
+                navDestinations: "ážáŸ†áž”áž“áŸ‹áž‘áŸážŸáž…ážšážŽáŸ",
+                navPackages: "áž€áž‰áŸ’áž…áž”áŸ‹áž‘áŸážŸáž…ážšážŽáŸ",
+                navPlanner: "áž€áž˜áŸ’áž˜ážœáž·áž’áž¸ážšáŸ€áž”áž…áŸ†áž‚áž˜áŸ’ážšáŸ„áž„",
+                navCalculator: "áž…áž˜áŸ’áž„áž¶áž™ áž“áž·áž„áž”áŸ’ážšáŸáž„",
+                navGems: "áž€áž“áŸ’áž›áŸ‚áž„áž›áž¶áž€áŸ‹ážáŸ’áž›áž½áž“",
+                navSettings: "áž€áž¶ážšáž€áŸ†ážŽážáŸ‹",
+                navAbout: "áž¢áŸ†áž–áž¸áž™áž¾áž„",
+                bookNow: "áž€áž€áŸ‹áž¥áž¡áž¼ážœáž“áŸáŸ‡",
 
-                heroPreTitle: "ស្វែងយល់ពីភាពអស្ចារ្យ",
-                heroTitle1: "ដំណើររុករកទូទាំង ",
-                heroTitle2: "ប្រទេសកម្ពុជា",
-                heroSubtitle: "ស្វែងយល់ពីភាពទាក់ទាញនៃប្រទេសកម្ពុជា - ប្រាសាទបុរាណ វប្បធម៌ដ៏រស់រវើក ធម្មជាតិស្រស់បំព្រង និងបទពិសោធន៍ដែលមិនអាចបំភ្លេចបាន។",
-                btnExplore: "រុករកឥឡូវនេះ",
-                btnWatch: "ទស្សនាវីដេអូ",
+                heroPreTitle: "ážŸáŸ’ážœáŸ‚áž„áž™áž›áŸ‹áž–áž¸áž—áž¶áž–áž¢ážŸáŸ’áž…áž¶ážšáŸ’áž™",
+                heroTitle1: "ážŠáŸ†ážŽáž¾ážšážšáž»áž€ážšáž€áž‘áž¼áž‘áž¶áŸ†áž„ ",
+                heroTitle2: "áž”áŸ’ážšáž‘áŸážŸáž€áž˜áŸ’áž–áž»áž‡áž¶",
+                heroSubtitle: "ážŸáŸ’ážœáŸ‚áž„áž™áž›áŸ‹áž–áž¸áž—áž¶áž–áž‘áž¶áž€áŸ‹áž‘áž¶áž‰áž“áŸƒáž”áŸ’ážšáž‘áŸážŸáž€áž˜áŸ’áž–áž»áž‡áž¶ - áž”áŸ’ážšáž¶ážŸáž¶áž‘áž”áž»ážšáž¶ážŽ ážœáž”áŸ’áž”áž’áž˜áŸŒážŠáŸážšážŸáŸ‹ážšážœáž¾áž€ áž’áž˜áŸ’áž˜áž‡áž¶ážáž·ážŸáŸ’ážšážŸáŸ‹áž”áŸ†áž–áŸ’ážšáž„ áž“áž·áž„áž”áž‘áž–áž·ážŸáŸ„áž’áž“áŸážŠáŸ‚áž›áž˜áž·áž“áž¢áž¶áž…áž”áŸ†áž—áŸ’áž›áŸáž…áž”áž¶áž“áŸ”",
+                btnExplore: "ážšáž»áž€ážšáž€áž¥áž¡áž¼ážœáž“áŸáŸ‡",
+                btnWatch: "áž‘ážŸáŸ’ážŸáž“áž¶ážœáž¸ážŠáŸáž¢áž¼",
 
-                searchDest: "គោលដៅទេសចរណ៍",
-                searchDate: "កាលបរិច្ឆេទ",
-                searchBudget: "ថវិកា",
-                searchBtn: "ស្វែងរក",
-                anyBudget: "ថវិកាណាក៏បាន",
-                under100: "ក្រោម $100",
+                searchDest: "áž‚áŸ„áž›ážŠáŸ…áž‘áŸážŸáž…ážšážŽáŸ",
+                searchDate: "áž€áž¶áž›áž”ážšáž·áž…áŸ’áž†áŸáž‘",
+                searchBudget: "ážážœáž·áž€áž¶",
+                searchBtn: "ážŸáŸ’ážœáŸ‚áž„ážšáž€",
+                anyBudget: "ážážœáž·áž€áž¶ážŽáž¶áž€áŸáž”áž¶áž“",
+                under100: "áž€áŸ’ážšáŸ„áž˜ $100",
                 med100_500: "$100 - $500",
                 high500: "$500+",
 
-                destTitle: "តំបន់ទេសចរណ៍ពេញនិយម",
-                destSubtitle: "ស្វែងយល់ពីតំបន់ទេសចរណ៍ដ៏ស្រស់ស្អាតបំផុតក្នុងប្រទេសកម្ពុជា ចាប់ពីប្រាសាទបុរាណរហូតដល់ឆ្នេរសមុទ្រដ៏ស្អាត។",
-                exploreProvince: "រុករកខេត្ត",
+                destTitle: "ážáŸ†áž”áž“áŸ‹áž‘áŸážŸáž…ážšážŽáŸáž–áŸáž‰áž“áž·áž™áž˜",
+                destSubtitle: "ážŸáŸ’ážœáŸ‚áž„áž™áž›áŸ‹áž–áž¸ážáŸ†áž”áž“áŸ‹áž‘áŸážŸáž…ážšážŽáŸážŠáŸážŸáŸ’ážšážŸáŸ‹ážŸáŸ’áž¢áž¶ážáž”áŸ†áž•áž»ážáž€áŸ’áž“áž»áž„áž”áŸ’ážšáž‘áŸážŸáž€áž˜áŸ’áž–áž»áž‡áž¶ áž…áž¶áž”áŸ‹áž–áž¸áž”áŸ’ážšáž¶ážŸáž¶áž‘áž”áž»ážšáž¶ážŽážšáž áž¼ážážŠáž›áŸ‹áž†áŸ’áž“áŸážšážŸáž˜áž»áž‘áŸ’ážšážŠáŸážŸáŸ’áž¢áž¶ážáŸ”",
+                exploreProvince: "ážšáž»áž€ážšáž€ážáŸážáŸ’áž",
 
-                pkgTitle: "កញ្ចប់ដំណើរកម្សាន្តពិសេសៗ",
-                pkgSubtitle: "ជ្រើសរើសកញ្ចប់ដំណើរកម្សាន្តដែលបានរចនាឡើងយ៉ាងពិសេស សាកសមនឹងស្ទីលធ្វើដំណើររបស់អ្នក។",
-                adventure: "ផ្សងព្រេង (Adventure)",
-                relaxing: "សម្រាកកាយ (Relaxing)",
-                culture: "វប្បធម៌ (Culture)",
-                food: "ម្ហូបអាហារ (Food)",
-                person: "/ម្នាក់",
+                pkgTitle: "áž€áž‰áŸ’áž…áž”áŸ‹ážŠáŸ†ážŽáž¾ážšáž€áž˜áŸ’ážŸáž¶áž“áŸ’ážáž–áž·ážŸáŸážŸáŸ—",
+                pkgSubtitle: "áž‡áŸ’ážšáž¾ážŸážšáž¾ážŸáž€áž‰áŸ’áž…áž”áŸ‹ážŠáŸ†ážŽáž¾ážšáž€áž˜áŸ’ážŸáž¶áž“áŸ’ážážŠáŸ‚áž›áž”áž¶áž“ážšáž…áž“áž¶áž¡áž¾áž„áž™áŸ‰áž¶áž„áž–áž·ážŸáŸážŸ ážŸáž¶áž€ážŸáž˜áž“áž¹áž„ážŸáŸ’áž‘áž¸áž›áž’áŸ’ážœáž¾ážŠáŸ†ážŽáž¾ážšážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€áŸ”",
+                adventure: "áž•áŸ’ážŸáž„áž–áŸ’ážšáŸáž„ (Adventure)",
+                relaxing: "ážŸáž˜áŸ’ážšáž¶áž€áž€áž¶áž™ (Relaxing)",
+                culture: "ážœáž”áŸ’áž”áž’áž˜áŸŒ (Culture)",
+                food: "áž˜áŸ’áž áž¼áž”áž¢áž¶áž áž¶ážš (Food)",
+                person: "/áž˜áŸ’áž“áž¶áž€áŸ‹",
 
-                planTitle: "កម្មវិធីរៀបចំគម្រោងឆ្លាតវៃ",
-                planSubtitle: "មិនដឹងថាត្រូវចាប់ផ្តើមពីណា? ឱ្យប្រព័ន្ធឆ្លាតវៃរបស់យើងណែនាំការធ្វើដំណើរដ៏ល្អឥតខ្ចោះដោយផ្អែកលើថវិកា និងពេលវេលារបស់អ្នក។",
-                planBudgetLabel: "ថវិការបស់អ្នក (USD)",
-                planDurationLabel: "រយៈពេលធ្វើដំណើរ (ថ្ងៃ)",
-                planInterestLabel: "ចំណាប់អារម្មណ៍ចម្បង",
-                planInterestPrompt: "ជ្រើសរើសចំណាប់អារម្មណ៍",
-                planInterestTemples: "ប្រាសាទ និងប្រវត្តិសាស្ត្រ",
-                planInterestNature: "ធម្មជាតិ និងឆ្នេរសមុទ្រ",
-                planInterestCulture: "វប្បធម៌ក្នុងស្រុក",
-                planInterestFood: "សិល្បៈម្ហូបអាហារ",
-                planBtnSubmit: "ណែនាំគម្រោងធ្វើដំណើរ",
-                planResultTitle: "គម្រោងធ្វើដំណើរផ្ទាល់ខ្លួនរបស់អ្នក",
+                planTitle: "áž€áž˜áŸ’áž˜ážœáž·áž’áž¸ážšáŸ€áž”áž…áŸ†áž‚áž˜áŸ’ážšáŸ„áž„áž†áŸ’áž›áž¶ážážœáŸƒ",
+                planSubtitle: "áž˜áž·áž“ážŠáž¹áž„ážáž¶ážáŸ’ážšáž¼ážœáž…áž¶áž”áŸ‹áž•áŸ’ážáž¾áž˜áž–áž¸ážŽáž¶? áž±áŸ’áž™áž”áŸ’ážšáž–áŸáž“áŸ’áž’áž†áŸ’áž›áž¶ážážœáŸƒážšáž”ážŸáŸ‹áž™áž¾áž„ážŽáŸ‚áž“áž¶áŸ†áž€áž¶ážšáž’áŸ’ážœáž¾ážŠáŸ†ážŽáž¾ážšážŠáŸáž›áŸ’áž¢áž¥ážážáŸ’áž…áŸ„áŸ‡ážŠáŸ„áž™áž•áŸ’áž¢áŸ‚áž€áž›áž¾ážážœáž·áž€áž¶ áž“áž·áž„áž–áŸáž›ážœáŸáž›áž¶ážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€áŸ”",
+                planBudgetLabel: "ážážœáž·áž€áž¶ážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€ (USD)",
+                planDurationLabel: "ážšáž™áŸˆáž–áŸáž›áž’áŸ’ážœáž¾ážŠáŸ†ážŽáž¾ážš (ážáŸ’áž„áŸƒ)",
+                planInterestLabel: "áž…áŸ†ážŽáž¶áž”áŸ‹áž¢áž¶ážšáž˜áŸ’áž˜ážŽáŸáž…áž˜áŸ’áž”áž„",
+                planInterestPrompt: "áž‡áŸ’ážšáž¾ážŸážšáž¾ážŸáž…áŸ†ážŽáž¶áž”áŸ‹áž¢áž¶ážšáž˜áŸ’áž˜ážŽáŸ",
+                planInterestTemples: "áž”áŸ’ážšáž¶ážŸáž¶áž‘ áž“áž·áž„áž”áŸ’ážšážœážáŸ’ážáž·ážŸáž¶ážŸáŸ’ážáŸ’ážš",
+                planInterestNature: "áž’áž˜áŸ’áž˜áž‡áž¶ážáž· áž“áž·áž„áž†áŸ’áž“áŸážšážŸáž˜áž»áž‘áŸ’ážš",
+                planInterestCulture: "ážœáž”áŸ’áž”áž’áž˜áŸŒáž€áŸ’áž“áž»áž„ážŸáŸ’ážšáž»áž€",
+                planInterestFood: "ážŸáž·áž›áŸ’áž”áŸˆáž˜áŸ’áž áž¼áž”áž¢áž¶áž áž¶ážš",
+                planBtnSubmit: "ážŽáŸ‚áž“áž¶áŸ†áž‚áž˜áŸ’ážšáŸ„áž„áž’áŸ’ážœáž¾ážŠáŸ†ážŽáž¾ážš",
+                planResultTitle: "áž‚áž˜áŸ’ážšáŸ„áž„áž’áŸ’ážœáž¾ážŠáŸ†ážŽáž¾ážšáž•áŸ’áž‘áž¶áž›áŸ‹ážáŸ’áž›áž½áž“ážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€",
 
-                calcTitle: "ម៉ាស៊ីនគណនាចម្ងាយ និងប្រេងឥន្ធនៈ",
-                calcSubtitle: "រៀបចំផែនការធ្វើដំណើរ និងប៉ាន់ប្រមាណតម្លៃធ្វើដំណើរ ពេលវេលា និងការប្រើប្រាស់ប្រេងឥន្ធនៈទូទាំងខេត្តក្នុងប្រទេសកម្ពុជា។",
-                calcOrigin: "ខេត្តដើមទី",
-                calcDest: "ខេត្តគោលដៅ",
-                calcVehicle: "ប្រភេទយានយន្ត",
-                calcBtnSubmit: "គណនាដំណើរ log",
-                calcStatDist: "ចម្ងាយផ្លូវ",
-                calcStatTime: "ម៉ោងប៉ាន់ស្មាន",
-                calcStatFuel: "កម្រិតស៊ីប្រេង",
-                calcStatCost: "ចំណាយប្រេង",
-                calcSpeedLimit: "ល្បឿនយានយន្តលើផ្លូវ",
+                calcTitle: "áž˜áŸ‰áž¶ážŸáŸŠáž¸áž“áž‚ážŽáž“áž¶áž…áž˜áŸ’áž„áž¶áž™ áž“áž·áž„áž”áŸ’ážšáŸáž„áž¥áž“áŸ’áž’áž“áŸˆ",
+                calcSubtitle: "ážšáŸ€áž”áž…áŸ†áž•áŸ‚áž“áž€áž¶ážšáž’áŸ’ážœáž¾ážŠáŸ†ážŽáž¾ážš áž“áž·áž„áž”áŸ‰áž¶áž“áŸ‹áž”áŸ’ážšáž˜áž¶ážŽážáž˜áŸ’áž›áŸƒáž’áŸ’ážœáž¾ážŠáŸ†ážŽáž¾ážš áž–áŸáž›ážœáŸáž›áž¶ áž“áž·áž„áž€áž¶ážšáž”áŸ’ážšáž¾áž”áŸ’ážšáž¶ážŸáŸ‹áž”áŸ’ážšáŸáž„áž¥áž“áŸ’áž’áž“áŸˆáž‘áž¼áž‘áž¶áŸ†áž„ážáŸážáŸ’ážáž€áŸ’áž“áž»áž„áž”áŸ’ážšáž‘áŸážŸáž€áž˜áŸ’áž–áž»áž‡áž¶áŸ”",
+                calcOrigin: "ážáŸážáŸ’ážážŠáž¾áž˜áž‘áž¸",
+                calcDest: "ážáŸážáŸ’ážáž‚áŸ„áž›ážŠáŸ…",
+                calcVehicle: "áž”áŸ’ážšáž—áŸáž‘áž™áž¶áž“áž™áž“áŸ’áž",
+                calcBtnSubmit: "áž‚ážŽáž“áž¶ážŠáŸ†ážŽáž¾ážš log",
+                calcStatDist: "áž…áž˜áŸ’áž„áž¶áž™áž•áŸ’áž›áž¼ážœ",
+                calcStatTime: "áž˜áŸ‰áŸ„áž„áž”áŸ‰áž¶áž“áŸ‹ážŸáŸ’áž˜áž¶áž“",
+                calcStatFuel: "áž€áž˜áŸ’ážšáž·ážážŸáŸŠáž¸áž”áŸ’ážšáŸáž„",
+                calcStatCost: "áž…áŸ†ážŽáž¶áž™áž”áŸ’ážšáŸáž„",
+                calcSpeedLimit: "áž›áŸ’áž”áž¿áž“áž™áž¶áž“áž™áž“áŸ’ážáž›áž¾áž•áŸ’áž›áž¼ážœ",
 
-                gemTitle: "តំបន់ទេសចរណ៍លាក់ខ្លួននៅកម្ពុជា",
-                gemSubtitle: "ស្វែងយល់ពីកន្លែងសម្ងាត់ដ៏អស្ចារ្យ រឿងរ៉ាវប្រវត្តិសាស្ត្រ និងផ្លូវធ្វើដំណើរដែលមិនសូវមានគេស្គាល់ក្នុងខេត្តនីមួយៗ។",
-                gemPrompt: "ជ្រើសរើសខេត្តដើម្បីបង្ហាញកន្លែងលាក់ខ្លួន៖",
-                gemTabAbout: "ព័ត៌មាន",
-                gemTabHistory: "ប្រវត្តិសាស្ត្រ",
-                gemTabActivities: "សកម្មភាព",
-                gemTabHowTo: "របៀបធ្វើដំណើរ",
+                gemTitle: "ážáŸ†áž”áž“áŸ‹áž‘áŸážŸáž…ážšážŽáŸáž›áž¶áž€áŸ‹ážáŸ’áž›áž½áž“áž“áŸ…áž€áž˜áŸ’áž–áž»áž‡áž¶",
+                gemSubtitle: "ážŸáŸ’ážœáŸ‚áž„áž™áž›áŸ‹áž–áž¸áž€áž“áŸ’áž›áŸ‚áž„ážŸáž˜áŸ’áž„áž¶ážáŸ‹ážŠáŸáž¢ážŸáŸ’áž…áž¶ážšáŸ’áž™ ážšáž¿áž„ážšáŸ‰áž¶ážœáž”áŸ’ážšážœážáŸ’ážáž·ážŸáž¶ážŸáŸ’ážáŸ’ážš áž“áž·áž„áž•áŸ’áž›áž¼ážœáž’áŸ’ážœáž¾ážŠáŸ†ážŽáž¾ážšážŠáŸ‚áž›áž˜áž·áž“ážŸáž¼ážœáž˜áž¶áž“áž‚áŸážŸáŸ’áž‚áž¶áž›áŸ‹áž€áŸ’áž“áž»áž„ážáŸážáŸ’ážáž“áž¸áž˜áž½áž™áŸ—áŸ”",
+                gemPrompt: "áž‡áŸ’ážšáž¾ážŸážšáž¾ážŸážáŸážáŸ’ážážŠáž¾áž˜áŸ’áž”áž¸áž”áž„áŸ’áž áž¶áž‰áž€áž“áŸ’áž›áŸ‚áž„áž›áž¶áž€áŸ‹ážáŸ’áž›áž½áž“áŸ–",
+                gemTabAbout: "áž–áŸážáŸŒáž˜áž¶áž“",
+                gemTabHistory: "áž”áŸ’ážšážœážáŸ’ážáž·ážŸáž¶ážŸáŸ’ážáŸ’ážš",
+                gemTabActivities: "ážŸáž€áž˜áŸ’áž˜áž—áž¶áž–",
+                gemTabHowTo: "ážšáž”áŸ€áž”áž’áŸ’ážœáž¾ážŠáŸ†ážŽáž¾ážš",
 
-                setTheme: "របៀបរចនា (Theme)",
-                setLanguage: "ភាសាកម្មវិធី",
-                setNotify: "ការជូនដំណឹងប្រព័ន្ធ",
-                setNotifySound: "សំឡេងបញ្ជាប្រព័ន្ធ",
-                setNotifySoundDesc: "លេងសំឡេងរាល់ពេលចុចប៊ូតុង ឬផ្លាស់ប្តូរការកំណត់",
-                setNotifyEmail: "ព្រឹត្តិបត្រព័ត៌មានអ៊ីមែល",
-                setNotifyEmailDesc: "ទទួលបានការផ្តល់ជូនពិសេស និងគន្លឹះធ្វើដំណើរប្រចាំសប្តាហ៍",
-                setNotifyPromo: "ការជូនដំណឹងប្រូម៉ូសិន",
-                setNotifyPromoDesc: "ផ្ញើសារជូនដំណឹងអំពីការបញ្ចុះតម្លៃកញ្ចប់ទេសចរណ៍តាមរដូវកាល",
+                setTheme: "ážšáž”áŸ€áž”ážšáž…áž“áž¶ (Theme)",
+                setLanguage: "áž—áž¶ážŸáž¶áž€áž˜áŸ’áž˜ážœáž·áž’áž¸",
+                setNotify: "áž€áž¶ážšáž‡áž¼áž“ážŠáŸ†ážŽáž¹áž„áž”áŸ’ážšáž–áŸáž“áŸ’áž’",
+                setNotifySound: "ážŸáŸ†áž¡áŸáž„áž”áž‰áŸ’áž‡áž¶áž”áŸ’ážšáž–áŸáž“áŸ’áž’",
+                setNotifySoundDesc: "áž›áŸáž„ážŸáŸ†áž¡áŸáž„ážšáž¶áž›áŸ‹áž–áŸáž›áž…áž»áž…áž”áŸŠáž¼ážáž»áž„ áž¬áž•áŸ’áž›áž¶ážŸáŸ‹áž”áŸ’ážáž¼ážšáž€áž¶ážšáž€áŸ†ážŽážáŸ‹",
+                setNotifyEmail: "áž–áŸ’ážšáž¹ážáŸ’ážáž·áž”ážáŸ’ážšáž–áŸážáŸŒáž˜áž¶áž“áž¢áŸŠáž¸áž˜áŸ‚áž›",
+                setNotifyEmailDesc: "áž‘áž‘áž½áž›áž”áž¶áž“áž€áž¶ážšáž•áŸ’ážáž›áŸ‹áž‡áž¼áž“áž–áž·ážŸáŸážŸ áž“áž·áž„áž‚áž“áŸ’áž›áž¹áŸ‡áž’áŸ’ážœáž¾ážŠáŸ†ážŽáž¾ážšáž”áŸ’ážšáž…áž¶áŸ†ážŸáž”áŸ’ážáž¶áž áŸ",
+                setNotifyPromo: "áž€áž¶ážšáž‡áž¼áž“ážŠáŸ†ážŽáž¹áž„áž”áŸ’ážšáž¼áž˜áŸ‰áž¼ážŸáž·áž“",
+                setNotifyPromoDesc: "áž•áŸ’áž‰áž¾ážŸáž¶ážšáž‡áž¼áž“ážŠáŸ†ážŽáž¹áž„áž¢áŸ†áž–áž¸áž€áž¶ážšáž”áž‰áŸ’áž…áž»áŸ‡ážáž˜áŸ’áž›áŸƒáž€áž‰áŸ’áž…áž”áŸ‹áž‘áŸážŸáž…ážšážŽáŸážáž¶áž˜ážšážŠáž¼ážœáž€áž¶áž›",
 
-                aboutName: "ធន់ យូរ៉ា",
-                aboutTitle: "និស្សិតផ្នែកវិស្វកម្មបច្ចេកវិទ្យាព័ត៌មាន",
-                aboutMotto: '"ការកែប្រែគំនិតច្នៃប្រឌិតឱ្យទៅជាបទពិសោធន៍ឌីជីថលដ៏ស្អាត ទំនើប និងមានន័យ។"',
-                aboutEducation: "ការសិក្សា",
-                aboutEducationVal: "សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)",
-                aboutLanguages: "ភាសាកូដ",
-                aboutInterests: "ចំណាប់អារម្មណ៍",
-                aboutInterestsVal: "Hash Tables, ការអភិវឌ្ឍន៍គេហទំព័រ, វិស្វកម្មកម្មវិធី, UX/UI",
+                aboutName: "áž’áž“áŸ‹ áž™áž¼ážšáŸ‰áž¶",
+                aboutTitle: "áž“áž·ážŸáŸ’ážŸáž·ážáž•áŸ’áž“áŸ‚áž€ážœáž·ážŸáŸ’ážœáž€áž˜áŸ’áž˜áž”áž…áŸ’áž…áŸáž€ážœáž·áž‘áŸ’áž™áž¶áž–áŸážáŸŒáž˜áž¶áž“",
+                aboutMotto: '"áž€áž¶ážšáž€áŸ‚áž”áŸ’ážšáŸ‚áž‚áŸ†áž“áž·ážáž…áŸ’áž“áŸƒáž”áŸ’ážšážŒáž·ážáž±áŸ’áž™áž‘áŸ…áž‡áž¶áž”áž‘áž–áž·ážŸáŸ„áž’áž“áŸážŒáž¸áž‡áž¸ážáž›ážŠáŸážŸáŸ’áž¢áž¶áž áž‘áŸ†áž“áž¾áž” áž“áž·áž„áž˜áž¶áž“áž“áŸáž™áŸ”"',
+                aboutEducation: "áž€áž¶ážšážŸáž·áž€áŸ’ážŸáž¶",
+                aboutEducationVal: "ážŸáž¶áž€áž›ážœáž·áž‘áŸ’áž™áž¶áž›áŸáž™áž—áž¼áž˜áž·áž“áŸ’áž‘áž—áŸ’áž“áŸ†áž–áŸáž‰ (RUPP)",
+                aboutLanguages: "áž—áž¶ážŸáž¶áž€áž¼ážŠ",
+                aboutInterests: "áž…áŸ†ážŽáž¶áž”áŸ‹áž¢áž¶ážšáž˜áŸ’áž˜ážŽáŸ",
+                aboutInterestsVal: "Hash Tables, áž€áž¶ážšáž¢áž—áž·ážœážŒáŸ’ážáž“áŸáž‚áŸáž áž‘áŸ†áž–áŸážš, ážœáž·ážŸáŸ’ážœáž€áž˜áŸ’áž˜áž€áž˜áŸ’áž˜ážœáž·áž’áž¸, UX/UI",
 
-                bookingTitle: "កក់ការធ្វើដំណើររបស់អ្នក",
-                bookingSubtitle: "រក្សាកន្លែងរបស់អ្នកសម្រាប់បទពិសោធន៍ដែលមិនអាចបំភ្លេចបាន។",
-                bookingName: "ឈ្មោះពេញ",
-                bookingEmail: "អាសយដ្ឋានអ៊ីមែល",
-                bookingSelect: "ជ្រើសរើសកញ្ចប់ទេសចរណ៍/ដំណើរ",
-                bookingPayment: "វិធីសាស្ត្រទូទាត់ប្រាក់",
-                bookingAgree: "ខ្ញុំបញ្ជាក់ថាព័ត៌មានទាំងអស់ត្រឹមត្រូវ ហើយយល់ព្រមតាមលក្ខខណ្ឌ។",
-                bookingConfirmBtn: "បញ្ជាក់ការកក់ទុក",
+                bookingTitle: "áž€áž€áŸ‹áž€áž¶ážšáž’áŸ’ážœáž¾ážŠáŸ†ážŽáž¾ážšážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€",
+                bookingSubtitle: "ážšáž€áŸ’ážŸáž¶áž€áž“áŸ’áž›áŸ‚áž„ážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€ážŸáž˜áŸ’ážšáž¶áž”áŸ‹áž”áž‘áž–áž·ážŸáŸ„áž’áž“áŸážŠáŸ‚áž›áž˜áž·áž“áž¢áž¶áž…áž”áŸ†áž—áŸ’áž›áŸáž…áž”áž¶áž“áŸ”",
+                bookingName: "ážˆáŸ’áž˜áŸ„áŸ‡áž–áŸáž‰",
+                bookingEmail: "áž¢áž¶ážŸáž™ážŠáŸ’áž‹áž¶áž“áž¢áŸŠáž¸áž˜áŸ‚áž›",
+                bookingSelect: "áž‡áŸ’ážšáž¾ážŸážšáž¾ážŸáž€áž‰áŸ’áž…áž”áŸ‹áž‘áŸážŸáž…ážšážŽáŸ/ážŠáŸ†ážŽáž¾ážš",
+                bookingPayment: "ážœáž·áž’áž¸ážŸáž¶ážŸáŸ’ážáŸ’ážšáž‘áž¼áž‘áž¶ážáŸ‹áž”áŸ’ážšáž¶áž€áŸ‹",
+                bookingAgree: "ážáŸ’áž‰áž»áŸ†áž”áž‰áŸ’áž‡áž¶áž€áŸ‹ážáž¶áž–áŸážáŸŒáž˜áž¶áž“áž‘áž¶áŸ†áž„áž¢ážŸáŸ‹ážáŸ’ážšáž¹áž˜ážáŸ’ážšáž¼ážœ áž áž¾áž™áž™áž›áŸ‹áž–áŸ’ážšáž˜ážáž¶áž˜áž›áž€áŸ’ážážážŽáŸ’ážŒáŸ”",
+                bookingConfirmBtn: "áž”áž‰áŸ’áž‡áž¶áž€áŸ‹áž€áž¶ážšáž€áž€áŸ‹áž‘áž»áž€",
 
-                office: "ការិយាល័យយើង",
-                officeVal: "ភ្នំពេញ, ប្រទេសកម្ពុជា",
-                phone: "ទូរស័ព្ទ",
-                email: "អ៊ីមែល",
-                rights: "រក្សាសិទ្ធិគ្រប់យ៉ាង។"
+                office: "áž€áž¶ážšáž·áž™áž¶áž›áŸáž™áž™áž¾áž„",
+                officeVal: "áž—áŸ’áž“áŸ†áž–áŸáž‰, áž”áŸ’ážšáž‘áŸážŸáž€áž˜áŸ’áž–áž»áž‡áž¶",
+                phone: "áž‘áž¼ážšážŸáŸáž–áŸ’áž‘",
+                email: "áž¢áŸŠáž¸áž˜áŸ‚áž›",
+                rights: "ážšáž€áŸ’ážŸáž¶ážŸáž·áž‘áŸ’áž’áž·áž‚áŸ’ážšáž”áŸ‹áž™áŸ‰áž¶áž„áŸ”"
             }
         };
 
@@ -260,10 +267,10 @@
 
         // Vehicles configuration
         const vehicles = {
-            motorcycle: { name: { en: "Motorcycle", kh: "ម៉ូតូ" }, icon: "fa-motorcycle", speed: 55, consumption: 2.2, fuelType: "gasoline" },
-            sedan: { name: { en: "Sedan/SUV", kh: "ឡានផ្ទាល់ខ្លួន/SUV" }, icon: "fa-car", speed: 80, consumption: 7.2, fuelType: "gasoline" },
-            ev: { name: { en: "Electric Vehicle (EV)", kh: "ឡានអគ្គិសនី (EV)" }, icon: "fa-charging-station", speed: 80, consumption: 16.5, fuelType: "electricity" },
-            bus: { name: { en: "Tour Bus", kh: "ឡានក្រុងដឹកភ្ញៀវ" }, icon: "fa-bus", speed: 65, consumption: 14.0, fuelType: "diesel" }
+            motorcycle: { name: { en: "Motorcycle", kh: "áž˜áŸ‰áž¼ážáž¼" }, icon: "fa-motorcycle", speed: 55, consumption: 2.2, fuelType: "gasoline" },
+            sedan: { name: { en: "Sedan/SUV", kh: "áž¡áž¶áž“áž•áŸ’áž‘áž¶áž›áŸ‹ážáŸ’áž›áž½áž“/SUV" }, icon: "fa-car", speed: 80, consumption: 7.2, fuelType: "gasoline" },
+            ev: { name: { en: "Electric Vehicle (EV)", kh: "áž¡áž¶áž“áž¢áž‚áŸ’áž‚áž·ážŸáž“áž¸ (EV)" }, icon: "fa-charging-station", speed: 80, consumption: 16.5, fuelType: "electricity" },
+            bus: { name: { en: "Tour Bus", kh: "áž¡áž¶áž“áž€áŸ’ážšáž»áž„ážŠáž¹áž€áž—áŸ’áž‰áŸ€ážœ" }, icon: "fa-bus", speed: 65, consumption: 14.0, fuelType: "diesel" }
         };
 
         const fuelPrices = {
@@ -333,6 +340,7 @@
             const [bookConfirm, setBookConfirm] = useState(false);
 
             // Scroll position tracking for transparent navbar
+                        const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
             const [scrolled, setScrolled] = useState(false);
 
             // Search field
@@ -437,22 +445,22 @@
                     suggestedProvinces = ['siem-reap', 'takeo'];
                     suggestion = lang === 'en'
                         ? `We highly suggest a ${duration}-day historical tour focusing on Siem Reap (Angkor Wat) and Takeo (Phnom Da). With your budget of $${budget}, you can comfortably enjoy private guided walks, local boutique hotels, and explore ancient Funan and Angkorian monuments.`
-                        : `យើងខ្ញុំសូមណែនាំដំណើរកម្សាន្តប្រវត្តិសាស្ត្ររយៈពេល ${duration} ថ្ងៃ ដោយផ្តោតលើខេត្តសៀមរាប (អង្គរវត្ត) និងខេត្តតាកែវ (ភ្នំដា)។ ជាមួយនឹងកញ្ចប់ថវិកា $${budget} របស់អ្នក អ្នកអាចរីករាយជាមួយមគ្គុទ្ទេសក៍ផ្ទាល់ខ្លួន សណ្ឋាគារលំដាប់ថវិកា និងរុករកប្រាសាទបុរាណសម័យនគរភ្នំ និងសម័យអង្គរយ៉ាងពេញចិត្ត។`;
+                        : `áž™áž¾áž„ážáŸ’áž‰áž»áŸ†ážŸáž¼áž˜ážŽáŸ‚áž“áž¶áŸ†ážŠáŸ†ážŽáž¾ážšáž€áž˜áŸ’ážŸáž¶áž“áŸ’ážáž”áŸ’ážšážœážáŸ’ážáž·ážŸáž¶ážŸáŸ’ážáŸ’ážšážšáž™áŸˆáž–áŸáž› ${duration} ážáŸ’áž„áŸƒ ážŠáŸ„áž™áž•áŸ’ážáŸ„ážáž›áž¾ážáŸážáŸ’ážážŸáŸ€áž˜ážšáž¶áž” (áž¢áž„áŸ’áž‚ážšážœážáŸ’áž) áž“áž·áž„ážáŸážáŸ’ážážáž¶áž€áŸ‚ážœ (áž—áŸ’áž“áŸ†ážŠáž¶)áŸ” áž‡áž¶áž˜áž½áž™áž“áž¹áž„áž€áž‰áŸ’áž…áž”áŸ‹ážážœáž·áž€áž¶ $${budget} ážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€ áž¢áŸ’áž“áž€áž¢áž¶áž…ážšáž¸áž€ážšáž¶áž™áž‡áž¶áž˜áž½áž™áž˜áž‚áŸ’áž‚áž»áž‘áŸ’áž‘áŸážŸáž€áŸáž•áŸ’áž‘áž¶áž›áŸ‹ážáŸ’áž›áž½áž“ ážŸážŽáŸ’áž‹áž¶áž‚áž¶ážšáž›áŸ†ážŠáž¶áž”áŸ‹ážážœáž·áž€áž¶ áž“áž·áž„ážšáž»áž€ážšáž€áž”áŸ’ážšáž¶ážŸáž¶áž‘áž”áž»ážšáž¶ážŽážŸáž˜áŸáž™áž“áž‚ážšáž—áŸ’áž“áŸ† áž“áž·áž„ážŸáž˜áŸáž™áž¢áž„áŸ’áž‚ážšáž™áŸ‰áž¶áž„áž–áŸáž‰áž…áž·ážáŸ’ážáŸ”`;
                 } else if (interest === "nature") {
                     suggestedProvinces = ['kampot', 'pursat'];
                     suggestion = lang === 'en'
                         ? `A ${duration}-day nature escape to Kampot (Bokor Mountain) and Pursat (Cardamom Mountains) is ideal. Your budget of $${budget} covers amazing eco-lodges, riverside kayaking, jungle hiking, and relaxing close to fresh waterfalls.`
-                        : `ដំណើរសម្រាកកាយបែបធម្មជាតិរយៈពេល ${duration} ថ្ងៃទៅកាន់ខេត្តកំពត (ភ្នំបូកគោ) និងខេត្តពោធិ៍សាត់ (ជួរភ្នំក្រវាញ) គឺសាកសមបំផុត។ ថវិកា $${budget} របស់អ្នកនឹងគ្របដណ្តប់លើផ្ទះស្នាក់បែបអេកូឡូស៊ី ការជិះទូកកាយ៉ាក់តាមដងព្រែក ការដើរព្រៃ និងការសម្រាកក្បែរទឹកធ្លាក់ដ៏ត្រជាក់។`;
+                        : `ážŠáŸ†ážŽáž¾ážšážŸáž˜áŸ’ážšáž¶áž€áž€áž¶áž™áž”áŸ‚áž”áž’áž˜áŸ’áž˜áž‡áž¶ážáž·ážšáž™áŸˆáž–áŸáž› ${duration} ážáŸ’áž„áŸƒáž‘áŸ…áž€áž¶áž“áŸ‹ážáŸážáŸ’ážáž€áŸ†áž–áž (áž—áŸ’áž“áŸ†áž”áž¼áž€áž‚áŸ„) áž“áž·áž„ážáŸážáŸ’ážáž–áŸ„áž’áž·áŸážŸáž¶ážáŸ‹ (áž‡áž½ážšáž—áŸ’áž“áŸ†áž€áŸ’ážšážœáž¶áž‰) áž‚ážºážŸáž¶áž€ážŸáž˜áž”áŸ†áž•áž»ážáŸ” ážážœáž·áž€áž¶ $${budget} ážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€áž“áž¹áž„áž‚áŸ’ážšáž”ážŠážŽáŸ’ážáž”áŸ‹áž›áž¾áž•áŸ’áž‘áŸ‡ážŸáŸ’áž“áž¶áž€áŸ‹áž”áŸ‚áž”áž¢áŸáž€áž¼áž¡áž¼ážŸáŸŠáž¸ áž€áž¶ážšáž‡áž·áŸ‡áž‘áž¼áž€áž€áž¶áž™áŸ‰áž¶áž€áŸ‹ážáž¶áž˜ážŠáž„áž–áŸ’ážšáŸ‚áž€ áž€áž¶ážšážŠáž¾ážšáž–áŸ’ážšáŸƒ áž“áž·áž„áž€áž¶ážšážŸáž˜áŸ’ážšáž¶áž€áž€áŸ’áž”áŸ‚ážšáž‘áž¹áž€áž’áŸ’áž›áž¶áž€áŸ‹ážŠáŸážáŸ’ážšáž‡áž¶áž€áŸ‹áŸ”`;
                 } else if (interest === "food") {
                     suggestedProvinces = ['battambang', 'kampong-cham'];
                     suggestion = lang === 'en'
                         ? `A ${duration}-day culinary and agricultural journey through Battambang and Kampong Cham is perfect. Taste Cambodia's best organic rice, Battambang street foods, fruit farms, and traditional cooking classes well within your $${budget} budget.`
-                        : `ដំណើរកម្សាន្តសិល្បៈម្ហូបអាហាររយៈពេល ${duration} ថ្ងៃកាត់ខេត្តបាត់ដំបង និងខេត្តកំពង់ចាមគឺពិតជាអស្ចារ្យ។ ភ្លក់រសជាតិបាយសរីរាង្គដ៏ឆ្ងាញ់ ម្ហូបអាហារតាមចិញ្ចើមផ្លូវ ចម្ការផ្លែឈើ និងចូលរួមវគ្គបង្រៀនធ្វើម្ហូបបែបប្រពៃណី ទាំងអស់នេះស្ថិតក្នុងកញ្ចប់ថវិកា $${budget} របស់អ្នក។`;
+                        : `ážŠáŸ†ážŽáž¾ážšáž€áž˜áŸ’ážŸáž¶áž“áŸ’ážážŸáž·áž›áŸ’áž”áŸˆáž˜áŸ’áž áž¼áž”áž¢áž¶áž áž¶ážšážšáž™áŸˆáž–áŸáž› ${duration} ážáŸ’áž„áŸƒáž€áž¶ážáŸ‹ážáŸážáŸ’ážáž”áž¶ážáŸ‹ážŠáŸ†áž”áž„ áž“áž·áž„ážáŸážáŸ’ážáž€áŸ†áž–áž„áŸ‹áž…áž¶áž˜áž‚ážºáž–áž·ážáž‡áž¶áž¢ážŸáŸ’áž…áž¶ážšáŸ’áž™áŸ” áž—áŸ’áž›áž€áŸ‹ážšážŸáž‡áž¶ážáž·áž”áž¶áž™ážŸážšáž¸ážšáž¶áž„áŸ’áž‚ážŠáŸáž†áŸ’áž„áž¶áž‰áŸ‹ áž˜áŸ’áž áž¼áž”áž¢áž¶áž áž¶ážšážáž¶áž˜áž…áž·áž‰áŸ’áž…áž¾áž˜áž•áŸ’áž›áž¼ážœ áž…áž˜áŸ’áž€áž¶ážšáž•áŸ’áž›áŸ‚ážˆáž¾ áž“áž·áž„áž…áž¼áž›ážšáž½áž˜ážœáž‚áŸ’áž‚áž”áž„áŸ’ážšáŸ€áž“áž’áŸ’ážœáž¾áž˜áŸ’áž áž¼áž”áž”áŸ‚áž”áž”áŸ’ážšáž–áŸƒážŽáž¸ áž‘áž¶áŸ†áž„áž¢ážŸáŸ‹áž“áŸáŸ‡ážŸáŸ’ážáž·ážáž€áŸ’áž“áž»áž„áž€áž‰áŸ’áž…áž”áŸ‹ážážœáž·áž€áž¶ $${budget} ážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€áŸ”`;
                 } else {
                     suggestedProvinces = ['siem-reap', 'battambang', 'kampong-chhnang'];
                     suggestion = lang === 'en'
                         ? `Based on your ${duration}-day travel plan and $${budget} budget, a cultural tour visiting Siem Reap temples, Battambang colonial buildings, and Kampong Chhnang's pottery villages is highly recommended.`
-                        : `ផ្អែកលើគម្រោងធ្វើដំណើរ ${duration} ថ្ងៃ និងថវិកា $${budget} របស់អ្នក យើងខ្ញុំសូមណែនាំដំណើរកម្សាន្តបែបវប្បធម៌ទស្សនាប្រាសាទនៅសៀមរាប អគារបេតិកភណ្ឌបារាំងនៅបាត់ដំបង និងភូមិស្មូនឆ្នាំងដីឥដ្ឋនៅកំពង់ឆ្នាំង។`;
+                        : `áž•áŸ’áž¢áŸ‚áž€áž›áž¾áž‚áž˜áŸ’ážšáŸ„áž„áž’áŸ’ážœáž¾ážŠáŸ†ážŽáž¾ážš ${duration} ážáŸ’áž„áŸƒ áž“áž·áž„ážážœáž·áž€áž¶ $${budget} ážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€ áž™áž¾áž„ážáŸ’áž‰áž»áŸ†ážŸáž¼áž˜ážŽáŸ‚áž“áž¶áŸ†ážŠáŸ†ážŽáž¾ážšáž€áž˜áŸ’ážŸáž¶áž“áŸ’ážáž”áŸ‚áž”ážœáž”áŸ’áž”áž’áž˜áŸŒáž‘ážŸáŸ’ážŸáž“áž¶áž”áŸ’ážšáž¶ážŸáž¶áž‘áž“áŸ…ážŸáŸ€áž˜ážšáž¶áž” áž¢áž‚áž¶ážšáž”áŸážáž·áž€áž—ážŽáŸ’ážŒáž”áž¶ážšáž¶áŸ†áž„áž“áŸ…áž”áž¶ážáŸ‹ážŠáŸ†áž”áž„ áž“áž·áž„áž—áž¼áž˜áž·ážŸáŸ’áž˜áž¼áž“áž†áŸ’áž“áž¶áŸ†áž„ážŠáž¸áž¥ážŠáŸ’áž‹áž“áŸ…áž€áŸ†áž–áž„áŸ‹áž†áŸ’áž“áž¶áŸ†áž„áŸ”`;
                 }
 
                 setPlannerResult({
@@ -468,7 +476,7 @@
 
                 const successMsg = lang === 'en'
                     ? `Thank you, ${bookName}! Your booking request for the "${bookPackage}" has been received. We will contact you shortly at ${bookEmail} to complete the payment via ${bookPayment.toUpperCase()}.`
-                    : `សូមអរគុណ ${bookName}! ការស្នើសុំកក់របស់អ្នកសម្រាប់កញ្ចប់ "${bookPackage}" ត្រូវបានទទួលជោគជ័យហើយ។ យើងខ្ញុំនឹងទាក់ទងទៅអ្នកវិញក្នុងពេលឆាប់ៗតាមរយៈ ${bookEmail} ដើម្បីបញ្ចប់ការទូទាត់ប្រាក់តាម ${bookPayment.toUpperCase()}។`;
+                    : `ážŸáž¼áž˜áž¢ážšáž‚áž»ážŽ ${bookName}! áž€áž¶ážšážŸáŸ’áž“áž¾ážŸáž»áŸ†áž€áž€áŸ‹ážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€ážŸáž˜áŸ’ážšáž¶áž”áŸ‹áž€áž‰áŸ’áž…áž”áŸ‹ "${bookPackage}" ážáŸ’ážšáž¼ážœáž”áž¶áž“áž‘áž‘áž½áž›áž‡áŸ„áž‚áž‡áŸáž™áž áž¾áž™áŸ” áž™áž¾áž„ážáŸ’áž‰áž»áŸ†áž“áž¹áž„áž‘áž¶áž€áŸ‹áž‘áž„áž‘áŸ…áž¢áŸ’áž“áž€ážœáž·áž‰áž€áŸ’áž“áž»áž„áž–áŸáž›áž†áž¶áž”áŸ‹áŸ—ážáž¶áž˜ážšáž™áŸˆ ${bookEmail} ážŠáž¾áž˜áŸ’áž”áž¸áž”áž‰áŸ’áž…áž”áŸ‹áž€áž¶ážšáž‘áž¼áž‘áž¶ážáŸ‹áž”áŸ’ážšáž¶áž€áŸ‹ážáž¶áž˜ ${bookPayment.toUpperCase()}áŸ”`;
 
                 alert(successMsg);
                 setBookName('');
@@ -482,7 +490,7 @@
                 e.preventDefault();
                 playBeep(soundEnabled);
                 if (!searchDest) {
-                    alert(lang === 'en' ? "Please enter a destination name." : "សូមវាយបញ្ចូលឈ្មោះគោលដៅទេសចរណ៍។");
+                    alert(lang === 'en' ? "Please enter a destination name." : "ážŸáž¼áž˜ážœáž¶áž™áž”áž‰áŸ’áž…áž¼áž›ážˆáŸ’áž˜áŸ„áŸ‡áž‚áŸ„áž›ážŠáŸ…áž‘áŸážŸáž…ážšážŽáŸáŸ”");
                     return;
                 }
                 // Go to destinations page
@@ -494,7 +502,7 @@
             // Highlight a specific place in the selected province as the "Hidden Gem"
             const currentHiddenGem = (typeof hiddenGemsData !== 'undefined' && hiddenGemsData[gemProvinceId]) || {
                 name: "Add Your Hidden Gem",
-                khmerName: "កន្លែងលាក់កំបាំង",
+                khmerName: "áž€áž“áŸ’áž›áŸ‚áž„áž›áž¶áž€áŸ‹áž€áŸ†áž”áž¶áŸ†áž„",
                 desc: "This is a placeholder. You can add your unique hidden gem information for this province in the hidden_gem_data.js file.",
                 history: "Add unique history for this province's hidden gem in hidden_gem_data.js.",
                 img: "https://via.placeholder.com/600x400/0d6efd/ffffff?text=Your+Hidden+Gem",
@@ -507,7 +515,7 @@
                 playBeep(soundEnabled);
                 const toastMsg = lang === 'en'
                     ? `I love building apps using ${tagName}! It's an essential tool in my development toolbox.`
-                    : `ខ្ញុំចូលចិត្តអភិវឌ្ឍកម្មវិធីដោយប្រើ ${tagName} ណាស់! វាជាឧបករណ៍ដ៏សំខាន់នៅក្នុងការងាររបស់ខ្ញុំ។`;
+                    : `ážáŸ’áž‰áž»áŸ†áž…áž¼áž›áž…áž·ážáŸ’ážáž¢áž—áž·ážœážŒáŸ’ážáž€áž˜áŸ’áž˜ážœáž·áž’áž¸ážŠáŸ„áž™áž”áŸ’ážšáž¾ ${tagName} ážŽáž¶ážŸáŸ‹! ážœáž¶áž‡áž¶áž§áž”áž€ážšážŽáŸážŠáŸážŸáŸ†ážáž¶áž“áŸ‹áž“áŸ…áž€áŸ’áž“áž»áž„áž€áž¶ážšáž„áž¶ážšážšáž”ážŸáŸ‹ážáŸ’áž‰áž»áŸ†áŸ”`;
                 alert(toastMsg);
             };
 
@@ -547,8 +555,31 @@
                                 <a href="about.html" className="nav-link">ABOUT US</a>
                             </div>
                             <a href="#booking" className="nav-book-btn">BOOK NOW</a>
+                            <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{ color: scrolled || !document.querySelector(".hero-section") ? "var(--text-main)" : "white" }}><i className={"fa-solid " + (mobileMenuOpen ? "fa-xmark" : "fa-bars")}></i></button>
+
                         </div>
                     </nav>
+
+                    {/* Mobile Menu */}
+                    <div className={"mobile-menu " + (mobileMenuOpen ? "open" : "")}>
+                        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px'}}>
+                            <div className="nav-logo" style={{color: 'var(--text-main)'}}>
+                                <i className="fa-solid fa-plane-departure"></i>
+                                <span>TOURLY</span>
+                            </div>
+                            <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(false)} style={{color: 'var(--text-main)', display: 'block'}}><i className="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <a href="index.html" onClick={() => setMobileMenuOpen(false)}>HOME</a>
+                        <a href="destinations.html" onClick={() => setMobileMenuOpen(false)}>POPULAR DESTINATIONS</a>
+                        <a href="packages.html" onClick={() => setMobileMenuOpen(false)}>PACKAGES</a>
+                        <a href="trip_planner.html" onClick={() => setMobileMenuOpen(false)}>TRIP PLANNER</a>
+                        <a href="calculator.html" onClick={() => setMobileMenuOpen(false)}>CALCULATOR</a>
+                        <a href="hidden_gems.html" onClick={() => setMobileMenuOpen(false)}>HIDDEN GEMS</a>
+                        <a href="settings.html" onClick={() => setMobileMenuOpen(false)}>SETTINGS</a>
+                        <a href="about.html" onClick={() => setMobileMenuOpen(false)}>ABOUT US</a>
+                        <a href="#booking" className="btn-primary" style={{marginTop: '20px', textAlign: 'center'}} onClick={() => {setMobileMenuOpen(false); setTimeout(() => {if(document.getElementById('booking')) document.getElementById('booking').scrollIntoView({behavior: 'smooth'})}, 100);}}>BOOK NOW</a>
+                    </div>
+
 
                     {/* Hero Section */}
                     <header id="home" className="hero-section">
@@ -888,6 +919,7 @@
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
+<script type="module" src="auth_state.js"></script>
 </body>
 
 </html>

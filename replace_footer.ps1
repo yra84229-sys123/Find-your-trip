@@ -91,7 +91,7 @@ $newFooter = @"
 
 foreach ($file in $files) {
     $content = Get-Content -Path $file.FullName -Raw
-    $pattern = '(?s)\{\/\*\s*Footer\s*\*\/\}\s*<footer className="footer">.*?<\/footer>'
+    $pattern = '(?s)\{\/\*\s*Footer\s*\*\/\}\s*<footer\b.*?<\/footer>'
     if ($content -match $pattern) {
         $newContent = $content -replace $pattern, $newFooter
         Set-Content -Path $file.FullName -Value $newContent
