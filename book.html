@@ -10,6 +10,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .custom-select-trigger:hover, .custom-select-trigger.active {
+            border-color: #0088ff !important;
+            background-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        .custom-option:hover {
+            background-color: rgba(0, 136, 255, 0.15);
+            padding-left: 25px !important;
+            color: #0088ff !important;
+        }
+        .custom-select-options::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-select-options::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-select-options::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+        .custom-select-options::-webkit-scrollbar-thumb:hover {
+            background: #0088ff;
+        }
+    </style>
 
 </head>
 
@@ -48,7 +72,7 @@
                 <a href="settings.html" class="nav-link">SETTINGS</a>
                 <a href="about.html" class="nav-link">ABOUT US</a>
             </div>
-            <a href="book.html" class="nav-book-btn">BOOK NOW</a>
+            <a href="booking.html" class="nav-book-btn">BOOK NOW</a>
             <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('open')" style="color: white; margin-left: auto;"><i class="fa-solid fa-bars"></i></button>
         </div>
     </nav>
@@ -70,7 +94,7 @@
         <a href="hidden_gems.html">HIDDEN GEMS</a>
         <a href="settings.html">SETTINGS</a>
         <a href="about.html">ABOUT US</a>
-        <a href="book.html" class="btn-primary" style="margin-top: 20px; text-align: center;">BOOK NOW</a>
+        <a href="booking.html" class="btn-primary" style="margin-top: 20px; text-align: center;">BOOK NOW</a>
     </div>
 
     <!-- Booking Section -->
@@ -98,13 +122,13 @@
                         <!-- Full Name -->
                         <div class="form-group" style="text-align: left;">
                             <label style="color: white; font-weight: 600; display: block; margin-bottom: 8px; font-size: 0.95rem;">Full Name</label>
-                            <input type="text" required placeholder="John Doe" style="width: 100%; padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background-color: rgba(255, 255, 255, 0.05); color: white; font-family: var(--font-body); font-size: 1rem; outline: none; transition: background-color 0.3s;" onfocus="this.style.backgroundColor='rgba(255, 255, 255, 0.1)';" onblur="this.style.backgroundColor='rgba(255, 255, 255, 0.05)';" />
+                            <input type="text" id="book-name" required placeholder="John Doe" style="width: 100%; padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background-color: rgba(255, 255, 255, 0.05); color: white; font-family: var(--font-body); font-size: 1rem; outline: none; transition: background-color 0.3s;" onfocus="this.style.backgroundColor='rgba(255, 255, 255, 0.1)';" onblur="this.style.backgroundColor='rgba(255, 255, 255, 0.05)';" />
                         </div>
 
                         <!-- Email -->
                         <div class="form-group" style="text-align: left;">
                             <label style="color: white; font-weight: 600; display: block; margin-bottom: 8px; font-size: 0.95rem;">Email Address</label>
-                            <input type="email" required placeholder="john@example.com" style="width: 100%; padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background-color: rgba(255, 255, 255, 0.05); color: white; font-family: var(--font-body); font-size: 1rem; outline: none; transition: background-color 0.3s;" onfocus="this.style.backgroundColor='rgba(255, 255, 255, 0.1)';" onblur="this.style.backgroundColor='rgba(255, 255, 255, 0.05)';" />
+                            <input type="email" id="book-email" required placeholder="john@example.com" style="width: 100%; padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background-color: rgba(255, 255, 255, 0.05); color: white; font-family: var(--font-body); font-size: 1rem; outline: none; transition: background-color 0.3s;" onfocus="this.style.backgroundColor='rgba(255, 255, 255, 0.1)';" onblur="this.style.backgroundColor='rgba(255, 255, 255, 0.05)';" />
                         </div>
 
                         <!-- Phone -->
@@ -114,16 +138,43 @@
                         </div>
 
                         <!-- Destination -->
-                        <div class="form-group" style="text-align: left;">
+                        <div class="form-group" style="text-align: left; position: relative;">
                             <label style="color: white; font-weight: 600; display: block; margin-bottom: 8px; font-size: 0.95rem;">Destination</label>
-                            <select required style="width: 100%; padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background-color: rgba(255, 255, 255, 0.05); color: white; font-family: var(--font-body); font-size: 1rem; outline: none; cursor: pointer; appearance: none;">
-                                <option value="" disabled selected style="color: #333;">Select your destination</option>
-                                <option value="Angkor Wat" style="color: #333;">Angkor Wat, Siem Reap</option>
-                                <option value="Phnom Penh" style="color: #333;">Phnom Penh City Tour</option>
-                                <option value="Koh Rong" style="color: #333;">Koh Rong Island</option>
-                                <option value="Kampot" style="color: #333;">Kampot & Kep</option>
-                                <option value="Preah Vihear" style="color: #333;">Preah Vihear Temple</option>
+                            
+                            <!-- Hidden native select for validation -->
+                            <select id="destination-select" name="destination" required style="display: none;">
+                                <option value="" disabled selected>Select your destination</option>
+                                <option value="Angkor Wat">Angkor Wat, Siem Reap</option>
+                                <option value="Phnom Penh">Phnom Penh City Tour</option>
+                                <option value="Koh Rong">Koh Rong Island</option>
+                                <option value="Kampot">Kampot & Kep</option>
+                                <option value="Preah Vihear">Preah Vihear Temple</option>
                             </select>
+
+                            <!-- Custom dropdown UI -->
+                            <div class="custom-select" id="custom-dest-select" style="position: relative; width: 100%;">
+                                <div class="custom-select-trigger" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background-color: rgba(255, 255, 255, 0.05); color: #aaa; font-family: var(--font-body); font-size: 1rem; outline: none; cursor: pointer; user-select: none; transition: border-color 0.3s, background-color 0.3s;">
+                                    <span id="custom-dest-label">Select your destination</span>
+                                    <i class="fa-solid fa-chevron-down" style="font-size: 0.85rem; color: #aaa; transition: transform 0.3s ease;"></i>
+                                </div>
+                                <div class="custom-select-options" style="display: none; position: absolute; top: calc(100% + 8px); left: 0; width: 100%; max-height: 250px; overflow-y: auto; background: rgba(15, 25, 45, 0.95); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); z-index: 100; padding: 10px 0;">
+                                    <div class="custom-option" data-value="Angkor Wat" style="padding: 12px 20px; color: white; cursor: pointer; transition: background-color 0.2s, padding-left: 0.2s; display: flex; justify-content: space-between; align-items: center;">
+                                        <span>Angkor Wat, Siem Reap</span>
+                                    </div>
+                                    <div class="custom-option" data-value="Phnom Penh" style="padding: 12px 20px; color: white; cursor: pointer; transition: background-color 0.2s, padding-left: 0.2s; display: flex; justify-content: space-between; align-items: center;">
+                                        <span>Phnom Penh City Tour</span>
+                                    </div>
+                                    <div class="custom-option" data-value="Koh Rong" style="padding: 12px 20px; color: white; cursor: pointer; transition: background-color 0.2s, padding-left: 0.2s; display: flex; justify-content: space-between; align-items: center;">
+                                        <span>Koh Rong Island</span>
+                                    </div>
+                                    <div class="custom-option" data-value="Kampot" style="padding: 12px 20px; color: white; cursor: pointer; transition: background-color 0.2s, padding-left: 0.2s; display: flex; justify-content: space-between; align-items: center;">
+                                        <span>Kampot & Kep</span>
+                                    </div>
+                                    <div class="custom-option" data-value="Preah Vihear" style="padding: 12px 20px; color: white; cursor: pointer; transition: background-color 0.2s, padding-left: 0.2s; display: flex; justify-content: space-between; align-items: center;">
+                                        <span>Preah Vihear Temple</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Date -->
@@ -159,8 +210,153 @@
     <script type="module" src="auth_state.js"></script>
 
     <script>
+        // Custom Dropdown JS
+        const customSelect = document.getElementById('custom-dest-select');
+        const trigger = customSelect.querySelector('.custom-select-trigger');
+        const optionsContainer = customSelect.querySelector('.custom-select-options');
+        const options = customSelect.querySelectorAll('.custom-option');
+        const label = document.getElementById('custom-dest-label');
+        const nativeSelect = document.getElementById('destination-select');
+
+        trigger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isOpen = optionsContainer.style.display === 'block';
+            
+            optionsContainer.style.display = isOpen ? 'none' : 'block';
+            trigger.classList.toggle('active', !isOpen);
+            const chevron = trigger.querySelector('.fa-chevron-down');
+            chevron.style.transform = isOpen ? 'none' : 'rotate(180deg)';
+        });
+
+        options.forEach(opt => {
+            opt.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const value = this.getAttribute('data-value');
+                const text = this.querySelector('span').textContent;
+                
+                label.textContent = text;
+                label.style.color = 'white';
+                nativeSelect.value = value;
+                
+                // Clear any existing checkmarks
+                options.forEach(o => {
+                    const check = o.querySelector('.fa-check');
+                    if (check) check.remove();
+                });
+                
+                // Add checkmark to selected
+                const checkIcon = document.createElement('i');
+                checkIcon.className = 'fa-solid fa-check';
+                checkIcon.style.color = '#0088ff';
+                checkIcon.style.fontSize = '0.85rem';
+                this.appendChild(checkIcon);
+
+                optionsContainer.style.display = 'none';
+                trigger.classList.remove('active');
+                trigger.querySelector('.fa-chevron-down').style.transform = 'none';
+            });
+        });
+
+        document.addEventListener('click', function() {
+            optionsContainer.style.display = 'none';
+            trigger.classList.remove('active');
+            trigger.querySelector('.fa-chevron-down').style.transform = 'none';
+        });
+
+        document.getElementById('booking-form').addEventListener('reset', function() {
+            label.textContent = 'Select your destination';
+            label.style.color = '#aaa';
+            options.forEach(o => {
+                const check = o.querySelector('.fa-check');
+                if (check) check.remove();
+            });
+        });
+
+        const nameInput = document.getElementById('book-name');
+        const emailInput = document.getElementById('book-email');
+        const phoneInput = document.querySelector('input[type="tel"]');
+        const dateInput = document.querySelector('input[type="date"]');
+        const guestsInput = document.querySelector('input[type="number"]');
+        const notesTextarea = document.querySelector('textarea');
+
+        // Restore values if returning from pending booking
+        function restorePendingBooking() {
+            const pending = localStorage.getItem('pending-booking');
+            if (pending) {
+                try {
+                    const data = JSON.parse(pending);
+                    if (data.formValues) {
+                        if (nameInput) nameInput.value = data.formValues.name || '';
+                        if (emailInput) emailInput.value = data.formValues.email || '';
+                        if (phoneInput) phoneInput.value = data.formValues.phone || '';
+                        if (dateInput) dateInput.value = data.formValues.date || '';
+                        if (guestsInput) guestsInput.value = data.formValues.guests || '';
+                        if (notesTextarea) notesTextarea.value = data.formValues.notes || '';
+                        
+                        if (data.formValues.destination) {
+                            nativeSelect.value = data.formValues.destination;
+                            const matchedOpt = Array.from(options).find(o => o.getAttribute('data-value') === data.formValues.destination);
+                            if (matchedOpt) {
+                                label.textContent = matchedOpt.querySelector('span').textContent;
+                                label.style.color = 'white';
+                                
+                                // checkmark
+                                const checkIcon = document.createElement('i');
+                                checkIcon.className = 'fa-solid fa-check';
+                                checkIcon.style.color = '#0088ff';
+                                checkIcon.style.fontSize = '0.85rem';
+                                matchedOpt.appendChild(checkIcon);
+                            }
+                        }
+                    }
+                    localStorage.removeItem('pending-booking');
+                } catch (e) {
+                    console.error("Failed to restore pending booking form values", e);
+                }
+            }
+        }
+
+        // Autofill logic
+        function autofillUser() {
+            if (window.firebaseUser) {
+                if (nameInput && !nameInput.value) {
+                    nameInput.value = window.firebaseUser.displayName || window.firebaseUser.email.split('@')[0];
+                }
+                if (emailInput && !emailInput.value) {
+                    emailInput.value = window.firebaseUser.email;
+                }
+                restorePendingBooking();
+            }
+        }
+
+        window.addEventListener('auth-state-changed', autofillUser);
+        if (window.firebaseUser) {
+            autofillUser();
+        }
+
         document.getElementById('booking-form').addEventListener('submit', function(e) {
             e.preventDefault();
+
+            if (!window.firebaseUser) {
+                alert("Please log in or register to book a reservation. Redirecting you to login...");
+                // Save current form values so they don't have to fill it again
+                const formValues = {
+                    name: nameInput ? nameInput.value : '',
+                    email: emailInput ? emailInput.value : '',
+                    phone: phoneInput ? phoneInput.value : '',
+                    destination: nativeSelect.value || '',
+                    date: dateInput ? dateInput.value : '',
+                    guests: guestsInput ? guestsInput.value : '',
+                    notes: notesTextarea ? notesTextarea.value : ''
+                };
+                localStorage.setItem('pending-booking', JSON.stringify({
+                    redirectUrl: window.location.href,
+                    formValues: formValues
+                }));
+                window.location.href = "login.html";
+                return;
+            }
+
             const btn = document.getElementById('book-submit-btn');
             const originalText = btn.innerHTML;
             
@@ -184,6 +380,8 @@
                     btn.style.pointerEvents = 'auto';
                     btn.style.opacity = '1';
                     btn.style.boxShadow = '0 10px 20px rgba(0, 136, 255, 0.3)';
+                    // Re-run autofill after reset
+                    autofillUser();
                 }, 3000);
                 
             }, 1500);

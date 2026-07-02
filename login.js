@@ -36,8 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     const user = userCredential.user;
                     alert("Login successful! Welcome back.");
                     
-                    // Redirect to home page
-                    window.location.href = "index.html";
+                    // Redirect
+                    const pendingBooking = localStorage.getItem('pending-booking');
+                    if (pendingBooking) {
+                        try {
+                            const data = JSON.parse(pendingBooking);
+                            window.location.href = data.redirectUrl || "booking.html";
+                        } catch (e) {
+                            window.location.href = "index.html";
+                        }
+                    } else {
+                        window.location.href = "index.html";
+                    }
                 })
                 .catch((error) => {
                     // Reset button state
@@ -64,7 +74,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then((result) => {
                     const user = result.user;
                     alert("Google Sign-In successful! Welcome " + (user.displayName || ""));
-                    window.location.href = "index.html";
+                    const pendingBooking = localStorage.getItem('pending-booking');
+                    if (pendingBooking) {
+                        try {
+                            const data = JSON.parse(pendingBooking);
+                            window.location.href = data.redirectUrl || "booking.html";
+                        } catch (e) {
+                            window.location.href = "index.html";
+                        }
+                    } else {
+                        window.location.href = "index.html";
+                    }
                 })
                 .catch((error) => {
                     googleBtn.innerHTML = '<i class="fa-brands fa-google"></i> Continue with Google';

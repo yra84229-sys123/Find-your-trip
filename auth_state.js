@@ -114,5 +114,7 @@ observer.observe(document.body, { childList: true, subtree: true });
 
 onAuthStateChanged(auth, (user) => {
     currentUser = user;
+    window.firebaseUser = user;
+    window.dispatchEvent(new CustomEvent('auth-state-changed', { detail: user }));
     renderUserUI();
 });

@@ -34,29 +34,29 @@
 
 /* DARK THEME CLASS */
 body.dark-theme {
-    --bg-main: #0B0F19;
-    --bg-light: #151C2C;
-    --bg-panel: rgba(21, 28, 44, 0.95);
-    --border-color: #232D42;
+    --bg-main: #000000;
+    --bg-light: #0d0d0d;
+    --bg-panel: rgba(18, 18, 18, 0.95);
+    --border-color: #222222;
     --text-main: #F1F5F9;
     --text-muted: #94A3B8;
-    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
-    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 25px rgba(13, 110, 253, 0.4);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 25px rgba(13, 110, 253, 0.2);
 }
 
 /* GLASSMORPHISM THEME CLASS */
 body.glass-theme {
-    background: radial-gradient(circle at 10% 20%, #171d32 0%, #070913 90%) !important;
+    background: radial-gradient(circle at 10% 20%, #1c1c1c 0%, #000000 90%) !important;
     --bg-main: transparent;
     --bg-light: rgba(255, 255, 255, 0.03);
-    --bg-panel: rgba(15, 23, 42, 0.55);
+    --bg-panel: rgba(10, 10, 10, 0.6);
     --border-color: rgba(255, 255, 255, 0.08);
     --text-main: #F8FAFC;
     --text-muted: #94A3B8;
-    --shadow-md: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    --shadow-lg: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-    --shadow-glow: 0 0 30px rgba(0, 166, 153, 0.3);
+    --shadow-md: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
+    --shadow-glow: 0 0 30px rgba(0, 166, 153, 0.15);
     --glass-blur: blur(20px);
 }
 
@@ -423,12 +423,12 @@ h1, h2, h3, h4, h5, h6 {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(11, 15, 25, 0.4) 0%, rgba(11, 15, 25, 0.85) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%);
     z-index: -1;
 }
 
 body.dark-theme .hero-overlay, body.glass-theme .hero-overlay {
-    background: linear-gradient(to bottom, rgba(11, 15, 25, 0.3) 0%, #0b0f19 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, #000000 100%);
 }
 
 .hero-content {
@@ -1295,7 +1295,7 @@ input:checked + .slider:before {
 .drawer-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(11, 15, 25, 0.7);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 2000;
     display: flex;
     justify-content: center;
@@ -1360,7 +1360,7 @@ input:checked + .slider:before {
 .drawer-header-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(11, 15, 25, 0.8) 0%, transparent 100%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -1942,7 +1942,7 @@ input:checked + .slider:before {
 }
 
 .about-card {
-    background: #050a15; /* Even darker blue, almost black */
+    background: #0d0d0d; /* Sleek charcoal black */
     border: 1px solid rgba(13, 110, 253, 0.2);
     border-radius: 16px;
     padding: 35px 20px 30px;
@@ -1987,7 +1987,7 @@ input:checked + .slider:before {
     align-items: center;
     justify-content: center;
     font-size: 0.8rem;
-    border: 3px solid #050a15; /* Match card background to look like a cutout */
+    border: 3px solid #0d0d0d; /* Match card background to look like a cutout */
 }
 
 .about-name {

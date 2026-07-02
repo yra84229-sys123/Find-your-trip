@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,6 +10,53 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .fade-in-section {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Custom Dropdown Styling */
+        .custom-select-trigger:focus, .custom-select-trigger.active {
+            border-color: var(--primary) !important;
+            background-color: var(--bg-main) !important;
+            box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+        }
+        .dropdown-option {
+            padding: 12px 24px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .dropdown-option:hover {
+            background-color: rgba(13, 110, 253, 0.08);
+            padding-left: 28px;
+            color: var(--primary);
+        }
+        .custom-select-options::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-select-options::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-select-options::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+        body.light-theme .custom-select-options::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.15);
+        }
+        .custom-select-options::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+    </style>
 
     <!-- React 18 & ReactDOM 18 -->
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
@@ -302,6 +349,94 @@
             }
         };
 
+        function CustomSelect({ options, selectedValue, onChange, placeholder }) {
+            const [isOpen, setIsOpen] = useState(false);
+            const dropdownRef = useRef(null);
+
+            useEffect(() => {
+                function handleClickOutside(event) {
+                    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                        setIsOpen(false);
+                    }
+                }
+                document.addEventListener("mousedown", handleClickOutside);
+                return () => document.removeEventListener("mousedown", handleClickOutside);
+            }, []);
+
+            const handleSelect = (val) => {
+                onChange(val);
+                setIsOpen(false);
+            };
+
+            const selectedOption = options.find(o => o.value === selectedValue);
+            const displayLabel = selectedOption ? selectedOption.label : (placeholder || "Select...");
+
+            return (
+                <div className="custom-select-container" ref={dropdownRef} style={{ position: 'relative', width: '100%' }}>
+                    <div 
+                        className={`custom-select-trigger ${isOpen ? 'active' : ''}`}
+                        onClick={() => setIsOpen(!isOpen)}
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            width: '100%',
+                            padding: '14px 16px',
+                            borderRadius: 'var(--radius-md)',
+                            border: '1px solid var(--border-color)',
+                            backgroundColor: 'var(--bg-light)',
+                            cursor: 'pointer',
+                            fontSize: '1rem',
+                            color: selectedValue ? 'var(--text-main)' : 'var(--text-muted)',
+                            transition: 'var(--transition)',
+                            userSelect: 'none'
+                        }}
+                    >
+                        <span>{displayLabel}</span>
+                        <i className="fa-solid fa-chevron-down" style={{ 
+                            fontSize: '0.85rem', 
+                            transition: 'transform 0.3s ease',
+                            transform: isOpen ? 'rotate(180deg)' : 'none',
+                            color: 'var(--text-muted)'
+                        }}></i>
+                    </div>
+
+                    {isOpen && (
+                        <div 
+                            className="custom-select-options fade-in-section"
+                            style={{
+                                position: 'absolute',
+                                top: 'calc(100% + 8px)',
+                                left: 0,
+                                width: '100%',
+                                maxHeight: '250px',
+                                overflowY: 'auto',
+                                background: 'var(--bg-panel)',
+                                backdropFilter: 'var(--glass-blur)',
+                                WebkitBackdropFilter: 'var(--glass-blur)',
+                                border: '1px solid var(--border-color)',
+                                borderRadius: 'var(--radius-md)',
+                                boxShadow: 'var(--shadow-lg)',
+                                zIndex: 100,
+                                padding: '10px 0'
+                            }}
+                        >
+                            {options.map(option => (
+                                <div 
+                                    key={option.value}
+                                    className="dropdown-option"
+                                    onClick={() => handleSelect(option.value)}
+                                >
+                                    <span>{option.label}</span>
+                                    {selectedValue === option.value && <i className="fa-solid fa-check" style={{ color: 'var(--primary)', fontSize: '0.85rem' }}></i>}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
         // Main App Component
         function App() {
             // Theme state initialized from localStorage if present
@@ -546,7 +681,7 @@
                                 <a href="settings.html" className="nav-link">SETTINGS <i className="fa-solid fa-chevron-down" style={{ fontSize: '0.7rem' }}></i></a>
                                 <a href="about.html" className="nav-link">ABOUT US</a>
                             </div>
-                            <a href="#booking" className="nav-book-btn">BOOK NOW</a>
+                            <a href="booking.html" className="nav-book-btn">BOOK NOW</a>
                             <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{ color: scrolled || !document.querySelector(".hero-section") ? "var(--text-main)" : "white" }}><i className={"fa-solid " + (mobileMenuOpen ? "fa-xmark" : "fa-bars")}></i></button>
 
                         </div>
@@ -569,7 +704,7 @@
                         <a href="hidden_gems.html" onClick={() => setMobileMenuOpen(false)}>HIDDEN GEMS</a>
                         <a href="settings.html" onClick={() => setMobileMenuOpen(false)}>SETTINGS</a>
                         <a href="about.html" onClick={() => setMobileMenuOpen(false)}>ABOUT US</a>
-                        <a href="#booking" className="btn-primary" style={{marginTop: '20px', textAlign: 'center'}} onClick={() => {setMobileMenuOpen(false); setTimeout(() => {if(document.getElementById('booking')) document.getElementById('booking').scrollIntoView({behavior: 'smooth'})}, 100);}}>BOOK NOW</a>
+                        <a href="booking.html" className="btn-primary" style={{marginTop: '20px', textAlign: 'center'}} onClick={() => {setMobileMenuOpen(false); setTimeout(() => {if(document.getElementById('booking')) document.getElementById('booking').scrollIntoView({behavior: 'smooth'})}, 100);}}>BOOK NOW</a>
                     </div>
 
 
@@ -645,40 +780,32 @@
                                     <form onSubmit={handleCalculation}>
                                         <div className="form-group">
                                             <label><i className="fa-solid fa-circle-play" style={{ color: 'var(--secondary)' }}></i> {t('calcOrigin')}</label>
-                                            <select
-                                                value={calcOrigin}
-                                                onChange={(e) => setCalcOrigin(e.target.value)}
-                                            >
-                                                {provincesData.map(p => (
-                                                    <option key={p.id} value={p.id}>{p.name}</option>
-                                                ))}
-                                            </select>
+                                            <CustomSelect
+                                                options={provincesData.map(p => ({ value: p.id, label: p.name }))}
+                                                selectedValue={calcOrigin}
+                                                onChange={setCalcOrigin}
+                                            />
                                         </div>
 
                                         <div className="form-group">
                                             <label><i className="fa-solid fa-circle-stop" style={{ color: 'var(--primary)' }}></i> {t('calcDest')}</label>
-                                            <select
-                                                value={calcDest}
-                                                onChange={(e) => setCalcDest(e.target.value)}
-                                            >
-                                                {provincesData.map(p => (
-                                                    <option key={p.id} value={p.id}>{p.name}</option>
-                                                ))}
-                                            </select>
+                                            <CustomSelect
+                                                options={provincesData.map(p => ({ value: p.id, label: p.name }))}
+                                                selectedValue={calcDest}
+                                                onChange={setCalcDest}
+                                            />
                                         </div>
 
                                         <div className="form-group">
                                             <label><i className="fa-solid fa-car-side"></i> {t('calcVehicle')}</label>
-                                            <select
-                                                value={calcVehicle}
-                                                onChange={(e) => setCalcVehicle(e.target.value)}
-                                            >
-                                                {Object.keys(vehicles).map(key => (
-                                                    <option key={key} value={key}>
-                                                        {lang === 'en' ? vehicles[key].name.en : vehicles[key].name.kh}
-                                                    </option>
-                                                ))}
-                                            </select>
+                                            <CustomSelect
+                                                options={Object.keys(vehicles).map(key => ({
+                                                    value: key,
+                                                    label: lang === 'en' ? vehicles[key].name.en : vehicles[key].name.kh
+                                                }))}
+                                                selectedValue={calcVehicle}
+                                                onChange={setCalcVehicle}
+                                            />
                                         </div>
 
                                         <button type="submit" className="btn-primary w-100" disabled={isCalculating}>
@@ -746,8 +873,8 @@
                         </div>
                     </section>
 
-                                        {/* Footer */}
-                    <footer className="footer-modern bg-gradient-dark text-light" style={{ background: '#050a15', paddingTop: '60px', paddingBottom: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                                                            {/* Footer */}
+                    <footer className="footer-modern bg-gradient-dark text-light" style={{ background: '#000000', paddingTop: '60px', paddingBottom: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                         <div className="container">
                             <div className="row" style={{ display: 'flex', flexWrap: 'wrap', gap: '30px', marginBottom: '40px' }}>
                                 {/* Brand Column */}
@@ -763,8 +890,10 @@
                                         Your trusted travel companion. We help you find the best places, plan your perfect trip and make memories that last a lifetime.
                                     </p>
                                     <div className="footer-socials" style={{ display: 'flex', gap: '10px' }}>
-                                        <a href="https://www.facebook.com/share/14hLmmP1Gvx/?mibextid=wwXIfr" target="_blank" style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', textDecoration: 'none', transition: '0.3s' }}><i className="fa-brands fa-facebook-f"></i></a>
-                                        <a href="https://www.instagram.com/iur.aaaa" target="_blank" style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', textDecoration: 'none', transition: '0.3s' }}><i className="fa-brands fa-instagram"></i></a>
+                                        <a href="https://www.facebook.com" target="_blank" style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', textDecoration: 'none', transition: '0.3s' }}><i className="fa-brands fa-facebook-f"></i></a>
+                                        <a href="https://www.instagram.com" target="_blank" style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', textDecoration: 'none', transition: '0.3s' }}><i className="fa-brands fa-instagram"></i></a>
+                                        <a href="https://twitter.com" target="_blank" style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', textDecoration: 'none', transition: '0.3s' }}><i className="fa-brands fa-twitter"></i></a>
+                                        <a href="https://youtube.com" target="_blank" style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', textDecoration: 'none', transition: '0.3s' }}><i className="fa-brands fa-youtube"></i></a>
                                     </div>
                                 </div>
 

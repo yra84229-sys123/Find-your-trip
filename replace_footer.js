@@ -4,7 +4,7 @@ const path = require('path');
 const dir = 'd:/Project Praticium/FindYourTrip';
 
 const newFooter = `                    {/* Footer */}
-                    <footer className="footer-modern bg-gradient-dark text-light" style={{ background: '#050a15', paddingTop: '60px', paddingBottom: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                    <footer className="footer-modern bg-gradient-dark text-light" style={{ background: '#000000', paddingTop: '60px', paddingBottom: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                         <div className="container">
                             <div className="row" style={{ display: 'flex', flexWrap: 'wrap', gap: '30px', marginBottom: '40px' }}>
                                 {/* Brand Column */}
