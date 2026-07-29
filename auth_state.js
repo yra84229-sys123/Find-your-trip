@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, addDoc, getDocs, doc, setDoc, updateDoc, deleteDoc, query, where, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCYHlqxdxPS7wYWvFNvWh4qqbZcYmQ0h6s",
@@ -12,6 +13,40 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
+
+window.db = db;
+window.firestore = {
+    collection,
+    addDoc,
+    getDocs,
+    doc,
+    setDoc,
+    updateDoc,
+    deleteDoc,
+    query,
+    where,
+    orderBy,
+    onSnapshot,
+    serverTimestamp
+};
+
+window.showSmoothTransition = (message, callback) => {
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position: fixed; inset: 0; background: rgba(12, 13, 14, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; color: white; opacity: 0; transition: opacity 0.4s ease-out; font-family: "Poppins", sans-serif;';
+    overlay.innerHTML = `
+        <div style="width: 50px; height: 50px; border: 4px solid rgba(255,255,255,0.1); border-top-color: #0d6efd; border-radius: 50%; animation: auth-spin 1s linear infinite;"></div>
+        <div style="font-size: 1.15rem; font-weight: 600; letter-spacing: 0.5px; text-align: center; padding: 0 20px;">${message}</div>
+        <style>
+            @keyframes auth-spin { to { transform: rotate(360deg); } }
+        </style>
+    `;
+    document.body.appendChild(overlay);
+    setTimeout(() => overlay.style.opacity = '1', 50);
+    setTimeout(() => {
+        if (callback) callback();
+    }, 1200);
+};
 
 let currentUser = undefined;
 
@@ -53,6 +88,14 @@ function renderUserUI() {
         const emailText = document.createElement('div');
         emailText.style.cssText = 'padding: 10px 15px; font-size: 0.85rem; color: #666; border-bottom: 1px solid #eee; word-break: break-all;';
         emailText.textContent = email;
+
+        const role = (email === 'admin@gmail.com') ? 'admin' : 'user';
+        const dashboardBtn = document.createElement('a');
+        dashboardBtn.href = role === 'admin' ? 'admin_dashboard.html' : 'user_dashboard.html';
+        dashboardBtn.innerHTML = '<i class="fa-solid fa-gauge" style="margin-right: 8px;"></i> Dashboard';
+        dashboardBtn.style.cssText = 'padding: 12px 15px; text-decoration: none; cursor: pointer; font-size: 0.95rem; font-family: var(--font-body); color: #333; display: flex; align-items: center; width: 100%; transition: background 0.2s;';
+        dashboardBtn.onmouseover = () => dashboardBtn.style.backgroundColor = '#f8f9fa';
+        dashboardBtn.onmouseout = () => dashboardBtn.style.backgroundColor = 'transparent';
         
         const logoutBtn = document.createElement('button');
         logoutBtn.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i> Logout';
@@ -61,12 +104,15 @@ function renderUserUI() {
         logoutBtn.onmouseout = () => logoutBtn.style.backgroundColor = 'transparent';
         
         logoutBtn.onclick = () => {
-            signOut(auth).then(() => {
-                window.location.reload();
+            window.showSmoothTransition("Logging you out safely...", () => {
+                signOut(auth).then(() => {
+                    window.location.reload();
+                });
             });
         };
 
         dropdown.appendChild(emailText);
+        dropdown.appendChild(dashboardBtn);
         dropdown.appendChild(logoutBtn);
         profileDiv.appendChild(dropdown);
 
@@ -112,9 +158,36 @@ const observer = new MutationObserver(() => {
 });
 observer.observe(document.body, { childList: true, subtree: true });
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
     currentUser = user;
     window.firebaseUser = user;
+    
+    if (user) {
+        // Sync user details to Firestore automatically
+        try {
+            await setDoc(doc(db, "users", user.uid), {
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName || user.email.split('@')[0],
+                role: user.email === 'admin@gmail.com' ? 'admin' : 'user',
+                status: 'Active',
+                lastSeen: serverTimestamp()
+            }, { merge: true });
+        } catch (fsErr) {
+            console.error("Error auto-syncing user profile:", fsErr);
+        }
+
+        try {
+            const tokenResult = await user.getIdTokenResult();
+            window.userRole = tokenResult.claims.role || (user.email && (user.email === 'admin@gmail.com') ? 'admin' : 'user');
+        } catch (e) {
+            console.error("Error getting token claims:", e);
+            window.userRole = user.email && (user.email === 'admin@gmail.com') ? 'admin' : 'user';
+        }
+    } else {
+        window.userRole = null;
+    }
+    
     window.dispatchEvent(new CustomEvent('auth-state-changed', { detail: user }));
     renderUserUI();
 });

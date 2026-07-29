@@ -15,17 +15,27 @@
         .fade-in-section {
             animation: fadeIn 0.4s ease-out forwards;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         /* Custom Dropdown Styling */
-        .custom-select-trigger:focus, .custom-select-trigger.active {
+        .custom-select-trigger:focus,
+        .custom-select-trigger.active {
             border-color: var(--primary) !important;
             background-color: var(--bg-main) !important;
             box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
         }
+
         .dropdown-option {
             padding: 12px 24px;
             font-size: 0.95rem;
@@ -36,24 +46,30 @@
             align-items: center;
             justify-content: space-between;
         }
+
         .dropdown-option:hover {
             background-color: rgba(13, 110, 253, 0.08);
             padding-left: 28px;
             color: var(--primary);
         }
+
         .custom-select-options::-webkit-scrollbar {
             width: 6px;
         }
+
         .custom-select-options::-webkit-scrollbar-track {
             background: transparent;
         }
+
         .custom-select-options::-webkit-scrollbar-thumb {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 3px;
         }
+
         body.light-theme .custom-select-options::-webkit-scrollbar-thumb {
             background: rgba(0, 0, 0, 0.15);
         }
+
         .custom-select-options::-webkit-scrollbar-thumb:hover {
             background: var(--primary);
         }
@@ -67,7 +83,7 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script>
         if (window.Babel && Babel.availablePlugins && Babel.availablePlugins['transform-react-jsx']) {
-            Babel.registerPlugin('transform-react-jsx-classic', function(api, opts) {
+            Babel.registerPlugin('transform-react-jsx-classic', function (api, opts) {
                 return Babel.availablePlugins['transform-react-jsx'](api, { runtime: 'classic' });
             });
         }
@@ -85,170 +101,170 @@
         const { useState, useEffect } = React;
 
         const hotels = [
-  {
-    id: 1,
-    name: "Angkor Palace Resort",
-    location: "Siem Reap",
-    price: 120,
-    rating: 4.8,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9M-HCjg1Z43Vc4daXyQemJJBz9PRJvDPKAfND4dDjOA&s=10"
-  },
-  {
-    id: 2,
-    name: "Sokha Beach Resort",
-    location: "Sihanoukville",
-    price: 150,
-    rating: 4.6,
-    img: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/96085585.jpg?k=1542fee04fc563a20d8d3b1f4e267f2d4569a41f0d4ee4343219b4f98481ab26&o="
-  },
-  {
-    id: 3,
-    name: "Rosewood Phnom Penh",
-    location: "Phnom Penh",
-    price: 250,
-    rating: 4.9,
-    img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/1b/43/d2/entrance-driveway.jpg?w=900&h=500&s=1"
-  },
-  {
-    id: 4,
-    name: "Raffles Hotel Le Royal",
-    location: "Phnom Penh",
-    price: 200,
-    rating: 4.7,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZT0wzIaAtg6khGDjCqPP1P8MjYex6Oivh75COXmFR2CyaS5BxBYiL_tw&s=10"
-  },
-  {
-    id: 5,
-    name: "Park Hyatt Siem Reap",
-    location: "Siem Reap",
-    price: 220,
-    rating: 4.8,
-    img: "https://cdn.kiwicollection.com/media/property/PR003310/ll/003310-26-Freeform-Swimming-Pool-Park%20Hyatt%20Siem%20Reap%202024.jpg?cb=1733525399"
-  },
-  {
-    id: 6,
-    name: "Sofitel Angkor Phokeethra",
-    location: "Siem Reap",
-    price: 180,
-    rating: 4.7,
-    img: "https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/104/2020/09/18085904/Nothing-Like-Siem-Reap-1170x780.jpg"
-  },
-  {
-    id: 7,
-    name: "Thansur Sokha Hotel",
-    location: "Kampot Province",
-    price: 90,
-    rating: 4.2,
-    img: "https://www.sokhahotels.com.kh/kampot/img/slideshows/Thansur-Bokor-Highland-Resort-2.jpg"
-  },
-  {
-    id: 8,
-    name: "Kep Bay Hotel",
-    location: "Kep",
-    price: 80,
-    rating: 4.3,
-    img: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/583995528.jpg?k=decf793e512401d7755d3e544762c0fe70ffc9f7c36400b4b711a6767e2e6fd0&o="
-  },
-  {
-    id: 9,
-    name: "Courtyard by Marriott Phnom Penh",
-    location: "Phnom Penh",
-    price: 140,
-    rating: 4.5,
-    img: "https://cache.marriott.com/content/dam/marriott-digital/cy/apec/hws/p/pnhcy/en_us/photo/unlimited/assets/pnhcy-exterior-0331.jpg"
-  },
-  {
-    id: 10,
-    name: "Shinta Mani Angkor",
-    location: "Siem Reap",
-    price: 160,
-    rating: 4.8,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9HFyHRZnDwaDKI6L6SKPvakX0KYl5yKUBgZSrleGRRQ&s=10"
-  }
-];
+            {
+                id: 1,
+                name: "Angkor Palace Resort",
+                location: "Siem Reap",
+                price: 120,
+                rating: 4.8,
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9M-HCjg1Z43Vc4daXyQemJJBz9PRJvDPKAfND4dDjOA&s=10"
+            },
+            {
+                id: 2,
+                name: "Sokha Beach Resort",
+                location: "Sihanoukville",
+                price: 150,
+                rating: 4.6,
+                img: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/96085585.jpg?k=1542fee04fc563a20d8d3b1f4e267f2d4569a41f0d4ee4343219b4f98481ab26&o="
+            },
+            {
+                id: 3,
+                name: "Rosewood Phnom Penh",
+                location: "Phnom Penh",
+                price: 250,
+                rating: 4.9,
+                img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/1b/43/d2/entrance-driveway.jpg?w=900&h=500&s=1"
+            },
+            {
+                id: 4,
+                name: "Raffles Hotel Le Royal",
+                location: "Phnom Penh",
+                price: 200,
+                rating: 4.7,
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZT0wzIaAtg6khGDjCqPP1P8MjYex6Oivh75COXmFR2CyaS5BxBYiL_tw&s=10"
+            },
+            {
+                id: 5,
+                name: "Park Hyatt Siem Reap",
+                location: "Siem Reap",
+                price: 220,
+                rating: 4.8,
+                img: "https://cdn.kiwicollection.com/media/property/PR003310/ll/003310-26-Freeform-Swimming-Pool-Park%20Hyatt%20Siem%20Reap%202024.jpg?cb=1733525399"
+            },
+            {
+                id: 6,
+                name: "Sofitel Angkor Phokeethra",
+                location: "Siem Reap",
+                price: 180,
+                rating: 4.7,
+                img: "https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/104/2020/09/18085904/Nothing-Like-Siem-Reap-1170x780.jpg"
+            },
+            {
+                id: 7,
+                name: "Thansur Sokha Hotel",
+                location: "Kampot Province",
+                price: 90,
+                rating: 4.2,
+                img: "https://www.sokhahotels.com.kh/kampot/img/slideshows/Thansur-Bokor-Highland-Resort-2.jpg"
+            },
+            {
+                id: 8,
+                name: "Kep Bay Hotel",
+                location: "Kep",
+                price: 80,
+                rating: 4.3,
+                img: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/583995528.jpg?k=decf793e512401d7755d3e544762c0fe70ffc9f7c36400b4b711a6767e2e6fd0&o="
+            },
+            {
+                id: 9,
+                name: "Courtyard by Marriott Phnom Penh",
+                location: "Phnom Penh",
+                price: 140,
+                rating: 4.5,
+                img: "https://cache.marriott.com/content/dam/marriott-digital/cy/apec/hws/p/pnhcy/en_us/photo/unlimited/assets/pnhcy-exterior-0331.jpg"
+            },
+            {
+                id: 10,
+                name: "Shinta Mani Angkor",
+                location: "Siem Reap",
+                price: 160,
+                rating: 4.8,
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9HFyHRZnDwaDKI6L6SKPvakX0KYl5yKUBgZSrleGRRQ&s=10"
+            }
+        ];
 
-const restaurants = [
-  {
-    id: 1,
-    name: "Malis Restaurant",
-    location: "Phnom Penh",
-    type: "Khmer Fine Dining",
-    rating: 4.8,
-    img: "https://malis.thalias.com.kh/wp-content/uploads/2024/07/F3384V17-scaled.jpg"
-  },
-  {
-    id: 2,
-    name: "Topaz",
-    location: "Phnom Penh",
-    type: "French Cuisine",
-    rating: 4.7,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNzuJ-03f25zVydv0BPkdSO0WXvb_ry0wurx0vrGFtp4zcBGzcIdaZi1s&s=10"
-  },
-  {
-    id: 3,
-    name: "Cuisine Wat Damnak",
-    location: "Siem Reap",
-    type: "Modern Khmer",
-    rating: 4.9,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKL7UYAyvakfIRAOHSjJ6vNH7-RLyvUHTeTaMg5eRfnFfQpQidClJRU0o&s=10"
-  },
-  {
-    id: 4,
-    name: "Romdeng",
-    location: "Phnom Penh",
-    type: "Traditional Khmer",
-    rating: 4.6,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNO7GZJolWs8kSmNcDkjSWzAi-znqs9YNo9uNhVKnvVtdTygFcYm4uqxWr&s=10"
-  },
-  {
-    id: 5,
-    name: "Haven",
-    location: "Siem Reap",
-    type: "Asian Fusion",
-    rating: 4.8,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk7gmJIyVGGVQVOLcBW5Nn__QcLty2KxZfjKa5fMMLJQpoiBNAuH_hxk8b&s=10"
-  },
-  {
-    id: 6,
-    name: "The Sugar Palm",
-    location: "Siem Reap",
-    type: "Authentic Khmer",
-    rating: 4.7,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0Ne1ELbOjairL9uyLzp0ULmoZZe3ImZjWiL71ZjaUX6t4EEGkdEZ-JOQh&s=10"
-  },
-  {
-    id: 7,
-    name: "FCC Angkor",
-    location: "Siem Reap",
-    type: "International",
-    rating: 4.5,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZnclK_0U7qAz6e25ic2v71MxuF6inuBjrubrgWukHnQ&s=10"
-  },
-  {
-    id: 8,
-    name: "Khéma",
-    location: "Phnom Penh",
-    type: "French Bakery & Cafe",
-    rating: 4.6,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPZr-q5N-Iz8Zh8_bWRXpobpGDojJQaWa3K8z6jfY--JNcciZ-d8GdtPk&s=10"
-  },
-  {
-    id: 9,
-    name: "Sandan",
-    location: "Siem Reap",
-    type: "Seafood & Khmer",
-    rating: 4.5,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTcUqdV02DdqD4MiZWMtIPNY-omgMiS8YHeFcVEZ1lRp3wRcmnLc_K8Ug&s=10"
-  },
-  {
-    id: 10,
-    name: "Mahob Khmer",
-    location: "Siem Reap",
-    type: "Khmer Cuisine",
-    rating: 4.7,
-    img: "https://www.mahobkhmer.com/wp-content/uploads/2025/02/Grass-Terrace-at-Mahob-Khmer-Cuisine-in-Siem-Reap-Town-550x367.jpg"
-  }
-];
+        const restaurants = [
+            {
+                id: 1,
+                name: "Malis Restaurant",
+                location: "Phnom Penh",
+                type: "Khmer Fine Dining",
+                rating: 4.8,
+                img: "https://malis.thalias.com.kh/wp-content/uploads/2024/07/F3384V17-scaled.jpg"
+            },
+            {
+                id: 2,
+                name: "Topaz",
+                location: "Phnom Penh",
+                type: "French Cuisine",
+                rating: 4.7,
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNzuJ-03f25zVydv0BPkdSO0WXvb_ry0wurx0vrGFtp4zcBGzcIdaZi1s&s=10"
+            },
+            {
+                id: 3,
+                name: "Cuisine Wat Damnak",
+                location: "Siem Reap",
+                type: "Modern Khmer",
+                rating: 4.9,
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKL7UYAyvakfIRAOHSjJ6vNH7-RLyvUHTeTaMg5eRfnFfQpQidClJRU0o&s=10"
+            },
+            {
+                id: 4,
+                name: "Romdeng",
+                location: "Phnom Penh",
+                type: "Traditional Khmer",
+                rating: 4.6,
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNO7GZJolWs8kSmNcDkjSWzAi-znqs9YNo9uNhVKnvVtdTygFcYm4uqxWr&s=10"
+            },
+            {
+                id: 5,
+                name: "Haven",
+                location: "Siem Reap",
+                type: "Asian Fusion",
+                rating: 4.8,
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk7gmJIyVGGVQVOLcBW5Nn__QcLty2KxZfjKa5fMMLJQpoiBNAuH_hxk8b&s=10"
+            },
+            {
+                id: 6,
+                name: "The Sugar Palm",
+                location: "Siem Reap",
+                type: "Authentic Khmer",
+                rating: 4.7,
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0Ne1ELbOjairL9uyLzp0ULmoZZe3ImZjWiL71ZjaUX6t4EEGkdEZ-JOQh&s=10"
+            },
+            {
+                id: 7,
+                name: "FCC Angkor",
+                location: "Siem Reap",
+                type: "International",
+                rating: 4.5,
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZnclK_0U7qAz6e25ic2v71MxuF6inuBjrubrgWukHnQ&s=10"
+            },
+            {
+                id: 8,
+                name: "Khéma",
+                location: "Phnom Penh",
+                type: "French Bakery & Cafe",
+                rating: 4.6,
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPZr-q5N-Iz8Zh8_bWRXpobpGDojJQaWa3K8z6jfY--JNcciZ-d8GdtPk&s=10"
+            },
+            {
+                id: 9,
+                name: "Sandan",
+                location: "Siem Reap",
+                type: "Seafood & Khmer",
+                rating: 4.5,
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTcUqdV02DdqD4MiZWMtIPNY-omgMiS8YHeFcVEZ1lRp3wRcmnLc_K8Ug&s=10"
+            },
+            {
+                id: 10,
+                name: "Mahob Khmer",
+                location: "Siem Reap",
+                type: "Khmer Cuisine",
+                rating: 4.7,
+                img: "https://www.mahobkhmer.com/wp-content/uploads/2025/02/Grass-Terrace-at-Mahob-Khmer-Cuisine-in-Siem-Reap-Town-550x367.jpg"
+            }
+        ];
 
         function CustomDropdown({ hotels, restaurants, selectedValue, onChange }) {
             const [isOpen, setIsOpen] = useState(false);
@@ -271,7 +287,7 @@ const restaurants = [
 
             return (
                 <div className="custom-select-container" ref={dropdownRef} style={{ position: 'relative', width: '100%' }}>
-                    <div 
+                    <div
                         className={`custom-select-trigger ${isOpen ? 'active' : ''}`}
                         onClick={() => setIsOpen(!isOpen)}
                         style={{
@@ -291,8 +307,8 @@ const restaurants = [
                         }}
                     >
                         <span>{selectedValue || "Select a hotel or restaurant"}</span>
-                        <i className="fa-solid fa-chevron-down" style={{ 
-                            fontSize: '0.85rem', 
+                        <i className="fa-solid fa-chevron-down" style={{
+                            fontSize: '0.85rem',
                             transition: 'transform 0.3s ease',
                             transform: isOpen ? 'rotate(180deg)' : 'none',
                             color: 'var(--text-muted)'
@@ -300,7 +316,7 @@ const restaurants = [
                     </div>
 
                     {isOpen && (
-                        <div 
+                        <div
                             className="custom-select-options fade-in-section"
                             style={{
                                 position: 'absolute',
@@ -324,7 +340,7 @@ const restaurants = [
                                     <i className="fa-solid fa-bed" style={{ marginRight: '6px' }}></i> Accommodations
                                 </div>
                                 {hotels.map(hotel => (
-                                    <div 
+                                    <div
                                         key={`h-${hotel.id}`}
                                         className="dropdown-option"
                                         onClick={() => handleSelect(hotel.name)}
@@ -340,7 +356,7 @@ const restaurants = [
                                     <i className="fa-solid fa-utensils" style={{ marginRight: '6px' }}></i> Dining
                                 </div>
                                 {restaurants.map(rest => (
-                                    <div 
+                                    <div
                                         key={`r-${rest.id}`}
                                         className="dropdown-option"
                                         onClick={() => handleSelect(rest.name)}
@@ -360,7 +376,7 @@ const restaurants = [
             const [theme, setThemeState] = useState(localStorage.getItem('fyt-theme') || 'light');
             const [scrolled, setScrolled] = useState(false);
             const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-            
+
             const [viewOption, setViewOption] = useState('hotel'); // Toggle between hotel and restaurant list
 
             // Booking form states
@@ -388,7 +404,7 @@ const restaurants = [
                     if (user) {
                         setBookEmail(user.email || '');
                         setBookName(user.displayName || user.email.split('@')[0] || '');
-                        
+
                         // Check for pending booking
                         const pendingBooking = localStorage.getItem('pending-booking');
                         if (pendingBooking) {
@@ -421,10 +437,10 @@ const restaurants = [
             const handleBookClick = (item, type) => {
                 if (!window.firebaseUser) {
                     alert("Please log in or register to book a reservation. Redirecting you to login...");
-                    localStorage.setItem('pending-booking', JSON.stringify({ 
-                        item: item.name, 
-                        type: type, 
-                        redirectUrl: window.location.href 
+                    localStorage.setItem('pending-booking', JSON.stringify({
+                        item: item.name,
+                        type: type,
+                        redirectUrl: window.location.href
                     }));
                     window.location.href = "login.html";
                     return;
@@ -437,11 +453,36 @@ const restaurants = [
                 }, 100);
             };
 
-            const handleBookingSubmit = (e) => {
+            const handleBookingSubmit = async (e) => {
                 e.preventDefault();
-                alert(`Thank you, ${bookName}! Your booking request for ${bookItem} on ${bookDate} has been received. We will contact you at ${bookEmail} for confirmation.`);
-                setBookDate('');
-                setBookItem('');
+                
+                if (!window.firebaseUser) {
+                    alert("Please log in or register first to make a booking.");
+                    window.location.href = "login.html";
+                    return;
+                }
+
+                try {
+                    const db = window.db;
+                    const { collection, addDoc, serverTimestamp } = window.firestore;
+                    
+                    await addDoc(collection(db, "bookings"), {
+                        userId: window.firebaseUser.uid,
+                        userName: bookName,
+                        userEmail: bookEmail,
+                        service: bookItem,
+                        date: bookDate,
+                        status: "pending",
+                        timestamp: serverTimestamp()
+                    });
+
+                    alert(`Thank you, ${bookName}! Your booking request for ${bookItem} on ${bookDate} has been received. We will contact you at ${bookEmail} for confirmation.`);
+                    setBookDate('');
+                    setBookItem('');
+                } catch (error) {
+                    console.error("Error creating booking: ", error);
+                    alert("Failed to confirm booking. Please try again.");
+                }
             };
 
             return (
@@ -456,7 +497,7 @@ const restaurants = [
                                     <strong>+855 017 573 688</strong>
                                 </div>
                             </div>
-                            <div className="nav-logo" onClick={() => window.location.href='index.html'}>
+                            <div className="nav-logo" onClick={() => window.location.href = 'index.html'}>
                                 <i className="fa-solid fa-plane-departure"></i>
                                 <span>TOURLY</span>
                             </div>
@@ -488,12 +529,12 @@ const restaurants = [
 
                     {/* Mobile Menu */}
                     <div className={"mobile-menu " + (mobileMenuOpen ? "open" : "")}>
-                        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px'}}>
-                            <div className="nav-logo" style={{color: 'var(--text-main)'}}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+                            <div className="nav-logo" style={{ color: 'var(--text-main)' }}>
                                 <i className="fa-solid fa-plane-departure"></i>
                                 <span>TOURLY</span>
                             </div>
-                            <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(false)} style={{color: 'var(--text-main)', display: 'block'}}><i className="fa-solid fa-xmark"></i></button>
+                            <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-main)', display: 'block' }}><i className="fa-solid fa-xmark"></i></button>
                         </div>
                         <a href="index.html">HOME</a>
                         <a href="destinations.html">POPULAR DESTINATIONS</a>
@@ -508,20 +549,20 @@ const restaurants = [
                         <div className="hero-overlay"></div>
                         <div className="container hero-content">
                             <h1 className="hero-title" style={{ color: 'white', textTransform: 'uppercase', fontSize: '4.5rem', lineHeight: '1.2' }}>
-                              booking
+                                booking
                             </h1>
                             <p className="hero-subtitle">Reserve your perfect hotel stay and dining experience.</p>
-                            
+
                             <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '30px' }}>
-                                <button 
-                                    className={`btn-${viewOption === 'hotel' ? 'primary' : 'outline'}`} 
+                                <button
+                                    className={`btn-${viewOption === 'hotel' ? 'primary' : 'outline'}`}
                                     onClick={() => setViewOption('hotel')}
                                     style={{ padding: '15px 40px', borderRadius: '30px', fontSize: '1.1rem', background: viewOption === 'hotel' ? '' : 'rgba(255,255,255,0.1)', color: 'white', borderColor: viewOption === 'hotel' ? 'transparent' : 'rgba(255,255,255,0.3)' }}
                                 >
                                     <i className="fa-solid fa-bed" style={{ marginRight: '8px' }}></i> Hotels
                                 </button>
-                                <button 
-                                    className={`btn-${viewOption === 'restaurant' ? 'primary' : 'outline'}`} 
+                                <button
+                                    className={`btn-${viewOption === 'restaurant' ? 'primary' : 'outline'}`}
                                     onClick={() => setViewOption('restaurant')}
                                     style={{ padding: '15px 40px', borderRadius: '30px', fontSize: '1.1rem', background: viewOption === 'restaurant' ? '' : 'rgba(255,255,255,0.1)', color: 'white', borderColor: viewOption === 'restaurant' ? 'transparent' : 'rgba(255,255,255,0.3)' }}
                                 >
@@ -572,74 +613,74 @@ const restaurants = [
 
                     {/* Hotels Section */}
                     {viewOption === 'hotel' && (
-                    <section className="section-padding bg-light fade-in-section">
-                        <div className="container">
-                            <div className="section-header text-center">
-                                <span className="badge">Accommodations</span>
-                                <h2>Book Your Hotel</h2>
-                                <p>Choose from our top 10 handpicked premium hotels for the ultimate comfort.</p>
-                                <div className="title-underline"></div>
-                            </div>
-                            
-                            <div className="packages-grid">
-                                {hotels.map(hotel => (
-                                    <div key={hotel.id} className="package-card pkg-card-new">
-                                        <div className="pkg-img" style={{ backgroundImage: `url(${hotel.img})` }}>
-                                            <div className="pkg-tag"><i className="fa-solid fa-star" style={{ color: '#FFD700', marginRight: '5px' }}></i>{hotel.rating}</div>
-                                        </div>
-                                        <div className="pkg-content">
-                                            <h3>{hotel.name}</h3>
-                                            <div className="pkg-meta">
-                                                <span><i className="fa-solid fa-location-dot"></i> {hotel.location}</span>
+                        <section className="section-padding bg-light fade-in-section">
+                            <div className="container">
+                                <div className="section-header text-center">
+                                    <span className="badge">Accommodations</span>
+                                    <h2>Book Your Hotel</h2>
+                                    <p>Choose from our top 10 handpicked premium hotels for the ultimate comfort.</p>
+                                    <div className="title-underline"></div>
+                                </div>
+
+                                <div className="packages-grid">
+                                    {hotels.map(hotel => (
+                                        <div key={hotel.id} className="package-card pkg-card-new">
+                                            <div className="pkg-img" style={{ backgroundImage: `url(${hotel.img})` }}>
+                                                <div className="pkg-tag"><i className="fa-solid fa-star" style={{ color: '#FFD700', marginRight: '5px' }}></i>{hotel.rating}</div>
                                             </div>
-                                            <div className="pkg-footer">
-                                                <div className="pkg-price">
-                                                    <span className="from-text">From</span>
-                                                    <strong>${hotel.price}</strong>
-                                                    <span>/night</span>
+                                            <div className="pkg-content">
+                                                <h3>{hotel.name}</h3>
+                                                <div className="pkg-meta">
+                                                    <span><i className="fa-solid fa-location-dot"></i> {hotel.location}</span>
                                                 </div>
-                                                <button className="btn-primary" style={{ padding: '10px 20px' }} onClick={() => handleBookClick(hotel, 'hotel')}>Book</button>
+                                                <div className="pkg-footer">
+                                                    <div className="pkg-price">
+                                                        <span className="from-text">From</span>
+                                                        <strong>${hotel.price}</strong>
+                                                        <span>/night</span>
+                                                    </div>
+                                                    <button className="btn-primary" style={{ padding: '10px 20px' }} onClick={() => handleBookClick(hotel, 'hotel')}>Book</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
                     )}
 
                     {/* Restaurants Section */}
                     {viewOption === 'restaurant' && (
-                    <section className="section-padding fade-in-section">
-                        <div className="container">
-                            <div className="section-header text-center">
-                                <span className="badge">Dining</span>
-                                <h2>Book a Restaurant</h2>
-                                <p>Experience the finest culinary delights at our top 10 recommended restaurants.</p>
-                                <div className="title-underline"></div>
-                            </div>
-                            
-                            <div className="packages-grid">
-                                {restaurants.map(rest => (
-                                    <div key={rest.id} className="package-card pkg-card-new">
-                                        <div className="pkg-img" style={{ backgroundImage: `url(${rest.img})` }}>
-                                            <div className="pkg-tag"><i className="fa-solid fa-star" style={{ color: '#FFD700', marginRight: '5px' }}></i>{rest.rating}</div>
-                                        </div>
-                                        <div className="pkg-content">
-                                            <h3>{rest.name}</h3>
-                                            <div className="pkg-meta">
-                                                <span><i className="fa-solid fa-location-dot"></i> {rest.location}</span>
-                                                <span><i className="fa-solid fa-utensils"></i> {rest.type}</span>
+                        <section className="section-padding fade-in-section">
+                            <div className="container">
+                                <div className="section-header text-center">
+                                    <span className="badge">Dining</span>
+                                    <h2>Book a Restaurant</h2>
+                                    <p>Experience the finest culinary delights at our top 10 recommended restaurants.</p>
+                                    <div className="title-underline"></div>
+                                </div>
+
+                                <div className="packages-grid">
+                                    {restaurants.map(rest => (
+                                        <div key={rest.id} className="package-card pkg-card-new">
+                                            <div className="pkg-img" style={{ backgroundImage: `url(${rest.img})` }}>
+                                                <div className="pkg-tag"><i className="fa-solid fa-star" style={{ color: '#FFD700', marginRight: '5px' }}></i>{rest.rating}</div>
                                             </div>
-                                            <div className="pkg-footer">
-                                                <button className="btn-primary w-100" onClick={() => handleBookClick(rest, 'restaurant')}>Reserve Table</button>
+                                            <div className="pkg-content">
+                                                <h3>{rest.name}</h3>
+                                                <div className="pkg-meta">
+                                                    <span><i className="fa-solid fa-location-dot"></i> {rest.location}</span>
+                                                    <span><i className="fa-solid fa-utensils"></i> {rest.type}</span>
+                                                </div>
+                                                <div className="pkg-footer">
+                                                    <button className="btn-primary w-100" onClick={() => handleBookClick(rest, 'restaurant')}>Reserve Table</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
                     )}
 
                     {/* Booking Form Section */}
@@ -653,7 +694,7 @@ const restaurants = [
                                 <form onSubmit={handleBookingSubmit}>
                                     <div className="form-group">
                                         <label>Selected Item</label>
-                                        <CustomDropdown 
+                                        <CustomDropdown
                                             hotels={hotels}
                                             restaurants={restaurants}
                                             selectedValue={bookItem}
@@ -678,7 +719,7 @@ const restaurants = [
                         </div>
                     </section>
 
-                                        {/* Footer */}
+                    {/* Footer */}
                     <footer className="footer-modern bg-gradient-dark text-light" style={{ background: '#000000', paddingTop: '60px', paddingBottom: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                         <div className="container">
                             <div className="row" style={{ display: 'flex', flexWrap: 'wrap', gap: '30px', marginBottom: '40px' }}>
@@ -770,6 +811,7 @@ const restaurants = [
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
-<script type="module" src="auth_state.js"></script>
+    <script type="module" src="auth_state.js"></script>
 </body>
+
 </html>

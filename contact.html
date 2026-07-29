@@ -72,18 +72,18 @@
             </div>
 
             <div class="contact-form">
-                <form action="#" method="POST">
+                <form action="#" method="POST" id="contactForm">
                     <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
+                        <input type="text" id="contactName" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
+                        <input type="email" id="contactEmail" placeholder="Your Email" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Subject" required>
+                        <input type="text" id="contactSubject" placeholder="Subject" required>
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Your Message" required></textarea>
+                        <textarea id="contactMessage" placeholder="Your Message" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-orange btn-pill">Send Message</button>
                 </form>
@@ -106,6 +106,7 @@
         </svg>
     </a>
 
+    <script type="module" src="auth_state.js"></script>
     <script>
         const scrollTopBtn = document.getElementById("scrollTopBtn");
         window.addEventListener("scroll", function () {
@@ -116,14 +117,57 @@
             }
         });
 
-        const contactForm = document.querySelector('.contact-form form');
+        const contactForm = document.getElementById('contactForm');
         if (contactForm) {
-            contactForm.addEventListener('submit', function (e) {
+            contactForm.addEventListener('submit', async function (e) {
                 e.preventDefault();
-                alert("Thank you! Your message has been sent successfully.");
-                contactForm.reset();
+                
+                const name = document.getElementById('contactName').value;
+                const email = document.getElementById('contactEmail').value;
+                const subject = document.getElementById('contactSubject').value;
+                const message = document.getElementById('contactMessage').value;
+
+                if (!window.firebaseUser) {
+                    alert("Please log in or register first to send a message. Redirecting to login page...");
+                    window.location.href = "login.html";
+                    return;
+                }
+
+                try {
+                    const db = window.db;
+                    const { collection, addDoc, serverTimestamp } = window.firestore;
+                    
+                    await addDoc(collection(db, "messages"), {
+                        senderId: window.firebaseUser.uid,
+                        senderName: name,
+                        senderEmail: email,
+                        subject: subject,
+                        text: message,
+                        timestamp: serverTimestamp()
+                    });
+                    
+                    alert("Thank you! Your message has been sent successfully.");
+                    contactForm.reset();
+                } catch (error) {
+                    console.error("Error sending message to Firestore: ", error);
+                    alert("Failed to send message. Please check your connection or Firestore permissions.");
+                }
             });
         }
+
+        window.addEventListener('auth-state-changed', (e) => {
+            const user = e.detail || window.firebaseUser;
+            if (user) {
+                const nameInput = document.getElementById('contactName');
+                const emailInput = document.getElementById('contactEmail');
+                if (nameInput && !nameInput.value) {
+                    nameInput.value = user.displayName || user.email.split('@')[0];
+                }
+                if (emailInput && !emailInput.value) {
+                    emailInput.value = user.email;
+                }
+            }
+        });
     </script>
 </body>
 

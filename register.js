@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // TODO: Replace the object below with your actual Firebase configuration
 // You can find this in your Firebase Console -> Project Settings -> General -> Your apps
@@ -15,6 +16,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('register-form');
@@ -39,8 +41,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Register User with Firebase
             createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
+                .then(async (userCredential) => {
                     const user = userCredential.user;
+                    
+                    // Save user details to Firestore
+                    try {
+                        await setDoc(doc(db, "users", user.uid), {
+                            uid: user.uid,
+                            email: user.email,
+                            displayName: email.split('@')[0],
+                            role: email === 'admin@gmail.com' ? 'admin' : 'user',
+                            status: 'Active',
+                            createdAt: serverTimestamp()
+                        });
+                    } catch (fsErr) {
+                        console.error("Error writing user doc:", fsErr);
+                    }
+
                     alert("Registration successful! Welcome to Find Your Trip.");
 
                     // Redirect
@@ -78,8 +95,23 @@ document.addEventListener('DOMContentLoaded', () => {
             googleBtn.disabled = true;
 
             signInWithPopup(auth, provider)
-                .then((result) => {
+                .then(async (result) => {
                     const user = result.user;
+
+                    // Save user details to Firestore
+                    try {
+                        await setDoc(doc(db, "users", user.uid), {
+                            uid: user.uid,
+                            email: user.email,
+                            displayName: user.displayName || user.email.split('@')[0],
+                            role: user.email === 'admin@gmail.com' ? 'admin' : 'user',
+                            status: 'Active',
+                            lastLogin: serverTimestamp()
+                        }, { merge: true });
+                    } catch (fsErr) {
+                        console.error("Error writing user doc:", fsErr);
+                    }
+
                     alert("Google Sign-In successful! Welcome " + (user.displayName || ""));
                     const pendingBooking = localStorage.getItem('pending-booking');
                     if (pendingBooking) {

@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCYHlqxdxPS7wYWvFNvWh4qqbZcYmQ0h6s",
@@ -13,6 +14,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
@@ -32,21 +34,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Login User with Firebase
             signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
+                .then(async (userCredential) => {
                     const user = userCredential.user;
-                    alert("Login successful! Welcome back.");
-                    
-                    // Redirect
-                    const pendingBooking = localStorage.getItem('pending-booking');
-                    if (pendingBooking) {
-                        try {
-                            const data = JSON.parse(pendingBooking);
-                            window.location.href = data.redirectUrl || "booking.html";
-                        } catch (e) {
+
+                    // Save user details to Firestore
+                    try {
+                        await setDoc(doc(db, "users", user.uid), {
+                            uid: user.uid,
+                            email: user.email,
+                            displayName: user.displayName || email.split('@')[0],
+                            role: email === 'admin@gmail.com' ? 'admin' : 'user',
+                            status: 'Active',
+                            lastLogin: serverTimestamp()
+                        }, { merge: true });
+                    } catch (fsErr) {
+                        console.error("Error writing user doc:", fsErr);
+                    }
+
+                    // Redirect using smooth transition
+                    const redirect = () => {
+                        const pendingBooking = localStorage.getItem('pending-booking');
+                        if (pendingBooking) {
+                            try {
+                                const data = JSON.parse(pendingBooking);
+                                window.location.href = data.redirectUrl || "booking.html";
+                            } catch (e) {
+                                window.location.href = "index.html";
+                            }
+                        } else {
                             window.location.href = "index.html";
                         }
+                    };
+
+                    if (window.showSmoothTransition) {
+                        window.showSmoothTransition("Success! Logging you in...", redirect);
                     } else {
-                        window.location.href = "index.html";
+                        alert("Login successful! Welcome back.");
+                        redirect();
                     }
                 })
                 .catch((error) => {
@@ -71,19 +95,43 @@ document.addEventListener('DOMContentLoaded', () => {
             googleBtn.disabled = true;
 
             signInWithPopup(auth, provider)
-                .then((result) => {
+                .then(async (result) => {
                     const user = result.user;
-                    alert("Google Sign-In successful! Welcome " + (user.displayName || ""));
-                    const pendingBooking = localStorage.getItem('pending-booking');
-                    if (pendingBooking) {
-                        try {
-                            const data = JSON.parse(pendingBooking);
-                            window.location.href = data.redirectUrl || "booking.html";
-                        } catch (e) {
+
+                    // Save user details to Firestore
+                    try {
+                        await setDoc(doc(db, "users", user.uid), {
+                            uid: user.uid,
+                            email: user.email,
+                            displayName: user.displayName || user.email.split('@')[0],
+                            role: user.email === 'admin@gmail.com' ? 'admin' : 'user',
+                            status: 'Active',
+                            lastLogin: serverTimestamp()
+                        }, { merge: true });
+                    } catch (fsErr) {
+                        console.error("Error writing user doc:", fsErr);
+                    }
+
+                    // Redirect using smooth transition
+                    const redirect = () => {
+                        const pendingBooking = localStorage.getItem('pending-booking');
+                        if (pendingBooking) {
+                            try {
+                                const data = JSON.parse(pendingBooking);
+                                window.location.href = data.redirectUrl || "booking.html";
+                            } catch (e) {
+                                window.location.href = "index.html";
+                            }
+                        } else {
                             window.location.href = "index.html";
                         }
+                    };
+
+                    if (window.showSmoothTransition) {
+                        window.showSmoothTransition("Success! Logging you in...", redirect);
                     } else {
-                        window.location.href = "index.html";
+                        alert("Google Sign-In successful! Welcome " + (user.displayName || ""));
+                        redirect();
                     }
                 })
                 .catch((error) => {
