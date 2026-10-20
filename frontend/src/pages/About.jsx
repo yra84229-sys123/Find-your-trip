@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import HeroInfoBar from '../components/HeroInfoBar';
 import { playBeep } from '../utils/sound';
 import { useLanguage } from '../context/LanguageContext';
+import yuraImg from '../assets/Yura.jpg';
+import horngImg from '../assets/Horng.jpg';
+import bunleapImg from '../assets/Bunleap.JPG';
+import sompoImg from '../assets/sompo.png';
+import lorngImg from '../assets/Lorng.JPG';
 
 export default function About() {
     const { t } = useLanguage();
@@ -186,7 +191,7 @@ export default function About() {
                             {
                                 name: "Thon Youra",
                                 role: "Founder & Lead Developer",
-                                image: "/Yura.jpg",
+                                image: yuraImg,
                                 bio: "I've established Find Your Trip in 2024 and it was one of the best ideas I've had to help people explore Cambodia.",
                                 ringColor: "p-[3px] bg-gradient-to-tr from-indigo-500 via-purple-500 to-indigo-400 shadow-lg shadow-indigo-500/25",
                                 firstIconActive: true,
@@ -199,7 +204,7 @@ export default function About() {
                             {
                                 name: "Heng Menghorng",
                                 role: "Co-Founder & System Architect",
-                                image: "/Horng.jpg",
+                                image: horngImg,
                                 bio: "I lead system architecture and database design, crafting robust services to power seamless travel experiences.",
                                 ringColor: "p-[3px] bg-slate-200 hover:bg-gradient-to-tr hover:from-indigo-400 hover:to-purple-400 transition-all duration-300",
                                 firstIconActive: false,
@@ -212,7 +217,7 @@ export default function About() {
                             {
                                 name: "Phan Sokbunleap",
                                 role: "Full Stack Engineer",
-                                image: "/Bunleap.JPG",
+                                image: bunleapImg,
                                 bio: "Passionate about building fast, intuitive web features and integrating smart itineraries for travelers.",
                                 ringColor: "p-[3px] bg-slate-200 hover:bg-gradient-to-tr hover:from-indigo-400 hover:to-purple-400 transition-all duration-300",
                                 firstIconActive: false,
@@ -225,7 +230,7 @@ export default function About() {
                             {
                                 name: "Seang Sompo",
                                 role: "Lead UI/UX Designer",
-                                image: "/sompo.png",
+                                image: sompoImg,
                                 bio: "I design clean, modern, and engaging interfaces that inspire travelers to discover hidden gems.",
                                 ringColor: "p-[3px] bg-slate-200 hover:bg-gradient-to-tr hover:from-indigo-400 hover:to-purple-400 transition-all duration-300",
                                 firstIconActive: false,
@@ -238,7 +243,7 @@ export default function About() {
                             {
                                 name: "Koemlun Chenglorng",
                                 role: "Frontend Specialist & QA",
-                                image: "/Lorng.JPG",
+                                image: lorngImg,
                                 bio: "Ensuring every component is responsive, polished, and performs smoothly across all devices.",
                                 ringColor: "p-[3px] bg-slate-200 hover:bg-gradient-to-tr hover:from-indigo-400 hover:to-purple-400 transition-all duration-300",
                                 firstIconActive: false,

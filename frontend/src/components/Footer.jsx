@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logoImg from '../assets/logo.png';
 
 export default function Footer() {
     const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -81,8 +82,12 @@ export default function Footer() {
                     <div className="lg:col-span-4 space-y-5">
                         <Link to="/" onClick={scrollToTop} className="inline-flex items-center gap-3 group">
                             <img 
-                                src="/favicon.png" 
+                                src={logoImg} 
                                 alt="Find Your Trip Logo" 
+                                onError={(e) => {
+                                    e.currentTarget.onerror = null;
+                                    e.currentTarget.src = `${import.meta.env.BASE_URL}logo.jpg`;
+                                }}
                                 className="w-12 h-12 rounded-2xl object-cover p-1 bg-slate-50 dark:bg-white/10 border border-slate-200 dark:border-white/20 shadow-xs group-hover:scale-105 transition-transform"
                             />
                             <div>
