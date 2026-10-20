@@ -1,3 +1,4 @@
+import React, { useMemo, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
@@ -21,8 +22,8 @@ import UserDashboard from './pages/UserDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 
 function ScrollToTop() {
-    const { pathname } = React.useMemo(() => window.location, []);
-    React.useEffect(() => {
+    const { pathname } = useMemo(() => window.location, []);
+    useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
     return null;
