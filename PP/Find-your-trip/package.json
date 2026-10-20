@@ -1,0 +1,12 @@
+{
+  "name": "find-your-trip",
+  "version": "1.0.0",
+  "description": "Premium Cambodia Travel website migrated to Tailwind CSS",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./style.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./style.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.15"
+  }
+}

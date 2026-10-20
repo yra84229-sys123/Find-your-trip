@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Rules for Users Collection
+    match /users/{userId} {
+      allow create, update: if request.auth != null;
+      allow read: if request.auth.token.role == 'admin' 
+                  || request.auth.token.email == 'admin@gmail.com'
+                  || request.auth.uid == userId;
+    }
+    
+    // Rules for Messages Collection
+    match /messages/{messageId} {
+      allow create: if request.auth != null;
+      allow read: if request.auth.token.role == 'admin' 
+                  || request.auth.token.email == 'admin@gmail.com'
+                  || request.auth.uid == resource.data.senderId;
+      allow delete: if request.auth.token.role == 'admin'
+                    || request.auth.token.email == 'admin@gmail.com';
+    }
+
+    // Rules for Bookings Collection
+    match /bookings/{bookingId} {
+      allow create: if request.auth != null;
+      allow read, update: if request.auth.token.role == 'admin' 
+                          || request.auth.token.email == 'admin@gmail.com'
+                          || request.auth.uid == resource.data.userId;
+      allow delete: if request.auth.token.role == 'admin'
+                    || request.auth.token.email == 'admin@gmail.com';
+    }
+  }
+}

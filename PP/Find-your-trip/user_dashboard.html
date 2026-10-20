@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Trip - User Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark-main: #0c0d0e;
+            --bg-dark-card: #131517;
+            --bg-dark-hover: #1c1f22;
+            --text-dark-main: #f3f4f6;
+            --text-dark-muted: #8a8d90;
+            
+            --color-teal: #14b8a6;
+            --color-purple: #8b5cf6;
+            --color-blue: #3b82f6;
+            --color-orange: #f97316;
+            
+            --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--bg-dark-main);
+            color: var(--text-dark-main);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        #root {
+            width: 100%;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 260px;
+            background-color: var(--bg-dark-card);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 25px 15px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            overflow-y: auto;
+            border-right: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .sidebar-top {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--color-orange);
+            text-decoration: none;
+            padding-left: 10px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            list-style: none;
+        }
+
+        .sidebar-item-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 16px;
+            background: transparent;
+            border: none;
+            color: var(--text-dark-muted);
+            font-size: 0.88rem;
+            font-weight: 500;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-item-btn:hover {
+            background-color: var(--bg-dark-hover);
+            color: #ffffff;
+        }
+
+        .sidebar-item-btn.active {
+            background-color: var(--bg-dark-hover);
+            color: var(--color-orange);
+            font-weight: 600;
+        }
+
+        .sidebar-logout {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 16px;
+            background: transparent;
+            border: none;
+            color: #ef4444;
+            font-size: 0.88rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        .sidebar-logout:hover {
+            background-color: rgba(239, 68, 68, 0.08);
+        }
+
+        /* Main Content Panel */
+        .main-panel {
+            margin-left: 260px;
+            flex-grow: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-dark-main);
+        }
+
+        /* Top Header Navigation */
+        .top-header {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            background-color: var(--bg-dark-main);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-icon-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-dark-muted);
+            font-size: 1.15rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .user-profile-widget {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 5px 14px;
+            border-radius: 30px;
+            background-color: var(--bg-dark-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .user-widget-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-blue), var(--color-purple));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .user-widget-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dark-main);
+        }
+
+        /* Dashboard Wrapper Content */
+        .dashboard-content {
+            padding: 45px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .section-subtitle {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-dark-muted);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Stats Grid */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .analytic-card {
+            border-radius: 16px;
+            padding: 24px 20px;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-teal { background: linear-gradient(135deg, #1d979b, #11686b); }
+        .card-purple { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
+        .card-orange { background: linear-gradient(135deg, #ea580c, #c2410c); }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-icon-container {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-top: 10px;
+            line-height: 1;
+        }
+
+        .card-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+
+        .card-trend {
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            opacity: 0.9;
+        }
+
+        /* Detail Tables Card */
+        .detail-card {
+            background-color: var(--bg-dark-card);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .detail-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .detail-card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Premium Table Design */
+        .table-responsive {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        .premium-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .premium-table th {
+            padding: 14px 16px;
+            color: var(--text-dark-muted);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .premium-table td {
+            padding: 16px 16px;
+            color: var(--text-dark-main);
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            vertical-align: middle;
+        }
+
+        .premium-table tbody tr {
+            transition: background-color 0.3s;
+        }
+
+        .premium-table tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .pill-pending {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+
+        .pill-confirmed {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .pill-cancelled {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .action-icon-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-status-cancel {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .btn-status-cancel:hover {
+            background-color: #ef4444;
+            color: white;
+        }
+
+        /* Message Cards */
+        .support-message-card {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            color: var(--text-dark-muted);
+        }
+
+        .message-sender-name {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .message-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .message-body {
+            font-size: 0.85rem;
+            color: var(--text-dark-main);
+            line-height: 1.5;
+        }
+
+        /* Form Controls */
+        .form-group-custom {
+            margin-bottom: 20px;
+        }
+
+        .form-group-custom label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-dark-muted);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group-custom input,
+        .form-group-custom textarea,
+        .form-group-custom select {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 0.85rem;
+            color: #ffffff;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .form-group-custom input:focus,
+        .form-group-custom textarea:focus,
+        .form-group-custom select:focus {
+            border-color: var(--color-orange);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .submit-btn-orange {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--color-orange), #ea580c);
+            border: none;
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .submit-btn-orange:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(249, 115, 22, 0.25);
+        }
+
+        /* Profile Details */
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-field-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .profile-field-label {
+            font-weight: 600;
+            color: var(--text-dark-muted);
+        }
+
+        .profile-field-value {
+            color: #ffffff;
+        }
+
+        /* Favorites Grid */
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .favorite-card {
+            background-color: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .favorite-card:hover {
+            border-color: var(--color-orange);
+            transform: translateY(-3px);
+        }
+
+        .favorite-card-img {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .favorite-card-body {
+            padding: 15px;
+        }
+
+        .favorite-card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .notification-item {
+            background-color: rgba(255,255,255,0.01);
+            border-left: 4px solid var(--color-orange);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+    </style>
+
+    <!-- React 18 & ReactDOM 18 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Babel Standalone for In-Browser JSX Compilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script>
+        if (window.Babel && Babel.availablePlugins && Babel.availablePlugins['transform-react-jsx']) {
+            Babel.registerPlugin('transform-react-jsx-classic', function (api, opts) {
+                return Babel.availablePlugins['transform-react-jsx'](api, { runtime: 'classic' });
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-plugins="transform-react-jsx-classic">
+        const { useState, useEffect } = React;
+
+        function UserDashboard() {
+            const [user, setUser] = useState(null);
+            const [loading, setLoading] = useState(true);
+            const [activeTab, setActiveTab] = useState('bookings');
+
+            const [bookings, setBookings] = useState([]);
+            const [messages, setMessages] = useState([]);
+
+            const [profileName, setProfileName] = useState('');
+            const [profilePhone, setProfilePhone] = useState('+855 012 345 678');
+            const [profileBio, setProfileBio] = useState('Travel enthusiast and explorer.');
+            const [msgSubject, setMsgSubject] = useState('');
+            const [msgText, setMsgText] = useState('');
+            const [sendingMessage, setSendingMessage] = useState(false);
+
+            useEffect(() => {
+                const handleAuth = (e) => {
+                    const authUser = e.detail || window.firebaseUser;
+                    setUser(authUser);
+                    if (authUser) {
+                        setProfileName(authUser.displayName || authUser.email.split('@')[0]);
+                        setLoading(false);
+                    } else {
+                        setLoading(false);
+                    }
+                };
+
+                window.addEventListener('auth-state-changed', handleAuth);
+                if (window.firebaseUser !== undefined) {
+                    handleAuth({ detail: window.firebaseUser });
+                }
+
+                return () => window.removeEventListener('auth-state-changed', handleAuth);
+            }, []);
+
+            useEffect(() => {
+                if (!user) return;
+
+                const db = window.db;
+                const { collection, query, where, onSnapshot } = window.firestore;
+
+                let unsubscribeBookings = () => {};
+                let unsubscribeMessages = () => {};
+
+                const getUserFallbackBookings = (currUser) => [
+                    { id: "mock-u1", userName: currUser.displayName || currUser.email.split('@')[0], userEmail: currUser.email, service: "Angkor Wat Sunrise Guided Tour", date: "2026-08-15", status: "confirmed", timestamp: null },
+                    { id: "mock-u2", userName: currUser.displayName || currUser.email.split('@')[0], userEmail: currUser.email, service: "Song Saa Private Island Luxury Stay", date: "2026-09-02", status: "pending", timestamp: null }
+                ];
+
+                const getUserFallbackMessages = (currUser) => [
+                    { id: "mock-msg-u1", senderName: currUser.displayName || currUser.email.split('@')[0], senderEmail: currUser.email, subject: "Welcome to Tourly Support", text: "Hi there! This is a mock support thread for your tour inquiries. Feel free to use the 'Send Message' tab to submit tickets.", timestamp: new Date(Date.now() - 3600000) }
+                ];
+
+                const bookingsQuery = query(collection(db, "bookings"), where("userId", "==", user.uid));
+                unsubscribeBookings = onSnapshot(bookingsQuery, (snapshot) => {
+                    const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    items.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
+                    setBookings(items);
+                }, (error) => {
+                    console.warn(error);
+                    setBookings(getUserFallbackBookings(user));
+                });
+
+                const messagesQuery = query(collection(db, "messages"), where("senderId", "==", user.uid));
+                unsubscribeMessages = onSnapshot(messagesQuery, (snapshot) => {
+                    const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    items.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
+                    setMessages(items);
+                }, (error) => {
+                    console.warn(error);
+                    setMessages(getUserFallbackMessages(user));
+                });
+
+                return () => {
+                    unsubscribeBookings();
+                    unsubscribeMessages();
+                };
+            }, [user]);
+
+            const handleUpdateBookingStatus = async (bookingId, newStatus) => {
+                const db = window.db;
+                const { doc, updateDoc } = window.firestore;
+                try {
+                    await updateDoc(doc(db, "bookings", bookingId), {
+                        status: newStatus
+                    });
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+
+            const handleSendQuickMessage = async (e) => {
+                e.preventDefault();
+                if (!msgSubject || !msgText) return;
+                setSendingMessage(true);
+
+                const db = window.db;
+                const { collection, addDoc, serverTimestamp } = window.firestore;
+
+                try {
+                    await addDoc(collection(db, "messages"), {
+                        senderId: user.uid,
+                        senderName: user.displayName || user.email.split('@')[0],
+                        senderEmail: user.email,
+                        subject: msgSubject,
+                        text: msgText,
+                        timestamp: serverTimestamp()
+                    });
+
+                    alert("Message sent!");
+                    setMsgSubject('');
+                    setMsgText('');
+                    setActiveTab('messages');
+                } catch (error) {
+                    console.error(error);
+                } finally {
+                    setSendingMessage(false);
+                }
+            };
+
+            const handleSaveProfile = (e) => {
+                e.preventDefault();
+                alert("Profile details updated successfully!");
+                setActiveTab('profile');
+            };
+
+            const handleLogoutClick = () => {
+                const auth = window.firebaseAuth || (window.db ? getAuth() : null);
+                const logoutAction = () => {
+                    if (auth) {
+                        signOut(auth).then(() => {
+                            window.location.href = "login.html";
+                        });
+                    } else {
+                        window.location.href = "login.html";
+                    }
+                };
+
+                if (window.showSmoothTransition) {
+                    window.showSmoothTransition("Logging you out safely...", logoutAction);
+                } else {
+                    logoutAction();
+                }
+            };
+
+            const formatDate = (timestamp) => {
+                if (!timestamp) return "Just now";
+                const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+                return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            };
+
+            if (loading) {
+                return (
+                    <div style={{ width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg-dark-main)' }}>
+                        <div style={{ textAlign: 'center' }}>
+                            <i className="fa-solid fa-circle-notch fa-spin" style={{ fontSize: '3rem', color: 'var(--color-orange)', marginBottom: '20px' }}></i>
+                            <h2 style={{ color: '#ffffff' }}>Loading Workspace...</h2>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (!user) {
+                return (
+                    <div style={{ width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg-dark-main)', padding: '20px' }}>
+                        <div style={{ backgroundColor: 'var(--bg-dark-card)', maxWidth: '450px', width: '100%', padding: '40px', textAlign: 'center', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                            <i className="fa-solid fa-lock" style={{ fontSize: '4.5rem', color: 'var(--color-orange)', marginBottom: '25px' }}></i>
+                            <h2 style={{ color: '#ffffff', marginBottom: '15px' }}>Security Verification Required</h2>
+                            <p style={{ color: 'var(--text-dark-muted)', marginBottom: '30px', fontSize: '0.95rem' }}>Please authenticate to access the client portal.</p>
+                            <a href="login.html" className="submit-btn-orange" style={{ textDecoration: 'none', display: 'block' }}>Log In</a>
+                        </div>
+                    </div>
+                );
+            }
+
+            const totalBookings = bookings.length;
+            const pendingBookings = bookings.filter(b => b.status === 'pending').length;
+            const totalMsgs = messages.length;
+
+            return (
+                <div style={{ display: 'flex', width: '100%' }}>
+                    {/* Left Sidebar */}
+                    <div className="sidebar">
+                        <div className="sidebar-top">
+                            <a href="index.html" className="sidebar-brand">
+                                <i className="fa-solid fa-plane-departure"></i>
+                                <span>TOURLY</span>
+                            </a>
+                            
+                            <ul className="sidebar-menu">
+                                <li>
+                                    <button className={`sidebar-item-btn ${activeTab === 'profile' ? 'active' : ''}`} onClick={() => setActiveTab('profile')}>
+                                        <i className="fa-solid fa-user"></i> View Profile
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className={`sidebar-item-btn ${activeTab === 'edit-profile' ? 'active' : ''}`} onClick={() => setActiveTab('edit-profile')}>
+                                        <i className="fa-solid fa-user-pen"></i> Edit Profile
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className={`sidebar-item-btn ${activeTab === 'bookings' ? 'active' : ''}`} onClick={() => setActiveTab('bookings')}>
+                                        <i className="fa-solid fa-calendar-check"></i> My Bookings
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className={`sidebar-item-btn ${activeTab === 'booking-history' ? 'active' : ''}`} onClick={() => setActiveTab('booking-history')}>
+                                        <i className="fa-solid fa-clock-rotate-left"></i> Booking History
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className={`sidebar-item-btn ${activeTab === 'cancel-booking' ? 'active' : ''}`} onClick={() => setActiveTab('cancel-booking')}>
+                                        <i className="fa-solid fa-calendar-xmark"></i> Cancel Booking
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className={`sidebar-item-btn ${activeTab === 'favorites' ? 'active' : ''}`} onClick={() => setActiveTab('favorites')}>
+                                        <i className="fa-solid fa-heart"></i> Favorite Destinations
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className={`sidebar-item-btn ${activeTab === 'messages' ? 'active' : ''}`} onClick={() => setActiveTab('messages')}>
+                                        <i className="fa-solid fa-envelope"></i> My Messages
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className={`sidebar-item-btn ${activeTab === 'notifications' ? 'active' : ''}`} onClick={() => setActiveTab('notifications')}>
+                                        <i className="fa-solid fa-bell"></i> Notifications
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className={`sidebar-item-btn ${activeTab === 'send-message' ? 'active' : ''}`} onClick={() => setActiveTab('send-message')}>
+                                        <i className="fa-solid fa-paper-plane"></i> Send Message
+                                    </button>
+                                </li>
+                                <li>
+                                    <button 
+                                        className="sidebar-item-btn"
+                                        onClick={() => window.location.href = 'index.html'}
+                                        style={{ marginTop: '15px', borderTop: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '0', paddingTop: '15px' }}
+                                    >
+                                        <i className="fa-solid fa-arrow-left"></i> Back to Home
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <button onClick={handleLogoutClick} className="sidebar-logout">
+                            <i className="fa-solid fa-right-from-bracket"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+
+                    {/* Main Content Area */}
+                    <div className="main-panel">
+                        <div className="top-header">
+                            <div className="header-title">Client Workspace</div>
+                            <div className="header-actions">
+                                <button className="header-icon-btn"><i className="fa-regular fa-bell"></i></button>
+                                <button className="header-icon-btn"><i className="fa-regular fa-message"></i></button>
+                                <div className="user-profile-widget" onClick={() => setActiveTab('profile')}>
+                                    <div className="user-widget-avatar">
+                                        {(user.displayName || user.email || 'U').charAt(0).toUpperCase()}
+                                    </div>
+                                    <div className="user-widget-name">
+                                        {user.displayName || user.email.split('@')[0]}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Content Area */}
+                        <div className="dashboard-content">
+                            <div>
+                                <h4 className="section-subtitle">Overview</h4>
+                                <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'white' }}>My Travel Dashboard</h2>
+                            </div>
+
+                            {/* Stats Cards */}
+                            <div className="analytics-grid">
+                                <div className="analytic-card card-teal">
+                                    <div className="card-top">
+                                        <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>Travel Requests</span>
+                                        <div className="card-icon-container"><i className="fa-solid fa-globe"></i></div>
+                                    </div>
+                                    <div>
+                                        <div className="card-value">{totalBookings}</div>
+                                        <div className="card-label">Total Stays Requested</div>
+                                    </div>
+                                    <div className="card-trend"><i className="fa-solid fa-arrow-trend-up"></i> +12% this month</div>
+                                </div>
+                                <div className="analytic-card card-purple">
+                                    <div className="card-top">
+                                        <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>Awaiting Action</span>
+                                        <div className="card-icon-container"><i className="fa-solid fa-clock"></i></div>
+                                    </div>
+                                    <div>
+                                        <div className="card-value">{pendingBookings}</div>
+                                        <div className="card-label">Pending Confirmation</div>
+                                    </div>
+                                    <div className="card-trend"><i className="fa-solid fa-arrow-trend-down"></i> -3% from last week</div>
+                                </div>
+                                <div className="analytic-card card-orange">
+                                    <div className="card-top">
+                                        <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>Support Tickets</span>
+                                        <div className="card-icon-container"><i className="fa-solid fa-envelope"></i></div>
+                                    </div>
+                                    <div>
+                                        <div className="card-value">{totalMsgs}</div>
+                                        <div className="card-label">Support Messages Sent</div>
+                                    </div>
+                                    <div className="card-trend"><i className="fa-solid fa-arrow-trend-up"></i> +18% engagement</div>
+                                </div>
+                            </div>
+
+                            {/* VIEW PROFILE */}
+                            {activeTab === 'profile' && (
+                                <div className="detail-card" style={{ maxWidth: '600px' }}>
+                                    <div className="detail-card-header">
+                                        <div className="detail-card-title">
+                                            <i className="fa-solid fa-circle-user" style={{ color: 'var(--color-orange)' }}></i>
+                                            <span>User Profile Information</span>
+                                        </div>
+                                    </div>
+                                    <div className="profile-container">
+                                        <div className="profile-field-row">
+                                            <span className="profile-field-label">Username</span>
+                                            <span className="profile-field-value">{profileName}</span>
+                                        </div>
+                                        <div className="profile-field-row">
+                                            <span className="profile-field-label">Email Address</span>
+                                            <span className="profile-field-value">{user.email}</span>
+                                        </div>
+                                        <div className="profile-field-row">
+                                            <span className="profile-field-label">Phone Number</span>
+                                            <span className="profile-field-value">{profilePhone}</span>
+                                        </div>
+                                        <div className="profile-field-row">
+                                            <span className="profile-field-label">Bio</span>
+                                            <span className="profile-field-value">{profileBio}</span>
+                                        </div>
+                                        <div className="profile-field-row">
+                                            <span className="profile-field-label">Security Role</span>
+                                            <span className="profile-field-value" style={{ textTransform: 'uppercase', fontWeight: 'bold', color: 'var(--color-orange)' }}>Client</span>
+                                        </div>
+                                        <button className="submit-btn-orange" onClick={() => setActiveTab('edit-profile')} style={{ marginTop: '20px' }}>Edit Profile</button>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* EDIT PROFILE */}
+                            {activeTab === 'edit-profile' && (
+                                <div className="detail-card" style={{ maxWidth: '600px' }}>
+                                    <div className="detail-card-header">
+                                        <div className="detail-card-title">
+                                            <i className="fa-solid fa-user-pen" style={{ color: 'var(--color-orange)' }}></i>
+                                            <span>Modify Profile Info</span>
+                                        </div>
+                                    </div>
+                                    <form onSubmit={handleSaveProfile}>
+                                        <div className="form-group-custom">
+                                            <label>Full Display Name</label>
+                                            <input type="text" value={profileName} onChange={(e) => setProfileName(e.target.value)} required />
+                                        </div>
+                                        <div className="form-group-custom">
+                                            <label>Mobile Number</label>
+                                            <input type="text" value={profilePhone} onChange={(e) => setProfilePhone(e.target.value)} required />
+                                        </div>
+                                        <div className="form-group-custom">
+                                            <label>Bio Summary</label>
+                                            <textarea value={profileBio} onChange={(e) => setProfileBio(e.target.value)} rows="3"></textarea>
+                                        </div>
+                                        <button type="submit" className="submit-btn-orange">Save Changes</button>
+                                    </form>
+                                </div>
+                            )}
+
+                            {/* MY BOOKINGS */}
+                            {activeTab === 'bookings' && (
+                                <div className="detail-card">
+                                    <div className="detail-card-header">
+                                        <div className="detail-card-title">
+                                            <i className="fa-solid fa-calendar-check" style={{ color: 'var(--color-orange)' }}></i>
+                                            <span>My Travel Stays</span>
+                                        </div>
+                                    </div>
+                                    {bookings.length === 0 ? (
+                                        <p style={{ color: 'var(--text-dark-muted)', textAlign: 'center', padding: '30px' }}>No reservation records found.</p>
+                                    ) : (
+                                        <div className="table-responsive">
+                                            <table className="premium-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Reservation Package / Service</th>
+                                                        <th>Date Requested</th>
+                                                        <th>Status</th>
+                                                        <th>Cancel Request</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {bookings.map(b => (
+                                                        <tr key={b.id}>
+                                                            <td style={{ fontWeight: '700', color: '#ffffff' }}>{b.service}</td>
+                                                            <td>{b.date}</td>
+                                                            <td>
+                                                                <span className={`status-pill pill-${b.status}`}>
+                                                                    <i className={`fa-solid ${b.status === 'confirmed' ? 'fa-circle-check' : b.status === 'cancelled' ? 'fa-circle-xmark' : 'fa-circle-notch fa-spin'}`}></i>
+                                                                    {b.status}
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                {b.status === 'pending' ? (
+                                                                    <button title="Cancel Request" onClick={() => handleUpdateBookingStatus(b.id, 'cancelled')} className="action-icon-btn btn-status-cancel">
+                                                                        <i className="fa-solid fa-xmark"></i>
+                                                                    </button>
+                                                                ) : (
+                                                                    <span style={{ fontSize: '0.85rem', color: 'var(--text-dark-muted)' }}>Locked</span>
+                                                                )}
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            {/* BOOKING HISTORY */}
+                            {activeTab === 'booking-history' && (
+                                <div className="detail-card">
+                                    <div className="detail-card-header">
+                                        <div className="detail-card-title">
+                                            <i className="fa-solid fa-history" style={{ color: 'var(--color-orange)' }}></i>
+                                            <span>Completed Past Trips</span>
+                                        </div>
+                                    </div>
+                                    {bookings.filter(b => b.status === 'completed').length === 0 ? (
+                                        <p style={{ color: 'var(--text-dark-muted)', textAlign: 'center', padding: '30px' }}>No completed trips found. Your past journeys will appear here once finished!</p>
+                                    ) : (
+                                        <div className="table-responsive">
+                                            <table className="premium-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tour Package / Hotel</th>
+                                                        <th>Travel Date</th>
+                                                        <th>Paid Amount</th>
+                                                        <th>Feedback</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {bookings.filter(b => b.status === 'completed').map(b => (
+                                                        <tr key={b.id}>
+                                                            <td><strong>{b.service}</strong></td>
+                                                            <td>{b.date}</td>
+                                                            <td style={{ color: 'var(--color-teal)', fontWeight: 'bold' }}>$0.00</td>
+                                                            <td><span style={{ color: 'var(--text-dark-muted)', fontSize: '0.8rem' }}>No feedback</span></td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            {/* CANCEL BOOKING */}
+                            {activeTab === 'cancel-booking' && (
+                                <div className="detail-card">
+                                    <div className="detail-card-header">
+                                        <div className="detail-card-title">
+                                            <i className="fa-solid fa-calendar-xmark" style={{ color: '#ef4444' }}></i>
+                                            <span>Cancel Active Stays</span>
+                                        </div>
+                                    </div>
+                                    <p style={{ color: 'var(--text-dark-muted)', marginBottom: '20px', fontSize: '0.9rem' }}>Only booking requests with a <strong>pending</strong> status can be self-cancelled. Please contact support for confirmed stays.</p>
+                                    <div className="table-responsive">
+                                        <table className="premium-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Booking Package</th>
+                                                    <th>Reservation Date</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {bookings.filter(b => b.status === 'pending').map(b => (
+                                                    <tr key={b.id}>
+                                                        <td><strong>{b.service}</strong></td>
+                                                        <td>{b.date}</td>
+                                                        <td><span className="status-pill pill-pending">Pending</span></td>
+                                                        <td>
+                                                            <button className="action-icon-btn btn-status-cancel" onClick={() => handleUpdateBookingStatus(b.id, 'cancelled')}>
+                                                                <i className="fa-solid fa-xmark"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                                {bookings.filter(b => b.status === 'pending').length === 0 && (
+                                                    <tr>
+                                                        <td colSpan="4" style={{ textAlign: 'center', color: 'var(--text-dark-muted)' }}>No active pending reservations to cancel.</td>
+                                                    </tr>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* FAVORITE DESTINATIONS */}
+                            {activeTab === 'favorites' && (
+                                <div className="profile-container">
+                                    <h2 style={{ color: 'white', marginBottom: '15px' }}>My Favorite Destinations</h2>
+                                    <p style={{ color: 'var(--text-dark-muted)', textAlign: 'center', padding: '40px', backgroundColor: 'rgba(255,255,255,0.01)', borderRadius: '12px', border: '1px dashed rgba(255,255,255,0.05)' }}>
+                                        No favorite destinations added yet. Explore our top tours to add favorites!
+                                    </p>
+                                </div>
+                            )}
+
+                            {/* MY MESSAGES */}
+                            {activeTab === 'messages' && (
+                                <div className="detail-card">
+                                    <div className="detail-card-header">
+                                        <div className="detail-card-title">
+                                            <i className="fa-solid fa-comments" style={{ color: 'var(--color-orange)' }}></i>
+                                            <span>My Support Inquiries</span>
+                                        </div>
+                                    </div>
+                                    {messages.length === 0 ? (
+                                        <p style={{ color: 'var(--text-dark-muted)', textAlign: 'center', padding: '30px' }}>No messages found.</p>
+                                    ) : (
+                                        <div>
+                                            {messages.map(m => (
+                                                <div key={m.id} className="support-message-card">
+                                                    <div className="message-header">
+                                                        <span className="message-sender-name">System Support Response</span>
+                                                        <span>{formatDate(m.timestamp)}</span>
+                                                    </div>
+                                                    <div className="message-title">{m.subject}</div>
+                                                    <div className="message-body">{m.text}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            {/* NOTIFICATIONS */}
+                            {activeTab === 'notifications' && (
+                                <div className="detail-card">
+                                    <div className="detail-card-header">
+                                        <div className="detail-card-title">
+                                            <i className="fa-solid fa-bell" style={{ color: 'var(--color-orange)' }}></i>
+                                            <span>System Notifications</span>
+                                        </div>
+                                    </div>
+                                    <div className="notification-item">
+                                        <strong>Booking Confirmed:</strong> Your stay at Angkor Palace Resort for 2026-08-15 has been officially confirmed by our operators.
+                                        <div style={{ fontSize: '0.75rem', color: 'var(--text-dark-muted)', marginTop: '5px' }}>1 hour ago</div>
+                                    </div>
+                                    <div className="notification-item" style={{ borderLeftColor: 'var(--color-purple)' }}>
+                                        <strong>Account Updated:</strong> Welcome to the new premium Tourly dashboard workspace!
+                                        <div style={{ fontSize: '0.75rem', color: 'var(--text-dark-muted)', marginTop: '5px' }}>1 day ago</div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* SEND MESSAGE */}
+                            {activeTab === 'send-message' && (
+                                <div className="detail-card" style={{ maxWidth: '700px' }}>
+                                    <div className="detail-card-header">
+                                        <div className="detail-card-title">
+                                            <i className="fa-solid fa-paper-plane" style={{ color: 'var(--color-orange)' }}></i>
+                                            <span>Transmit Support Message</span>
+                                        </div>
+                                    </div>
+                                    <form onSubmit={handleSendQuickMessage}>
+                                        <div className="form-group-custom">
+                                            <label>Message Subject</label>
+                                            <input 
+                                                type="text" 
+                                                value={msgSubject} 
+                                                onChange={(e) => setMsgSubject(e.target.value)} 
+                                                placeholder="e.g. Questions about luxury resorts in Siem Reap" 
+                                                required 
+                                            />
+                                        </div>
+                                        <div className="form-group-custom">
+                                            <label>Message Content</label>
+                                            <textarea 
+                                                value={msgText} 
+                                                onChange={(e) => setMsgText(e.target.value)} 
+                                                placeholder="Write details of your travel request..." 
+                                                rows="5"
+                                                required 
+                                            ></textarea>
+                                        </div>
+                                        <button 
+                                            type="submit" 
+                                            className="submit-btn-orange"
+                                            disabled={sendingMessage}
+                                        >
+                                            {sendingMessage ? 'Processing...' : 'Send Message'}
+                                        </button>
+                                    </form>
+                                </div>
+                            )}
+
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<UserDashboard />);
+    </script>
+
+    <script type="module" src="auth_state.js"></script>
+</body>
+
+</html>

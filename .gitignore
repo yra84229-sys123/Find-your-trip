@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+**/node_modules/
+backend/vendor/
+frontend/node_modules/
+
+# Production builds
+frontend/dist/
+dist/
+
+# Environment files
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+
+# Databases & Cache
+backend/database/database.sqlite
+*.log
+.DS_Store
+Thumbs.db
