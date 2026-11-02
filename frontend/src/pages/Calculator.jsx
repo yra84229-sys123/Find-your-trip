@@ -49,30 +49,35 @@ export default function Calculator() {
 
     // Distance Calculation
     const distanceKm = useMemo(() => {
-        if (originId === destId) return 25;
-        // Default specific distance for popular Phnom Penh -> Siem Reap
-        if ((originId === 'phnom-penh' && destId === 'siem-reap') || (originId === 'siem-reap' && destId === 'phnom-penh')) {
-            return 315;
-        }
+        if (originId === destId) return 0;
         return getDistance(originId, destId);
     }, [originId, destId]);
 
     // Estimated Times across all 4 modes
     const modeTimes = useMemo(() => {
-        // Car: ~57 km/h avg
-        const carHours = distanceKm / 57;
-        const cH = Math.floor(carHours);
-        const cM = Math.round((carHours - cH) * 60);
+        if (distanceKm === 0) {
+            return {
+                car: '0 min',
+                bus: '0 min',
+                motorcycle: '0 min',
+                flight: 'Same location'
+            };
+        }
 
-        // Bus: ~48 km/h avg
-        const busHours = distanceKm / 48;
-        const bH = Math.floor(busHours);
-        const bM = Math.round((busHours - bH) * 60);
+        // Car: ~65 km/h avg
+        const totalCarMinutes = Math.round((distanceKm / 65) * 60);
+        const cH = Math.floor(totalCarMinutes / 60);
+        const cM = totalCarMinutes % 60;
 
-        // Motorcycle: ~42 km/h avg
-        const motoHours = distanceKm / 42;
-        const mH = Math.floor(motoHours);
-        const mM = Math.round((motoHours - mH) * 60);
+        // Bus: ~50 km/h avg
+        const totalBusMinutes = Math.round((distanceKm / 50) * 60);
+        const bH = Math.floor(totalBusMinutes / 60);
+        const bM = totalBusMinutes % 60;
+
+        // Motorcycle: ~45 km/h avg
+        const totalMotoMinutes = Math.round((distanceKm / 45) * 60);
+        const mH = Math.floor(totalMotoMinutes / 60);
+        const mM = totalMotoMinutes % 60;
 
         // Flight: if airports available (Phnom Penh, Siem Reap, Sihanoukville)
         const hasFlight = (originId === 'phnom-penh' && (destId === 'siem-reap' || destId === 'preah-sihanouk')) ||
@@ -82,9 +87,9 @@ export default function Calculator() {
         const flightText = hasFlight ? '45 min' : 'No direct flight (1 h 15 min connecting)';
 
         return {
-            car: `${cH} h ${cM} min`,
-            bus: `${bH} h ${bM} min`,
-            motorcycle: `${mH} h ${mM} min`,
+            car: cH > 0 ? `${cH} h ${cM} min` : `${cM} min`,
+            bus: bH > 0 ? `${bH} h ${bM} min` : `${bM} min`,
+            motorcycle: mH > 0 ? `${mH} h ${mM} min` : `${mM} min`,
             flight: flightText
         };
     }, [distanceKm, originId, destId]);

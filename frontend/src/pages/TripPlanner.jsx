@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import HeroInfoBar from '../components/HeroInfoBar';
 import { playBeep } from '../utils/sound';
 import { useTheme } from '../context/ThemeContext';
+import { provincesData } from '../data/provincesData';
 
 export default function TripPlanner() {
     const navigate = useNavigate();
@@ -31,17 +32,17 @@ export default function TripPlanner() {
     const [isGenerating, setIsGenerating] = useState(false);
     const [showBreakdownModal, setShowBreakdownModal] = useState(false);
 
-    // Destination thumbnails & details
-    const destData = {
+    // Base destination thumbnails & handcrafted details
+    const customDestData = {
         'Siem Reap': {
             image: 'https://asiatravellinks.com/images/attractions/ta-prohm.webp',
             rating: '4.8',
             reviews: '324',
             dayImages: [
                 'https://asiatravellinks.com/images/attractions/ta-prohm.webp',
-                'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80',
-                'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=600&q=80',
-                'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80'
+                'https://www.siemreap.net/wp-content/uploads/2019/02/Equinox-at-Angkor-Wat.jpg',
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfDseZecOZorQu2wlyHAD9qLfoQt2nGsH1IFqn2yuUfb-av2QN5ThEecgX&s=10',
+                'https://siemreaphappycycling.tours/wp-content/uploads/2023/05/Siem-Reap-Half-Day-Countryside-Cycling-and-Sunset.jpg'
             ],
             itinerary: [
                 {
@@ -67,10 +68,10 @@ export default function TripPlanner() {
             rating: '4.6',
             reviews: '210',
             dayImages: [
-                'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/1b/43/d2/entrance-driveway.jpg?w=900&h=500&s=1',
-                'https://images.unsplash.com/photo-1583207804784-198ba4353030?auto=format&fit=crop&w=600&q=80',
-                'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=600&q=80',
-                'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80'
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYzIuNDmvpncrusyATjjJ3848owLi4Dx-iDo7R4yrs6EpbdCY-DdwVk4k&s=10',
+                'https://www.indochinavoyages.com/wp-content/uploads/2019/06/silver_pagoda_1.jpg',
+                'https://justiceinconflict.org/wp-content/uploads/2019/01/cambodia-tuol-sleng-genoc-001.jpg?w=584',
+                'https://files.intocambodia.org/content/small/adfb128d97ca55fe045fd0dc2af2c285.jpg'
             ],
             itinerary: [
                 {
@@ -92,14 +93,14 @@ export default function TripPlanner() {
             ]
         },
         'Kampot': {
-            image: 'https://media.tacdn.com/media/attractions-splice-spp-674x446/12/4c/ca/2c.jpg',
+            image: 'https://www.siemreap.net/wp-content/uploads/2016/08/kampot.jpg',
             rating: '4.5',
             reviews: '156',
             dayImages: [
-                'https://media.tacdn.com/media/attractions-splice-spp-674x446/12/4c/ca/2c.jpg',
-                'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
-                'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=600&q=80',
-                'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80'
+                'https://www.cambotours.com/userfiles/thumbs/private-sunset-cruise-in-kep-city.jpg',
+                'https://www.indochinavoyages.com/wp-content/uploads/2014/09/Bokor-Palace-Hotel-Casino-in-the-French-colonial-period.jpg',
+                'https://laplantation.com/wp-content/uploads/2022/11/3-visite-vuedrone.jpg',
+                'https://www.mrlinhadventure.com/UserFiles/image/New%20Country%20Guide/Kayaking_Prek-Kampot.jpg'
             ],
             itinerary: [
                 {
@@ -120,15 +121,15 @@ export default function TripPlanner() {
                 }
             ]
         },
-        'Sihanoukville': {
-            image: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/96085585.jpg?k=1542fee04fc563a20d8d3b1f4e267f2d4569a41f0d4ee4343219b4f98481ab26&o=',
+        'Preah Sihanouk': {
+            image: 'https://www.hecktictravels.com/wp-content/uploads/2013/12/Sihanoukville.jpg',
             rating: '4.4',
             reviews: '120',
             dayImages: [
-                'https://cf.bstatic.com/xdata/images/hotel/max1024x768/96085585.jpg?k=1542fee04fc563a20d8d3b1f4e267f2d4569a41f0d4ee4343219b4f98481ab26&o=',
-                'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
-                'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=600&q=80',
-                'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80'
+                'https://pix10.agoda.net/hotelImages/335/335279/335279_14010515460018005883.jpg?ca=2&ce=1&s=414x232',
+                'https://cambotours.com/userfiles/thumbs/snorkeling-tour-at-koh-rong-samloem-island.jpg',
+                'https://res.klook.com/image/upload/w_750,h_469,c_fill,q_85/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/k4ejw88la9my8juydt2a.jpg',
+                'https://pix10.agoda.net/hotelImages/28934651/-1/0e69823b1fab511b7c61d892171695bf.jpg?ce=0&s=414x232'
             ],
             itinerary: [
                 {
@@ -150,14 +151,14 @@ export default function TripPlanner() {
             ]
         },
         'Battambang': {
-            image: 'https://xa6zemg4r8.cloudimg.io/_images_/Battambang%20Temples-yhUQyMTti0E05d2Jy2zO.jpg',
+            image: 'https://cdn.getyourguide.com/image/format=auto%2Cfit=crop%2Cgravity=auto%2Cquality=60%2Cwidth=400%2Cheight=265%2Cdpr=2/tour_img/0b5764cfb111dd034fab8a1e214334dd8f0388344f0918fca195ef2f320c6e47.jpg',
             rating: '4.7',
             reviews: '178',
             dayImages: [
-                'https://xa6zemg4r8.cloudimg.io/_images_/Battambang%20Temples-yhUQyMTti0E05d2Jy2zO.jpg',
-                'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=600&q=80',
-                'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80',
-                'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80'
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdWKKqo0uIweMWAMfwH6rIw86pmQLP_KrLx5DJjF1dki4R6u5j3fD4Zog&s=10',
+                'https://ak-d.tripcdn.com/images/1mi2l224x99i1413j322B_Q90.jpg?proc=source/trip',
+                'https://www.asiakingtravel.com/cuploads/files/Ek-Phnom-Temple-1.jpg',
+                'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/e3/2d/c3/caption.jpg?w=1100&h=1100&s=1'
             ],
             itinerary: [
                 {
@@ -177,45 +178,18 @@ export default function TripPlanner() {
                     bullets: ['Morning French architectural walking tour', 'Hotel check-out', 'Scenic transfer back to Siem Reap / Phnom Penh']
                 }
             ]
-        },
-        'Koh Rong': {
-            image: 'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/669831377.jpg?k=05c5854a62fe60082176bfe779f50ab67fe1cfa854e61268380014d294503ec1&o=',
-            rating: '4.9',
-            reviews: '280',
-            dayImages: [
-                'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/669831377.jpg?k=05c5854a62fe60082176bfe779f50ab67fe1cfa854e61268380014d294503ec1&o=',
-                'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
-                'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=600&q=80',
-                'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80'
-            ],
-            itinerary: [
-                {
-                    title: 'Tropical Island Arrival',
-                    bullets: ['Speed ferry transfer to Koh Rong Pier', 'Luxury beachfront villa check-in', 'Sunset dip at Long Set Beach']
-                },
-                {
-                    title: 'Bioluminescent Plankton & Coral',
-                    bullets: ['Morning coral reef scuba/snorkeling', 'White sand walk along Sok San Beach', 'Night swim with glowing bioluminescent plankton']
-                },
-                {
-                    title: 'Rainforest Trekking & Waterfalls',
-                    bullets: ['Lush jungle trail to Koh Rong Waterfalls', 'Fresh grilled seafood on the beach', 'Beach bonfire & acoustic evening music']
-                },
-                {
-                    title: 'Island Farewell',
-                    bullets: ['Morning yoga & tropical fresh breakfast', 'Speedboat check-out to mainland', 'Airport transfer connection']
-                }
-            ]
+        
+    
         },
         'Kep': {
-            image: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/583995528.jpg?k=decf793e512401d7755d3e544762c0fe70ffc9f7c36400b4b711a6767e2e6fd0&o=',
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShOdUnhlccPzuVgDLa3CdEznXw0AL4MILv_K4pHsLZW83o7Fb1WiSMshEv&s=10',
             rating: '4.5',
             reviews: '135',
             dayImages: [
-                'https://cf.bstatic.com/xdata/images/hotel/max1024x768/583995528.jpg?k=decf793e512401d7755d3e544762c0fe70ffc9f7c36400b4b711a6767e2e6fd0&o=',
-                'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=600&q=80',
-                'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
-                'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80'
+                'https://www.youngpioneertours.com/wp-content/uploads/2024/03/417445540_10161445626409078_6685084633569602965_n.jpg',
+                'https://pub-cdc692527515432c93070f8e3ad6c005.r2.dev/pack-lightly.com/2025/12/Koh-Rong-Cambodia-1024x683.jpg',
+                'https://www.cambotours.com/uploads/kep_national_park.jpg',
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqwRqxdgmzlcyhRXGj4RcBfBGfEjLUFND6vQsly8zghPEEyjpfn__3-8Ds&s=10'
             ],
             itinerary: [
                 {
@@ -237,6 +211,72 @@ export default function TripPlanner() {
             ]
         }
     };
+
+    // Build complete destination dictionary covering exactly the 25 official provinces
+    const destData = useMemo(() => {
+        const fullDict = {};
+
+        // Dynamically add all 25 provinces from provincesData in strict order
+        if (Array.isArray(provincesData)) {
+            provincesData.forEach(p => {
+                // Use handcrafted custom data if available (e.g. Siem Reap, Phnom Penh, Kampot, Preah Sihanouk, Battambang, Kep)
+                const custom = customDestData[p.name] || (p.name === 'Preah Sihanouk' ? customDestData['Sihanoukville'] : null);
+                if (custom) {
+                    fullDict[p.name] = custom;
+                    return;
+                }
+
+                const places = p.places || [];
+                const dayImages = places.slice(0, 4).map(pl => pl.img).filter(Boolean);
+                if (dayImages.length === 0 && p.coverImg) dayImages.push(p.coverImg);
+
+                fullDict[p.name] = {
+                    image: p.coverImg || (places[0] && places[0].img) || 'https://asiatravellinks.com/images/attractions/ta-prohm.webp',
+                    rating: '4.7',
+                    reviews: '142',
+                    dayImages: dayImages.length >= 4 
+                        ? dayImages 
+                        : [p.coverImg, p.detailImg || p.coverImg, ...(places.map(pl => pl.img))].slice(0, 4),
+                    itinerary: [
+                        {
+                            title: `Arrive in ${p.name} & City Exploration`,
+                            bullets: [
+                                `Scenic transfer to ${p.name} province and hotel check-in`,
+                                places[0] ? `Excursion to ${places[0].name}: ${places[0].desc}` : `Orientation tour of ${p.name}`,
+                                'Evening leisure and traditional local cuisine dinner'
+                            ]
+                        },
+                        {
+                            title: places[1] ? `${places[1].name} Excursion` : `Natural & Cultural Highlights`,
+                            bullets: [
+                                places[1] ? `Guided excursion to ${places[1].name}` : `Scenic countryside nature tour`,
+                                places[2] ? `Discover ${places[2].name}: ${places[2].desc}` : `Local community and market walk`,
+                                'Sunset photography and scenic viewpoints'
+                            ]
+                        },
+                        {
+                            title: places[3] ? `${places[3].name} & Heritage` : `Heritage & Nature Discovery`,
+                            bullets: [
+                                places[3] ? `Morning expedition to ${places[3].name}` : `Morning eco-trail and cultural tour`,
+                                places[4] ? `Explore ${places[4].name}: ${places[4].desc}` : `Visit local artisan village`,
+                                'Traditional Khmer dinner and relaxation'
+                            ]
+                        },
+                        {
+                            title: 'Local Markets & Departure',
+                            bullets: [
+                                `Morning visit to ${p.name} local markets and souvenir shopping`,
+                                'Hotel check-out and departure transfer',
+                                'Safe onward journey across Cambodia'
+                            ]
+                        }
+                    ]
+                };
+            });
+        }
+
+        return fullDict;
+    }, []);
 
     // Current destination details
     const activeDestData = destData[destination] || destData['Siem Reap'];
@@ -922,7 +962,7 @@ export default function TripPlanner() {
                                         { name: 'Siem Reap', img: destData['Siem Reap'].image, rating: '4.8', reviews: '324' },
                                         { name: 'Phnom Penh', img: destData['Phnom Penh'].image, rating: '4.6', reviews: '210' },
                                         { name: 'Kampot', img: destData['Kampot'].image, rating: '4.5', reviews: '156' },
-                                        { name: 'Sihanoukville', img: destData['Sihanoukville'].image, rating: '4.4', reviews: '120' }
+                                        { name: 'Preah Sihanouk', img: (destData['Preah Sihanouk'] || destData['Siem Reap']).image, rating: '4.4', reviews: '120' }
                                     ].map(item => (
                                         <div 
                                             key={item.name}

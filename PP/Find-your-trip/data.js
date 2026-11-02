@@ -2771,15 +2771,106 @@ const provinceCoords = {
     'tbong-khmum': { lat: 11.8891, lon: 105.8760 }
 };
 
+// Official & actual road network edges (National Roads & Expressway)
+const cambodiaRoadEdges = [
+    ['phnom-penh', 'kandal', 11],
+    ['phnom-penh', 'kampong-speu', 48],
+    ['phnom-penh', 'kampong-chhnang', 91],
+    ['phnom-penh', 'kampong-cham', 124],
+    ['phnom-penh', 'takeo', 78],
+    ['phnom-penh', 'prey-veng', 90],
+    ['phnom-penh', 'preah-sihanouk', 187],
+    ['phnom-penh', 'kampot', 148],
+    ['phnom-penh', 'kampong-thom', 168],
+    ['phnom-penh', 'svay-rieng', 122],
+    ['kandal', 'kampong-speu', 42],
+    ['kandal', 'takeo', 67],
+    ['kandal', 'prey-veng', 79],
+    ['kandal', 'kampong-cham', 115],
+    ['kampong-speu', 'takeo', 65],
+    ['kampong-speu', 'kampot', 105],
+    ['kampong-speu', 'preah-sihanouk', 145],
+    ['kampong-speu', 'koh-kong', 223],
+    ['takeo', 'kampot', 70],
+    ['takeo', 'kep', 85],
+    ['kampot', 'kep', 25],
+    ['kampot', 'preah-sihanouk', 95],
+    ['preah-sihanouk', 'koh-kong', 218],
+    ['koh-kong', 'pursat', 180],
+    ['kampong-chhnang', 'pursat', 98],
+    ['kampong-chhnang', 'kampong-cham', 130],
+    ['pursat', 'battambang', 102],
+    ['battambang', 'banteay-meanchey', 68],
+    ['battambang', 'pailin', 80],
+    ['banteay-meanchey', 'siem-reap', 104],
+    ['banteay-meanchey', 'oddar-meanchey', 110],
+    ['siem-reap', 'kampong-thom', 147],
+    ['siem-reap', 'preah-vihear', 152],
+    ['siem-reap', 'oddar-meanchey', 115],
+    ['oddar-meanchey', 'preah-vihear', 145],
+    ['preah-vihear', 'kampong-thom', 126],
+    ['preah-vihear', 'stung-treng', 190],
+    ['kampong-thom', 'kampong-cham', 90],
+    ['kampong-cham', 'tbong-khmum', 44],
+    ['kampong-cham', 'prey-veng', 85],
+    ['tbong-khmum', 'kratie', 147],
+    ['tbong-khmum', 'prey-veng', 75],
+    ['tbong-khmum', 'svay-rieng', 115],
+    ['tbong-khmum', 'mondulkiri', 353],
+    ['kratie', 'stung-treng', 140],
+    ['kratie', 'mondulkiri', 206],
+    ['stung-treng', 'ratanakiri', 133],
+    ['ratanakiri', 'mondulkiri', 195],
+    ['prey-veng', 'svay-rieng', 65]
+];
+
+// Precompute shortest road distances using Floyd-Warshall
+const roadDistanceMatrix = (() => {
+    const provinceIds = Object.keys(provinceCoords);
+    const matrix = {};
+    
+    provinceIds.forEach(u => {
+        matrix[u] = {};
+        provinceIds.forEach(v => {
+            matrix[u][v] = u === v ? 0 : Infinity;
+        });
+    });
+
+    cambodiaRoadEdges.forEach(([u, v, dist]) => {
+        if (matrix[u] && matrix[v]) {
+            matrix[u][v] = Math.min(matrix[u][v], dist);
+            matrix[v][u] = Math.min(matrix[v][u], dist);
+        }
+    });
+
+    provinceIds.forEach(k => {
+        provinceIds.forEach(i => {
+            provinceIds.forEach(j => {
+                if (matrix[i][k] + matrix[k][j] < matrix[i][j]) {
+                    matrix[i][j] = matrix[i][k] + matrix[k][j];
+                }
+            });
+        });
+    });
+
+    return matrix;
+})();
+
 const getDistance = (origin, dest) => {
-    if (origin === dest) return 25; // Base case for internal sightseeing
+    if (!origin || !dest) return 0;
+    if (origin === dest) return 0; // Same province/city
+
+    // Return exact road network distance if available
+    if (roadDistanceMatrix[origin] && typeof roadDistanceMatrix[origin][dest] === 'number' && roadDistanceMatrix[origin][dest] !== Infinity) {
+        return roadDistanceMatrix[origin][dest];
+    }
 
     const c1 = provinceCoords[origin];
     const c2 = provinceCoords[dest];
     if (!c1 || !c2) return 180; // Default fallback if not found
 
-    // Haversine formula
-    const R = 6371; // Earth radius in km
+    // Haversine fallback formula with tortuosity factor
+    const R = 6371;
     const dLat = (c2.lat - c1.lat) * Math.PI / 180;
     const dLon = (c2.lon - c1.lon) * Math.PI / 180;
     const lat1 = c1.lat * Math.PI / 180;
@@ -2790,7 +2881,5 @@ const getDistance = (origin, dest) => {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
     let d = R * c;
     
-    // Apply a tortuosity factor to simulate road travel
-    // Cambodia road tortuosity is roughly 1.35 
     return Math.round(d * 1.35);
 };

@@ -45,7 +45,7 @@ export const PROVINCE_METADATA = {
         bestTime: 'Nov – Feb (cooler dry period)',
         travelTips: 'Use PassApp or Grab for fair tuk-tuk prices, dress modestly for temples',
         hotels: [
-            { name: 'Rosewood Phnom Penh', rating: 4.9, price: '$260/night', img: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=400&q=80', desc: 'Ultra-luxury high-rise overlooking the city' },
+            { name: 'Rosewood Phnom Penh', rating: 4.9, price: '$260/night', img: 'https://www.ampersandtravel.com/media/844801/rosewood-phnom-penh-4.jpg?mode=crop&quality=95&width=820&height=534', desc: 'Ultra-luxury high-rise overlooking the city' },
             { name: 'Palace Gate Hotel & Resort', rating: 4.8, price: '$110/night', img: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=400&q=80', desc: 'Colonial luxury next to the Royal Palace' },
             { name: 'The Plantation Urban Resort', rating: 4.6, price: '$65/night', img: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=400&q=80', desc: 'Oasis resort with two swimming pools' }
         ],

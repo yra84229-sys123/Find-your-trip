@@ -139,7 +139,7 @@ export const vehiclesConfig = {
         nameEn: 'Motorcycle',
         nameKh: 'ម៉ូតូ',
         icon: 'fa-motorcycle',
-        speed: 55,
+        speed: 50,
         consumption: 2.2, // L/100km
         fuelType: 'gasoline'
     },
@@ -148,7 +148,7 @@ export const vehiclesConfig = {
         nameEn: 'Sedan / SUV',
         nameKh: 'ឡានផ្ទាល់ខ្លួន / SUV',
         icon: 'fa-car',
-        speed: 80,
+        speed: 70,
         consumption: 7.2, // L/100km
         fuelType: 'gasoline'
     },
@@ -157,7 +157,7 @@ export const vehiclesConfig = {
         nameEn: 'Electric Vehicle (EV)',
         nameKh: 'ឡានអគ្គិសនី (EV)',
         icon: 'fa-bolt',
-        speed: 80,
+        speed: 70,
         consumption: 16.5, // kWh/100km
         fuelType: 'electricity'
     },
@@ -166,7 +166,7 @@ export const vehiclesConfig = {
         nameEn: 'Tour Bus / Van',
         nameKh: 'ឡានក្រុងដឹកភ្ញៀវ / វ៉ាន់',
         icon: 'fa-bus',
-        speed: 65,
+        speed: 55,
         consumption: 14.0, // L/100km
         fuelType: 'diesel'
     }

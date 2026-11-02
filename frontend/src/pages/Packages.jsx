@@ -28,30 +28,40 @@ const initialPackages = [
         included: ["All temple transfers", "Licensed guide", "Cold drinking water & towels", "Hotel pickup & drop-off"],
         excluded: ["Angkor Archaeological Park pass", "Personal expenses & tips"]
     },
-    {
-        id: 2,
-        title: "Phi Phi Islands Getaway",
-        category: "beach",
-        categoryLabel: "Beach",
-        icon: "fa-umbrella-beach",
-        location: "Krabi, Thailand",
-        duration: "3 Days / 2 Nights",
-        people: "2-8 People",
-        price: 320,
-        rating: 4.8,
-        reviews: 182,
-        img: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=800&q=80",
-        description: "Cruise across crystal-clear turquoise waters, snorkel through vibrant coral reefs at Bamboo Island, and unwind on powdery white sand beaches.",
-        highlights: [
-            "Speedboat cruise to Maya Bay & Pileh Lagoon",
-            "Snorkeling safari with tropical sea turtles",
-            "Beachfront barbecue dinner under the stars",
-            "Luxury island resort accommodation",
-            "Viking Cave and Monkey Beach exploration"
-        ],
-        included: ["Resort stay (2 nights)", "Speedboat island excursions", "Snorkeling gear", "All meals on itinerary"],
-        excluded: ["National Marine Park entrance fee", "Alcoholic beverages"]
-    },
+{
+    id: 2,
+    title: "Koh Rong Samloem",
+    category: "beach",
+    categoryLabel: "Beach",
+    icon: "fa-umbrella-beach",
+    location: "Cambodia",
+    duration: "3 Days / 2 Nights",
+    people: "2-8 People",
+    price: 320,
+    rating: 4.8,
+    reviews: 182,
+    img: "https://images.trvl-media.com/place/6275744/420b1580-60ec-4638-bbef-e6a461c9206a.jpg",
+    description: "Discover the beautiful island of Koh Rong Samloem, famous for its crystal-clear waters, white-sand beaches, tropical forests, and peaceful atmosphere.",
+    highlights: [
+        "Relax on Saracen Bay's white-sand beach",
+        "Explore the beautiful Lazy Beach",
+        "Enjoy snorkeling in clear waters",
+        "Experience a beachfront barbecue dinner",
+        "Watch a beautiful sunset on the beach"
+    ],
+    included: [
+        "Resort stay (2 nights)",
+        "Round-trip speedboat tickets",
+        "Snorkeling gear",
+        "Meals included in the itinerary"
+    ],
+    excluded: [
+        "Personal expenses",
+        "Alcoholic beverages",
+        "Optional water activities",
+        "Transportation to the pier"
+    ]
+},
     {
         id: 3,
         title: "Banteay Srei Temple",
@@ -64,7 +74,7 @@ const initialPackages = [
         price: 30,
         rating: 4.9,
         reviews: 115,
-        img: "https://asiatravellinks.com/images/attractions/ta-prohm.webp",
+        img: "https://www.angkortourguides.com/uploads/images/Banteay%20srei%20t1.jpg",
         description: "Admire the crown jewel of Khmer art, sculpted from rare pink sandstone with breathtaking 10th-century relief carvings in the rural countryside.",
         highlights: [
             "Intricately carved pink sandstone sanctuary",
@@ -88,7 +98,7 @@ const initialPackages = [
         price: 150,
         rating: 4.8,
         reviews: 140,
-        img: "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/669831377.jpg?k=05c5854a62fe60082176bfe779f50ab67fe1cfa854e61268380014d294503ec1&o=",
+        img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/2b/18/05/caption.jpg?w=1200&h=1200&s=1",
         description: "Unplug on pristine white sand bays, paddle through mangrove estuaries, and experience magical bioluminescent plankton glowing in the night sea.",
         highlights: [
             "High-speed modern ferry transfer from Sihanoukville",
@@ -112,7 +122,7 @@ const initialPackages = [
         price: 25,
         rating: 4.7,
         reviews: 205,
-        img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80",
+        img: "https://www.novotelphnompenhbkk1.com/wp-content/uploads/sites/53/2023/10/Phnom-Penh-Central-Market.jpg",
         description: "Explore the bustling heart of Cambodia: the opulent Royal Palace, Silver Pagoda, historic Wat Phnom, vibrant markets, and a twilight Mekong sunset cruise.",
         highlights: [
             "Royal Palace complex and sacred Silver Pagoda",
@@ -136,7 +146,7 @@ const initialPackages = [
         price: 40,
         rating: 4.8,
         reviews: 98,
-        img: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKfdidPc5gcl4CdDu4qIrEdhhMYWUAUO0PoAULGIpG4NBp8LnhLaypNEQ&s=10",
         description: "Ascend Cambodia's most sacred mountain, swim beneath cascading tropical waterfalls, and marvel at the 1,000 carved Shiva lingas in the riverbed.",
         highlights: [
             "Refreshing swim in multi-tiered Kulen Waterfall",
@@ -160,7 +170,7 @@ const initialPackages = [
         price: 85,
         rating: 4.7,
         reviews: 64,
-        img: "https://media.tacdn.com/media/attractions-splice-spp-674x446/12/4c/ca/2c.jpg",
+        img: "https://images.squarespace-cdn.com/content/v1/6298cb774cf3830bc9b342bf/1a045d83-bbdb-4eac-aa11-f0e7be63b3c4/kampot-bokor-national-park-7.jpg",
         description: "Hike through misty pine plateaus, explore abandoned 1920s French colonial architecture, and witness panoramic views over the Gulf of Thailand.",
         highlights: [
             "Hauntingly beautiful Old Catholic Church & Palace",
@@ -184,7 +194,7 @@ const initialPackages = [
         price: 120,
         rating: 4.9,
         reviews: 72,
-        img: "https://img.liveaboard.com/River%20Cruise/Countries/Cambodia%20River%20Cruise%20001.jpeg?tr=w-1920,h-800,pr-true,c-maintain_ratio,q-50",
+        img: "https://indochinacharmtravel.com/wp-content/uploads/2023/11/Irrawaddy-Dolphins-Mekong-River-Cambodia-3-1000x530.jpg",
         description: "Sail down the peaceful Mekong River in Kampi to spot rare freshwater Irrawaddy dolphins and cycle through the tranquil orchards of Koh Trong.",
         highlights: [
             "Traditional wooden boat tour to observe wild dolphins",
@@ -208,7 +218,7 @@ const initialPackages = [
         price: 95,
         rating: 4.8,
         reviews: 86,
-        img: "https://xa6zemg4r8.cloudimg.io/_images_/Battambang%20Temples-yhUQyMTti0E05d2Jy2zO.jpg",
+        img: "https://www.asiakingtravel.com/images/thumbs/2024/09/15227/banner_1900x700xcrop.webp",
         description: "Ride the legendary original bamboo train through scenic rice fields, tour colonial French quarters, and watch millions of bats fly from Phnom Sampeau at dusk.",
         highlights: [
             "Thrilling Bamboo Train (Norry) ride along vintage tracks",

@@ -34,16 +34,16 @@ export default function About() {
                     </p>
 
                     <div className="hero-buttons" style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
-                        <button 
-                            className="btn-primary" 
-                            style={{ borderRadius: '30px', background: '#0d6efd', padding: '15px 35px', fontWeight: 'bold' }} 
+                        <button
+                            className="btn-primary"
+                            style={{ borderRadius: '30px', background: '#0d6efd', padding: '15px 35px', fontWeight: 'bold' }}
                             onClick={() => { playBeep(true); document.getElementById('our-story')?.scrollIntoView({ behavior: 'smooth' }); }}
                         >
                             OUR STORY
                         </button>
-                        <button 
-                            className="btn-outline" 
-                            style={{ borderRadius: '30px', color: 'white', borderColor: 'white', padding: '15px 35px', fontWeight: 'bold' }} 
+                        <button
+                            className="btn-outline"
+                            style={{ borderRadius: '30px', color: 'white', borderColor: 'white', padding: '15px 35px', fontWeight: 'bold' }}
                             onClick={() => { playBeep(true); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
                         >
                             CONTACT US
@@ -190,7 +190,7 @@ export default function About() {
                         {[
                             {
                                 name: "Thon Youra",
-                                role: "Founder & Lead Developer",
+
                                 image: yuraImg,
                                 bio: "I've established Find Your Trip in 2024 and it was one of the best ideas I've had to help people explore Cambodia.",
                                 ringColor: "p-[3px] bg-gradient-to-tr from-indigo-500 via-purple-500 to-indigo-400 shadow-lg shadow-indigo-500/25",
@@ -203,7 +203,7 @@ export default function About() {
                             },
                             {
                                 name: "Heng Menghorng",
-                                role: "Co-Founder & System Architect",
+
                                 image: horngImg,
                                 bio: "I lead system architecture and database design, crafting robust services to power seamless travel experiences.",
                                 ringColor: "p-[3px] bg-slate-200 hover:bg-gradient-to-tr hover:from-indigo-400 hover:to-purple-400 transition-all duration-300",
@@ -216,7 +216,7 @@ export default function About() {
                             },
                             {
                                 name: "Phan Sokbunleap",
-                                role: "Full Stack Engineer",
+
                                 image: bunleapImg,
                                 bio: "Passionate about building fast, intuitive web features and integrating smart itineraries for travelers.",
                                 ringColor: "p-[3px] bg-slate-200 hover:bg-gradient-to-tr hover:from-indigo-400 hover:to-purple-400 transition-all duration-300",
@@ -229,7 +229,7 @@ export default function About() {
                             },
                             {
                                 name: "Seang Sompo",
-                                role: "Lead UI/UX Designer",
+
                                 image: sompoImg,
                                 bio: "I design clean, modern, and engaging interfaces that inspire travelers to discover hidden gems.",
                                 ringColor: "p-[3px] bg-slate-200 hover:bg-gradient-to-tr hover:from-indigo-400 hover:to-purple-400 transition-all duration-300",
@@ -242,7 +242,7 @@ export default function About() {
                             },
                             {
                                 name: "Koemlun Chenglorng",
-                                role: "Frontend Specialist & QA",
+
                                 image: lorngImg,
                                 bio: "Ensuring every component is responsive, polished, and performs smoothly across all devices.",
                                 ringColor: "p-[3px] bg-slate-200 hover:bg-gradient-to-tr hover:from-indigo-400 hover:to-purple-400 transition-all duration-300",
@@ -291,15 +291,14 @@ export default function About() {
                                             href={member.socials.x}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className={`w-8 h-8 rounded-full flex items-center justify-center text-xs transition-all ${
-                                                member.firstIconActive
+                                            className={`w-8 h-8 rounded-full flex items-center justify-center text-xs transition-all ${member.firstIconActive
                                                     ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
                                                     : 'bg-slate-100 hover:bg-indigo-600 hover:text-white text-slate-600 border border-slate-200'
-                                            }`}
+                                                }`}
                                             aria-label="X Profile"
                                         >
                                             <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                                             </svg>
                                         </a>
 
@@ -312,9 +311,9 @@ export default function About() {
                                             aria-label="Instagram Profile"
                                         >
                                             <svg className="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
-                                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                                             </svg>
                                         </a>
 
@@ -327,7 +326,7 @@ export default function About() {
                                             aria-label="LinkedIn Profile"
                                         >
                                             <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
                                             </svg>
                                         </a>
                                     </div>
@@ -375,7 +374,7 @@ export default function About() {
                                     </p>
                                     <button
                                         onClick={() => {
-                                             setFormState({ name: '', email: '', subject: '', message: '' });
+                                            setFormState({ name: '', email: '', subject: '', message: '' });
                                             setIsSubmitted(false);
                                         }}
                                         className="mt-4 px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-colors cursor-pointer"

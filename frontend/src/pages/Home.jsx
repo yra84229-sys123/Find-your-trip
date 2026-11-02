@@ -48,7 +48,7 @@ export default function Home() {
             location: 'Sihanoukville, Cambodia',
             rating: 4.7,
             reviews: '932',
-            img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+            img: 'https://www.gocambodia.tours/wp-content/uploads/2018/07/Koh-Rong-Island-1.jpg',
             provinceId: 'preah-sihanouk'
         },
         {
@@ -57,7 +57,7 @@ export default function Home() {
             location: 'Phnom Penh, Cambodia',
             rating: 4.6,
             reviews: '856',
-            img: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=800&q=80',
+            img: 'https://pcontrol.tourismcambodia.com/cdn/tourismcambodia.com/img/tours/8740704cae9d39ab4f6e861105197482.jpeg',
             provinceId: 'phnom-penh'
         },
         {
@@ -66,7 +66,7 @@ export default function Home() {
             location: 'Sihanoukville, Cambodia',
             rating: 4.5,
             reviews: '640',
-            img: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80',
+            img: 'https://img.harbor-property.com/infocontent/2023/05/09/142800001.jpg',
             provinceId: 'preah-sihanouk'
         }
     ];
@@ -79,7 +79,7 @@ export default function Home() {
             location: 'Phnom Penh, Cambodia',
             rating: 4.9,
             reviews: '1.1k',
-            img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80'
+            img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSavsDAQvlJqGKW0Oqx2zhrU9o9KdfdJdXI3b2_Y-30vaMVJD5OIKFxNF1T&s=10'
         },
         {
             id: 2,
@@ -87,7 +87,7 @@ export default function Home() {
             location: 'Battambang, Cambodia',
             rating: 4.8,
             reviews: '840',
-            img: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80'
+            img: 'https://i0.wp.com/thebusyfoodie.com/wp-content/uploads/2026/01/Lok-lak-recipe-06.jpg'
         },
         {
             id: 3,
@@ -95,7 +95,7 @@ export default function Home() {
             location: 'Kep & Kampot, Cambodia',
             rating: 4.9,
             reviews: '980',
-            img: 'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=800&q=80'
+            img: 'https://www.baconismagic.ca/wp-content/uploads/2025/03/kep-food-blue-crab-and-kampot-pepper-f.jpg'
         },
         {
             id: 4,
@@ -103,7 +103,7 @@ export default function Home() {
             location: 'Siem Reap, Cambodia',
             rating: 4.7,
             reviews: '720',
-            img: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80'
+            img: 'https://images.deliveryhero.io/image/fd-kh/LH/vn98-listing.jpg?width=480&height=360&quality=45'
         },
         {
             id: 5,
@@ -111,7 +111,7 @@ export default function Home() {
             location: 'Kampot, Cambodia',
             rating: 4.8,
             reviews: '610',
-            img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80'
+            img: 'https://newasiatours.com/uploads/Travel%20Guide/Luot6/Nom%20Banh%20Chok%20Taste%20the%20Heritage/2-nom-banh-chok-is-a-traditional-dish-that-uses-fresh-local-ingredients.jpg'
         }
     ];
 
@@ -119,7 +119,7 @@ export default function Home() {
     const [activeFilter, setActiveFilter] = useState('All');
     const homePackagesList = [
         { id: 1, category: 'adventure', categoryLabel: 'Adventure', icon: 'fa-mountain', img: 'https://asiatravellinks.com/images/attractions/ta-prohm.webp', title: 'Jungle & Temples Adventure', location: 'Siem Reap, Cambodia', desc: 'Trek through dense jungles, discover hidden temples and experience the true wild side of Cambodia.', duration: '4 Days 3 Nights', people: '2-12 People', price: 299, rating: 4.9, reviews: '340' },
-        { id: 2, category: 'relaxing', categoryLabel: 'Relaxing', icon: 'fa-umbrella-beach', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80', title: 'Beach Escape in Koh Rong', location: 'Koh Rong, Cambodia', desc: "Relax on white sandy beaches and enjoy crystal-clear waters on Cambodia's beautiful island.", duration: '3 Days 2 Nights', people: '2-10 People', price: 249, rating: 4.8, reviews: '280' },
+        { id: 2, category: 'relaxing', categoryLabel: 'Relaxing', icon: 'fa-umbrella-beach', img: 'https://www.gocambodia.tours/wp-content/uploads/2024/06/Koh-Rong-Island-exploration-with-cambodia-trips-3-300x200.jpg', title: 'Beach Escape in Koh Rong', location: 'Koh Rong, Cambodia', desc: "Relax on white sandy beaches and enjoy crystal-clear waters on Cambodia's beautiful island.", duration: '3 Days 2 Nights', people: '2-10 People', price: 249, rating: 4.8, reviews: '280' },
         { id: 3, category: 'culture', categoryLabel: 'Culture', icon: 'fa-landmark', img: 'https://cms.siemreaper.click/uploads/angkor_wat_sunrise_discovery2712_997b977984.jpg', title: 'Angkor Heritage Experience', location: 'Siem Reap, Cambodia', desc: "Explore the magnificent Angkor temples and immerse yourself in Cambodia's rich history and culture.", duration: '4 Days 3 Nights', people: '2-10 People', price: 319, rating: 4.9, reviews: '415' },
         { id: 4, category: 'food', categoryLabel: 'Food', icon: 'fa-utensils', img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80', title: 'Taste of Cambodia', location: 'Phnom Penh, Cambodia', desc: 'Savor authentic Cambodian cuisine and explore local markets with our food expert guides.', duration: '3 Days 2 Nights', people: '2-10 People', price: 199, rating: 4.7, reviews: '190' }
     ];
@@ -137,24 +137,32 @@ export default function Home() {
         setTimeout(() => {
             const origin = calcOrigin;
             const dest = calcDest;
-            let distance = typeof getDistance === 'function' ? getDistance(origin, dest) : 180;
+            let distance = typeof getDistance === 'function' ? getDistance(origin, dest) : 0;
 
-            const v = vehiclesConfig[calcVehicle] || { speed: 80, consumption: 7.2, fuelType: 'gasoline' };
+            const v = vehiclesConfig[calcVehicle] || { speed: 70, consumption: 7.2, fuelType: 'gasoline' };
             const speed = v.speed;
             const economy = v.consumption;
             const fuelType = v.fuelType;
             const unitPrice = fuelPrices[fuelType] || 1.15;
 
-            // Time Calculation
-            const timeInHours = distance / speed;
-            const hours = Math.floor(timeInHours);
-            const minutes = Math.round((timeInHours - hours) * 60);
+            // Time Calculation - prevent 60m rounding glitch
+            const totalMinutes = distance > 0 ? Math.round((distance / speed) * 60) : 0;
+            const hours = Math.floor(totalMinutes / 60);
+            const minutes = totalMinutes % 60;
 
             // Fuel Calculation
             const totalFuel = (distance * economy) / 100;
             const totalCost = totalFuel * unitPrice;
 
+            const originObj = provincesData.find(p => p.id === origin);
+            const destObj = provincesData.find(p => p.id === dest);
+
             setCalcResults({
+                origin,
+                dest,
+                originName: originObj ? originObj.name : origin,
+                destName: destObj ? destObj.name : dest,
+                isSameProvince: origin === dest,
                 distance: distance.toFixed(0),
                 time: { hours, minutes },
                 fuel: totalFuel.toFixed(1),
@@ -440,9 +448,15 @@ export default function Home() {
                         <div className="calc-results-panel glass-panel">
                             {calcResults ? (
                                 <div style={{ animation: 'fadeIn 0.5s ease' }}>
-                                    <h3 className="text-center" style={{ fontSize: '1.45rem', marginBottom: '20px' }}>
-                                        Trip Log Details
-                                    </h3>
+                                    <div className="text-center mb-4">
+                                        <h3 style={{ fontSize: '1.45rem', fontWeight: 700, margin: '0 0 6px 0', color: 'var(--text-main)' }}>
+                                            <i className="fa-solid fa-route" style={{ color: 'var(--primary)', marginRight: '8px' }}></i>
+                                            Trip Log Details
+                                        </h3>
+                                        <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: 600 }}>
+                                            {calcResults.originName} <i className="fa-solid fa-arrow-right-long" style={{ margin: '0 6px', color: 'var(--primary)' }}></i> {calcResults.destName}
+                                        </div>
+                                    </div>
 
                                     <div className="calc-stat-group">
                                         <div className="calc-stat-card">
@@ -473,12 +487,16 @@ export default function Home() {
                                             <span>{calcResults.distance} km</span>
                                         </div>
                                         <div className="calc-meter-bg">
-                                            <div className="calc-meter-fill" style={{ width: '100%' }}></div>
+                                            <div className="calc-meter-fill" style={{ width: calcResults.isSameProvince ? '0%' : '100%' }}></div>
                                         </div>
                                     </div>
 
                                     <div style={{ marginTop: '20px', padding: '12px', background: 'var(--bg-light)', borderRadius: '12px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                                        Calculated at vehicle rate of {calcResults.economy} {calcResults.fuelUnit}/100km. Average speed capped by {t('calcSpeedLimit')} rules.
+                                        {calcResults.isSameProvince ? (
+                                            <span>Departure and destination are the same province (0 km inter-provincial transit).</span>
+                                        ) : (
+                                            <span>Calculated at vehicle rate of {calcResults.economy} {calcResults.fuelUnit}/100km. Average speed capped by {t('calcSpeedLimit')} rules.</span>
+                                        )}
                                     </div>
                                 </div>
                             ) : (
